@@ -4,4 +4,4 @@ The final edition of the Art of 9 x 9 Go series by Monteo da Westi and A Master 
 - [Nature](https://9x9go.github.io/superhuman/nature.html)
 - [Meta-Strategy](https://9x9go.github.io/superhuman/strategy.html)
 - [Opening](https://9x9go.github.io/superhuman/black1.html)
-- [San-san opening](https://9x9go.github.io/superhuman/111sansan.html)
+- [San-san opening](https://9x9go.github.io/superhuman/101sansan.html)
