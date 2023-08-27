@@ -1,2 +1,2 @@
 # The Art of 9 x 9 Go, Superhuman Edition
-An e-book on the principles of 9 x 9 Go learned from superhuman AI, A Master of Go. We have been coding it since August 2023.
+The final edition of the Art of 9 x 9 Go series by Monteo da Westi and A Master of Go (in coding, since August 2023).
