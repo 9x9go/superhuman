@@ -1,5 +1,7 @@
 # The Art of 9 x 9 Go, Superhuman Edition
-This repository stores source codes of e-book, entitled The Art of 9 x 9 Go, Superhuman Edition. Below are the exceprts:
+This repository stores source codes of e-book, entitled The Art of 9 x 9 Go, Superhuman Edition. 
+
+Excerpts
 - [Preface](https://9x9go.github.io/superhuman/preface.html)
 - [Nature](https://9x9go.github.io/superhuman/nature.html)
 - [Meta-Strategy](https://9x9go.github.io/superhuman/strategy.html)
