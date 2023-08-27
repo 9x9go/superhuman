@@ -1,7 +1,7 @@
 # The Art of 9 x 9 Go, Superhuman Edition
-This repository publsih the source codes of WGA's e-book __The Art of 9 x 9 Go, Superhuman Edition__. 
+This repository publsih the source codes of __The Art of 9 x 9 Go, Superhuman Edition__. 
 
-## Excerpts
+## Contents
 - [Preface](https://9x9go.github.io/superhuman/preface.html)
 - [Nature](https://9x9go.github.io/superhuman/nature.html)
 - [Meta-Strategy](https://9x9go.github.io/superhuman/strategy.html)
