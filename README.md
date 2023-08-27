@@ -1,5 +1,5 @@
 # The Art of 9 x 9 Go, Superhuman Edition
-This repository publsih the source codes of e-book__The Art of 9 x 9 Go, Superhuman Edition__. 
+This repository publsih the source codes of e-book __The Art of 9 x 9 Go, Superhuman Edition__. 
 
 ## Excerpts
 - [Preface](https://9x9go.github.io/superhuman/preface.html)
