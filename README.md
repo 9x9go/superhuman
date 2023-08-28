@@ -9,3 +9,7 @@ This repository publsih the source codes of __The Art of 9 x 9 Go, Superhuman Ed
 - [Meta-Strategy](https://9x9go.github.io/superhuman/strategy.html)
 - [Opening](https://9x9go.github.io/superhuman/black1.html)
 - [San-san opening](https://9x9go.github.io/superhuman/101sansan.html)
+
+## Note
+Credits are addressed in Preface, in the last paragraph.
+  
