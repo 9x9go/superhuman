@@ -61,7 +61,8 @@ SOFTWARE.
 ```
 - Inline Go stone with number, learned from [W3Docs.com](https://www.w3docs.com/snippets/css/how-to-add-a-circle-around-a-number-in-css.html):
 ```
-  W3docs provides free learning materials for programming languages like HTML, CSS, JavaScript, PHP etc.
+  W3docs provides free learning materials for programming languages
+like HTML, CSS, JavaScript, PHP etc.
 ```
 
 - All code in this repository is sublicensed by Monteo da Westi:
