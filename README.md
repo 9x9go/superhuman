@@ -1,5 +1,5 @@
 # The Art of 9 x 9 Go, Superhuman Edition
-This repository publsih the source codes of __The Art of 9 x 9 Go, Superhuman Edition__. 
+This repository stores the source code of __The Art of 9 x 9 Go, Superhuman Edition__. 
 - Best for Windows PC
 - Readable on mobile and tablet (iOS)  
 
