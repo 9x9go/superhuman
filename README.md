@@ -55,7 +55,7 @@ SOFTWARE.
   W3docs provides free learning materials for programming languages like HTML, CSS, JavaScript, PHP etc.
 ```
 
-- All code in this repository is licensed by Monteo da Westi:
+- All code in this repository is sublicensed by Monteo da Westi:
 ```
 Copyright © 2023 by Monteo da Westi
 All rights reserved. No part of this publication may be reproduced,
