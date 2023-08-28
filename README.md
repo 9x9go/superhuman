@@ -10,6 +10,11 @@ This repository publsih the source codes of __The Art of 9 x 9 Go, Superhuman Ed
 - [Opening](https://9x9go.github.io/superhuman/black1.html)
 - [San-san opening](https://9x9go.github.io/superhuman/101sansan.html)
 
-## Note
-Credits are addressed in Preface, in the last paragraph.
+## Credits
+- Book layout, sligthly modified from [Erin E Sullivan](https://codepen.io/erinesullivan/pen/gxdbzp)
+- Go diagram, very slightly modified from Jan Prokop's [WGo.js](http://wgo.waltheri.net/)
+- Game analysis by superhuman AI [A Master of Go](https://new3rs.github.io/a_master_of_go/index.html)
+- Inline Go stone with number, learned from [W3Docs.com](https://www.w3docs.com/snippets/css/how-to-add-a-circle-around-a-number-in-css.html)
+- Publishing, of course, on this Github
+
   
