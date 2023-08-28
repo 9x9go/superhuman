@@ -10,7 +10,7 @@ This repository publsih the source codes of __The Art of 9 x 9 Go, Superhuman Ed
 - [Opening](https://9x9go.github.io/superhuman/black1.html)
 - [San-san opening](https://9x9go.github.io/superhuman/101sansan.html)
 
-## Credits
+## Credits & Licenses
 - Book layout, sligthly modified from [Erin E Sullivan](https://codepen.io/erinesullivan/pen/gxdbzp): [MIT Licensed by Codepen](https://blog.codepen.io/documentation/terms-of-service/#your-license-to-us):
 ```
 By submitting, posting or displaying Content on the CodePen Site,
