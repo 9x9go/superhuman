@@ -11,7 +11,7 @@ This repository stores the source code of __The Art of 9 x 9 Go, Superhuman Edit
 - [San-san opening](https://9x9go.github.io/superhuman/101sansan.html)
 
 ## Credits & Licenses
-- Book layout, sligthly modified from [Erin E Sullivan](https://codepen.io/erinesullivan/pen/gxdbzp): [MIT Licensed by Codepen](https://blog.codepen.io/documentation/terms-of-service/#your-license-to-us):
+- Book layout, from [Erin E Sullivan](https://codepen.io/erinesullivan/pen/gxdbzp): [MIT Licensed by Codepen](https://blog.codepen.io/documentation/terms-of-service/#your-license-to-us):
 ```
 Copyright (c) 2023 by Erin E. Sullivan (https://codepen.io/erinesullivan/pen/gxdbzp)
 
@@ -34,7 +34,7 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ```
   
-- Go diagram, very slightly modified from Jan Prokop's [WGo.js](http://wgo.waltheri.net/): All his code is free, licensed under the [MIT license](https://en.wikipedia.org/wiki/MIT_License):
+- Go diagrams, made with Jan Prokop's [WGo.js](http://wgo.waltheri.net/): All his code is free, licensed under the [MIT license](https://en.wikipedia.org/wiki/MIT_License):
 ```
 Copyright (c) Jan Prokop
 Permission is hereby granted, free of charge, to any person obtaining a copy
