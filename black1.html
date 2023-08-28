@@ -31,14 +31,11 @@ See https://www.bypeople.com/css-book-layout/ for more infomation>
 Key to the success in Tengen opening is preparedness. Black should have a set of well-tested best-move sequences in mind, prepared to deal with any <span class='w'>2</span> by having the right answers in advance. Strong players plan their strategy long before the game: <em>"If White places <span class='w'>2</span> here, I will place <Span class='b'>3</span> there, and if..., then..."</em> They also make sure the answers are right. <mark class="green">We can validate the best opening strategy with verified superhuman Go AI </mark>that used to be No. 1 top ranked player on GoQuest 9 &#215; 9 Go server, named <a>"A Master of Go."</a>   
 </p>
 
-<p><mark>The best move for White to deal with Tengen is to approach it with knight's move</mark>, by placing <span class='w'>2</span> on any of the 3-4 points marked &#9651; along the third line.
+<p><mark>The best move for White to deal with Tengen is to approach it with Knight's move</mark>, by placing <span class='w'>2</span> on any of the 3-4 points marked <em>a</em> to <em>h</em>; along the third line.
 </p>
 <br>
  <div id="board"></div>
-	    
-<div data-wgo-diagram="(;SZ[9]AB[ee]LB[ee:1]TR[dc][cd][cf][dg][fg][gf][gd][fc])" style="width: 40%">
-Your browser doesn't support WGo Player. Use some modern browser like IE9, Google Chrome or Mozilla Firefox.
-</div>
+
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
             </article>
@@ -55,7 +52,7 @@ Your browser doesn't support WGo Player. Use some modern browser like IE9, Googl
 
 		<script>
 	var board = new WGo.Board(document.getElementById("board"), {
-		width: 150,
+		width: 200,
 		section: {
 			top: -0.5,
 			left: -0.5,
@@ -103,7 +100,17 @@ Your browser doesn't support WGo Player. Use some modern browser like IE9, Googl
 	board.setSize(9);
 	board.addObject([
 	    {x: 4, y: 4, c: WGo.B},
-	    {x: 4, y: 4, type: "LB", text: "1"}
+	    {x: 4, y: 4, type: "LB", text: "1"},
+	    {x: 2, y: 3, type: "LB", text: "a"},
+	    {x: 2, y: 5, type: "LB", text: "b"},
+	    {x: 3, y: 6, type: "LB", text: "c"},
+	    {x: 5, y: 6, type: "LB", text: "d"},
+	    {x: 6, y: 5, type: "LB", text: "e"},
+	    {x: 6, y: 3, type: "LB", text: "f"},
+	    {x: 5, y: 2, type: "LB", text: "g"},
+	    {x: 3, y: 2, type: "LB", text: "h"},
+
+
 	]);
 
 	</script>
