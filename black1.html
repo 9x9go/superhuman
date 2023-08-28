@@ -54,10 +54,10 @@ Key to the success in Tengen opening is preparedness. Black should have a set of
 	var board = new WGo.Board(document.getElementById("board"), {
 		width: 220,
 		section: {
-			top: -0.5,
-			left: -0.5,
-			right: -0.5,
-			bottom: -0.5,
+			top: 0,
+			left: 0,
+			right: 0,
+			bottom: 0,
 		}
 	});
 
@@ -96,7 +96,7 @@ Key to the success in Tengen opening is preparedness. Black should have a set of
 	}
 	
 	
-	board.addCustomObject(coordinates);
+	// board.addCustomObject(coordinates);
 	board.setSize(9);
 	board.addObject([
 	    {x: 4, y: 4, c: WGo.B},
