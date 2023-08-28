@@ -47,7 +47,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 - Game analysis by superhuman AI [A Master of Go](https://new3rs.github.io/a_master_of_go/index.html)
-- Inline Go stone with number, learned from [W3Docs.com](https://www.w3docs.com/snippets/css/how-to-add-a-circle-around-a-number-in-css.html)
+- Inline Go stone with number, learned from [W3Docs.com](https://www.w3docs.com/snippets/css/how-to-add-a-circle-around-a-number-in-css.html):
+```
+  W3docs provides free learning materials for programming languages like HTML, CSS, JavaScript, PHP etc.
+```
+
 - Publishing, of course, on this Github
 
   
