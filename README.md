@@ -58,13 +58,13 @@ SOFTWARE.
 ```
   Copyright © 2018 Yuji Ichikawa
 ```
-- Textual black and white stones with marks, learned from [W3Docs.com](https://www.w3docs.com/snippets/css/how-to-add-a-circle-around-a-number-in-css.html):
+- __Textual black and white stones with marks__, learned from [W3Docs.com](https://www.w3docs.com/snippets/css/how-to-add-a-circle-around-a-number-in-css.html):
 ```
   W3docs provides free learning materials for programming languages
 like HTML, CSS, JavaScript, PHP etc.
 ```
 
-- All code in this repository is licensed and sublicensed by Monteo da Westi:
+- __All code in this repository__ is licensed and sublicensed by Monteo da Westi:
 ```
 Copyright © 2023 by Monteo da Westi
 All rights reserved. No part of this repository may be reproduced,
