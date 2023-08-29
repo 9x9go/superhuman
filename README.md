@@ -4,6 +4,7 @@ Go e-book by [Monteo da Westi](http://questgames.net/go9#user/monteodawesti) & [
 
 ## Contents
 - [Preface](https://9x9go.github.io/superhuman/preface.html)
+- [Notations](https://9x9go.github.io/superhuman/notation.html)
 - [Nature](https://9x9go.github.io/superhuman/nature.html)
 - [Meta-Strategy](https://9x9go.github.io/superhuman/strategy.html)
 - [Opening](https://9x9go.github.io/superhuman/black1.html)
