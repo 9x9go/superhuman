@@ -9,7 +9,7 @@ Source code of __The Art of 9 x 9 Go, Superhuman Edition__.
 - [San-san opening](https://9x9go.github.io/superhuman/101sansan.html)
 
 ## Credits & Licenses
-- Book layout, [Erin E Sullivan](https://codepen.io/erinesullivan/pen/gxdbzp): 
+- __Book layout__, [Erin E Sullivan](https://codepen.io/erinesullivan/pen/gxdbzp): 
 ```
 Copyright (c) 2023 by Erin E. Sullivan (https://codepen.io/erinesullivan/pen/gxdbzp)
 
@@ -33,7 +33,7 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ```
   
-- Go diagrams, made with Jan Prokop's [WGo.js](http://wgo.waltheri.net/): 
+- __Go diagrams__, made with Jan Prokop's [WGo.js](http://wgo.waltheri.net/): 
 ```
 Copyright (c) Jan Prokop
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -54,11 +54,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
-- Game analysis by [A Master of Go](https://new3rs.github.io/a_master_of_go/index.html)
+- __Game analysis__ by [A Master of Go](https://new3rs.github.io/a_master_of_go/index.html)
 ```
   Copyright © 2018 Yuji Ichikawa
 ```
-- Inline black and white stones with marks, learned from [W3Docs.com](https://www.w3docs.com/snippets/css/how-to-add-a-circle-around-a-number-in-css.html):
+- Textual black and white stones with marks, learned from [W3Docs.com](https://www.w3docs.com/snippets/css/how-to-add-a-circle-around-a-number-in-css.html):
 ```
   W3docs provides free learning materials for programming languages
 like HTML, CSS, JavaScript, PHP etc.
