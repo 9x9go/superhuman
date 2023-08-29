@@ -11,7 +11,7 @@ Source code of __The Art of 9 x 9 Go, Superhuman Edition__.
 ## Credits & Licenses
 - Book layout, [Erin E Sullivan](https://codepen.io/erinesullivan/pen/gxdbzp): 
 ```
-Copyright (c) 2023 by Erin E. Sullivan ([https://codepen.io/erinesullivan/pen/gxdbzp](https://codepen.io/erinesullivan/pen/gxdbzp))
+Copyright (c) 2023 by Erin E. Sullivan [https://codepen.io/erinesullivan/pen/gxdbzp](https://codepen.io/erinesullivan/pen/gxdbzp)
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files
