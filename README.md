@@ -1,7 +1,5 @@
 # The Art of 9 x 9 Go, Superhuman Edition
-This repository stores the source code of __The Art of 9 x 9 Go, Superhuman Edition__. 
-- Best for Windows PC
-- Readable on mobile and tablet (iOS)  
+Source code of __The Art of 9 x 9 Go, Superhuman Edition__. 
 
 ## Contents
 - [Preface](https://9x9go.github.io/superhuman/preface.html)
@@ -11,16 +9,17 @@ This repository stores the source code of __The Art of 9 x 9 Go, Superhuman Edit
 - [San-san opening](https://9x9go.github.io/superhuman/101sansan.html)
 
 ## Credits & Licenses
-- Book layout, from [Erin E Sullivan](https://codepen.io/erinesullivan/pen/gxdbzp): [MIT Licensed by Codepen](https://blog.codepen.io/documentation/terms-of-service/#your-license-to-us):
+- Book layout, [Erin E Sullivan](https://codepen.io/erinesullivan/pen/gxdbzp): 
 ```
-Copyright (c) 2023 by Erin E. Sullivan (https://codepen.io/erinesullivan/pen/gxdbzp)
+Copyright (c) 2023 by Erin E. Sullivan ([https://codepen.io/erinesullivan/pen/gxdbzp](https://codepen.io/erinesullivan/pen/gxdbzp))
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files
 (the "Software"), to deal in the Software without restriction,
 including without limitation the rights to use, copy, modify,
 merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be
 included in all copies or substantial portions of the Software.
@@ -34,7 +33,7 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ```
   
-- Go diagrams, made with Jan Prokop's [WGo.js](http://wgo.waltheri.net/): All his code is free, licensed under the [MIT license](https://en.wikipedia.org/wiki/MIT_License):
+- Go diagrams, made with Jan Prokop's [WGo.js](http://wgo.waltheri.net/): 
 ```
 Copyright (c) Jan Prokop
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -55,23 +54,24 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
-- Game analysis by superhuman AI [A Master of Go](https://new3rs.github.io/a_master_of_go/index.html)
+- Game analysis by [A Master of Go](https://new3rs.github.io/a_master_of_go/index.html)
 ```
-  Copyright © 2018- Yuji Ichikawa
+  Copyright © 2018 Yuji Ichikawa
 ```
-- Inline Go stone with number, learned from [W3Docs.com](https://www.w3docs.com/snippets/css/how-to-add-a-circle-around-a-number-in-css.html):
+- Inline black and white stones with marks, learned from [W3Docs.com](https://www.w3docs.com/snippets/css/how-to-add-a-circle-around-a-number-in-css.html):
 ```
   W3docs provides free learning materials for programming languages
 like HTML, CSS, JavaScript, PHP etc.
 ```
 
-- All code in this repository is sublicensed by Monteo da Westi:
+- All code in this repository is licensed and sublicensed by Monteo da Westi:
 ```
 Copyright © 2023 by Monteo da Westi
 All rights reserved. No part of this repository may be reproduced,
 distributed, or transmitted in any form or by any means,
-including photocopying, recording, or other electronic or mechanical methods,
-without the prior written permission of Monteo da Westi.
+including photocopying, recording, or other electronic
+or mechanical methods, without the prior written permission of
+the copyright holder.
 
 For permission requests, write to monteodawesti@gmail.com
 ```
