@@ -1,0 +1,145 @@
+<html>
+<!The layout of this book was made by Erin E. Sullivan. 
+See https://www.bypeople.com/css-book-layout/ for more infomation>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<link rel="stylesheet" href="css/book.css">
+	<script type="text/javascript" src="js/wgo/wgo.min.js"></script>
+	<script type="text/javascript" src="js/wgo/wgo.player.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="js/wgo/wgo.player.css" />
+
+</head>
+<div id="wrapper">
+    <div id="container">
+
+        <section class="open-book">
+            <header>
+                <h1>The Art of 9 &#215; 9 Go</h1>
+                <h6>Superhuman Edition</h6>
+            </header>
+            <article>
+                <h2 class="chapter-title">Notations</h2>
+                <p>
+                   The text and diagrams in this book were annotated with notation under the WGA's 9 &#215; 9 Go review convention:
+<ul style='list-style:none'>
+<li><span class='b'></span> = black stone</li>
+<li><span class='w'></span> = white stone</li>
+<li><span class='b'>1</span> = Black 1, or move 1 by Black</li>
+<li><span class='w'>2</span> = White 2, or move 2 by White</li>
+<li><span class='b'>&#x25B3;</span> = black stone marked &#x25B3; = vulnerable black stone (<em>e.g.</em>, put into atari; small move; wasted move; cutting stone; captured stone) </li>
+<li><span class='w'>&#x25B2;</span> = vulnerable white stone</li>
+<li><span class='b'>&#x25A1;</span> = dead black stone = black prisoner</li>
+<li><span class='w'>&#x25A0;</span> = dead white stone = white prisoner</li>
+<li><span class='b'>&#x25EF;</span> = Black's last move</li>
+<li><span class='w'>&#x25EF;</span> = White's last move</li>
+<li><span class='b'>&#x2715;</span> = Black's wrong move</li>
+<li><span class='w'>&#x2715;</span> = White's wrong move</li>
+<li>&#x2715; = point to occupy</li>
+<li>S = superhuman location = divine move = best move</li>
+<li>&#x25A0; = point surrounded by Black = Black's point of territory</li>
+<li>&#x25A1; = point surrounded by White = White's point of territory</li>
+<li>A, B, C = visualized points to play by Black and White in sequence (<em>e.g.</em>, Black A, White B, Black C)</li>
+</ul>  
+		</p>
+<br>
+<p>For example, in <em>Dia. 1</em>, Black places <span class='b'>1</span> on Tengen. White answers with Knight's move approach at <span class='w'>2</span>. Then, a standard opening pattern is Black A, White B, Black C. Making the next move at <span class='b'>&#x2715;</span> is due to the wrong click. Normally, we do not make a move on the first line at the opening, but it may look creative and interest the novice who cannot distinguish between bad and good moves. Back to the event after Black C. Both players want to occupy at &#x2715;. But now, it is White's turn; he should make the next move at &#x2715; to secure the bottom left corner, to attack <span class='b'>1</span>, and to get ready to invade the large empty area in the top right corner, where there is enough eye spaces.
+</p>
+<br>
+ <div id="board"></div><br><center><em>Dia. 1</em> 9 &#215; 9 Go</center>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+            </article>
+            <footer>
+                <ol id="page-numbers">
+                    <li>99</li>
+                    <li>100</li>
+                </ol>
+            </footer>
+        </section>
+
+    </div>
+</div>
+
+		<script>
+	var board = new WGo.Board(document.getElementById("board"), {
+		width: 220,
+		section: {
+			top: 0,
+			left: 0,
+			right: 0,
+			bottom: 0,
+		}
+	});
+
+	var coordinates = {
+		// draw on grid layer
+		grid: {
+			draw: function(args, board) {
+				var ch, t, xright, xleft, ytop, ybottom;
+				
+				this.fillStyle = "rgba(0,0,0,0.7)";
+				this.textBaseline="middle";
+				this.textAlign="center";
+				this.font = board.stoneRadius+"px "+(board.font || "");
+				
+				xright = board.getX(-0.75);
+				xleft = board.getX(board.size-0.25);
+				ytop = board.getY(-0.75);
+				ybottom = board.getY(board.size-0.25);
+				
+				for(var i = 0; i < board.size; i++) {
+					ch = i+"A".charCodeAt(0);
+					if(ch >= "I".charCodeAt(0)) ch++;
+					
+					t = board.getY(i);
+					this.fillText(board.size-i, xright, t);
+					this.fillText(board.size-i, xleft, t);
+					
+					t = board.getX(i);
+					this.fillText(String.fromCharCode(ch), t, ytop);
+					this.fillText(String.fromCharCode(ch), t, ybottom);
+				}
+				
+				this.fillStyle = "black";
+			}
+		}
+	}
+	
+	
+	// board.addCustomObject(coordinates);
+	board.setSize(9);
+	board.addObject([
+	    {x: 4, y: 4, c: WGo.B},
+	    {x: 4, y: 4, type: "LB", text: "1"},
+	    {x: 3, y: 6, type: "LB", text: "B"},
+	    {x: 5, y: 6, c: WGo.W},
+	    {x: 5, y: 6, type: "LB", text: "2"},
+	    {x: 6, y: 5, type: "LB", text: "A"},
+	    {x: 3, y: 2, type: "LB", text: "C"},
+	    {x: 0, y: 0, c: WGo.B},
+	    {x: 0, y: 0, type: "MA"},
+	    {x: 2, y: 5, type: "MA"},
+
+
+	]);
+
+	</script>
+
+
+            </article>
+            <footer>
+                <ol id="page-numbers">
+                    <li>3</li>
+                    <li>4</li>
+                </ol>
+            </footer>
+        </section>
+
+    </div>
+</div>
+</body>
+</html>
