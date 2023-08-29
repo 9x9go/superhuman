@@ -1,5 +1,5 @@
 # The Art of 9 x 9 Go, Superhuman Edition
-by [Monteo da Westi](http://questgames.net/go9#user/monteodawesti) & [A Master of Go](https://new3rs.github.io/a_master_of_go/index.html)
+Go e-book by [Monteo da Westi](http://questgames.net/go9#user/monteodawesti) & [A Master of Go](https://new3rs.github.io/a_master_of_go/index.html)
 
 
 ## Contents
