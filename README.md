@@ -1,5 +1,6 @@
 # The Art of 9 x 9 Go, Superhuman Edition
-Source code of __The Art of 9 x 9 Go, Superhuman Edition__. 
+by [Monteo da Westi](http://questgames.net/go9#user/monteodawesti) & [A Master of Go](https://new3rs.github.io/a_master_of_go/index.html)
+
 
 ## Contents
 - [Preface](https://9x9go.github.io/superhuman/preface.html)
@@ -66,7 +67,7 @@ like HTML, CSS, JavaScript, PHP etc.
 
 - __All code in this repository__ is licensed and sublicensed by Monteo da Westi:
 ```
-Copyright © 2023 by Monteo da Westi
+Copyright © 2023 by [Monteo da Westi](http://questgames.net/go9#user/monteodawesti)
 All rights reserved. No part of this repository may be reproduced,
 distributed, or transmitted in any form or by any means,
 including photocopying, recording, or other electronic
