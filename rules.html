@@ -1,0 +1,136 @@
+<html>
+<!The layout of this book was made by Erin E. Sullivan. 
+See https://www.bypeople.com/css-book-layout/ for more infomation>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<link rel="stylesheet" href="css/book.css">
+	<script type="text/javascript" src="js/wgo/wgo.js"></script>
+  	<link rel="stylesheet" href="js/wgo/wgo.player.css">
+
+</head>
+<div id="wrapper">
+    <div id="container">
+
+        <section class="open-book">
+            <header>
+                <h1>The Art of 9 &#215; 9 Go</h1>
+                <h6>Superhuman Edition</h6>
+            </header>
+            <article>
+                <h2 class="chapter-title">The Rules</h2>
+                <p>
+                   The rules of 9 &#215; 9 Go are Go rules applied to the 9 &#215; 9 board. First, the board is made of hard material&mdash;preferably a square thick yellow wooden sheet. The surface of the board is marked with solid black lines: nine horizontally by nine vertically, to create 81 intersections (empty points), where each player is allowed to make a move. The board represents the no-man land, where the two countries (Black and White) will try to convert the points on the land into their own territories, by surrronding more points than the enemy, by which their soldiers (black and white stones) may kill or get killed by the enemy (the opponent), intentionally or unintentionally, foreseen or unforeseen, sucessfully or unsuccessfully, worth doing or needless to do, depending on their empirical and analytic knowledge of strategy and tactics they have learned, tested, and hold.
+ 
+</p>
+<p>
+In zero-komi game, the weaker player takes black stones and always makes the first move, by placing one black stone on any point on the board he deem the best location. If Black is much weaker, he may be allowed to have 2 to 5 black stones in place (handicape stones) at the outset of the game. The locatons for the handicape stones are marked with star points (<em>Dia. 1</em>). Then, White and Black alternate.
+</p>
+<p>
+Both players must not make illegal moves, and should avoid bad ones. Ideally, <mark class='green'>they should try to make the best move every turn</mark>. <a>This is far beyond Go rules</a> and <mark>the hardest part in Go, which may take decades to learn and thousands of years (or millions of training steps) to master</mark>.  
+</p>
+
+<p>
+Knowing Go rules is not enough to get strong at Go but essential. All top players are learners, but not all learner are top players. The best way to know Go rules is to play your first 50 games on GoQuest 9 &#215; 9 Go server or at home against standard Go bots, such as IgoWin and Crazy Stones. To know the principles of 9 &#215; 9 Go, you need a stronger Go playing and teaching program, such as  A Master of Go. You need to know the <a href='nature.html'>nature of the game</a>.
+</p>
+<br>
+
+ <div id="board"></div><br><center><em>Dia. 1</em> Go Board with 9 &#215; 9 lines and 5 Star Points</center>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+            </article>
+            <footer>
+                <ol id="page-numbers">
+                    <li>99</li>
+                    <li>100</li>
+                </ol>
+            </footer>
+        </section>
+
+    </div>
+</div>
+
+		<script>
+
+	var board = new WGo.Board(document.getElementById("board"), {
+		width: 220,
+		section: {
+			top: 0,
+			left: 0,
+			right: 0,
+			bottom: 0,
+		}
+	});
+
+	var coordinates = {
+		// draw on grid layer
+		grid: {
+			draw: function(args, board) {
+				var ch, t, xright, xleft, ytop, ybottom;
+				
+				this.fillStyle = "rgba(0,0,0,0.7)";
+				this.textBaseline="middle";
+				this.textAlign="center";
+				this.font = board.stoneRadius+"px "+(board.font || "");
+				
+				xright = board.getX(-0.75);
+				xleft = board.getX(board.size-0.25);
+				ytop = board.getY(-0.75);
+				ybottom = board.getY(board.size-0.25);
+				
+				for(var i = 0; i < board.size; i++) {
+					ch = i+"A".charCodeAt(0);
+					if(ch >= "I".charCodeAt(0)) ch++;
+					
+					t = board.getY(i);
+					this.fillText(board.size-i, xright, t);
+					this.fillText(board.size-i, xleft, t);
+					
+					t = board.getX(i);
+					this.fillText(String.fromCharCode(ch), t, ytop);
+					this.fillText(String.fromCharCode(ch), t, ybottom);
+				}
+				
+				this.fillStyle = "black";
+			}
+		}
+	}
+	
+	
+//	board.addCustomObject(coordinates);
+	board.setSize(9);
+/*
+	board.addObject([
+	    {x: 4, y: 4, c: WGo.B},
+	    {x: 4, y: 4, type: "LB", text: "1"},
+	    {x: 3, y: 6, type: "LB", text: "B"},
+	    {x: 5, y: 6, c: WGo.W},
+	    {x: 5, y: 6, type: "LB", text: "2"},
+	    {x: 6, y: 5, type: "LB", text: "A"},
+	    {x: 3, y: 2, type: "LB", text: "C"},
+	    {x: 0, y: 0, c: WGo.B},
+	    {x: 0, y: 0, type: "MA"},
+	    {x: 2, y: 5, type: "MA"},
+
+
+	]);
+*/
+	</script>
+
+
+            </article>
+            <footer>
+                <ol id="page-numbers">
+                    <li>1</li>
+                    <li>2</li>
+                </ol>
+            </footer>
+        </section>
+
+    </div>
+</div>
+</body>
+</html>
