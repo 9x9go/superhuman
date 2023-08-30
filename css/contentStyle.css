@@ -44,6 +44,8 @@
     overflow: hidden;
 }
 
+
+/*
 .toc-list li > a .leaders::after {
     position: absolute;
     padding-inline-start: .25ch;
@@ -56,6 +58,7 @@
         ". . . . . . . . . . . . . . . . . . . . . . . ";
     text-align: right;
 }
+*/
 
 .toc-list li > a > .page {
     min-width: 2ch;
