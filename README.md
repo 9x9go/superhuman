@@ -26,7 +26,7 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ```
   
-- __Go diagrams__, made with Jan Prokop's [WGo.js](http://wgo.waltheri.net/): 
+- __Diagrams__, made with Jan Prokop's [WGo.js](http://wgo.waltheri.net/): 
 ```
 Copyright (c) Jan Prokop
 Permission is hereby granted, free of charge, to any person obtaining a copy
