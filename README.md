@@ -61,7 +61,7 @@ like HTML, CSS, JavaScript, PHP etc.
 
 - __All code in this repository__ is licensed and sublicensed by Monteo da Westi:
 ```
-Copyright © 2023 by [Monteo da Westi](http://questgames.net/go9#user/monteodawesti)
+Copyright © 2023 by Monteo da Westi (http://questgames.net/go9#user/monteodawesti)
 All rights reserved. No part of this repository may be reproduced,
 distributed, or transmitted in any form or by any means,
 including photocopying, recording, or other electronic
