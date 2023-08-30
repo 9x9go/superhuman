@@ -1,5 +1,5 @@
 # The Art of 9 x 9 Go, Superhuman Edition
-This repository show how to code an e-book on 9 x 9 Go, with the contents by [Monteo da Westi](http://questgames.net/go9#user/monteodawesti) & [A Master of Go](https://new3rs.github.io/a_master_of_go/index.html)
+This repository show how to code an e-book on 9 x 9 Go, by [Monteo da Westi](http://questgames.net/go9#user/monteodawesti) & [A Master of Go](https://new3rs.github.io/a_master_of_go/index.html)
 
 
 ## Preview
