@@ -28,7 +28,7 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ```
   
-- __Diagrams__, made with Jan Prokop's [WGo.js](http://wgo.waltheri.net/): 
+- __Diagrams__, Jan Prokop's [WGo.js](http://wgo.waltheri.net/): 
 ```
 Copyright (c) Jan Prokop
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -49,11 +49,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
-- __Game analysis__ by [A Master of Go](https://new3rs.github.io/a_master_of_go/index.html)
+- __Game analysis__, [A Master of Go](https://new3rs.github.io/a_master_of_go/index.html)
 ```
   Copyright © 2018 Yuji Ichikawa
 ```
-- __Textual black and white stones with marks__, learned from [W3Docs.com](https://www.w3docs.com/snippets/css/how-to-add-a-circle-around-a-number-in-css.html):
+- __Textual black and white stones with marks__, [W3Docs.com](https://www.w3docs.com/snippets/css/how-to-add-a-circle-around-a-number-in-css.html):
 ```
   W3docs provides free learning materials for programming languages
 like HTML, CSS, JavaScript, PHP etc.
