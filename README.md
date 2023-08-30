@@ -1,5 +1,5 @@
 # The Art of 9 x 9 Go, Superhuman Edition
-e-book [The Art of 9 x 9 Go, Superhuman Edition](https://9x9go.github.io/superhuman/icover.html) by [Monteo da Westi](http://questgames.net/go9#user/monteodawesti) & [A Master of Go](https://new3rs.github.io/a_master_of_go/index.html) | $99.99
+e-book [The Art of 9 x 9 Go, Superhuman Edition](https://9x9go.github.io/superhuman/icover.html) by [Monteo da Westi](http://questgames.net/go9#user/monteodawesti) & [A Master of Go](https://new3rs.github.io/a_master_of_go/index.html) 
 
 ## Credits & Licenses
 - __Book layout__, [Erin E Sullivan](https://codepen.io/erinesullivan/pen/gxdbzp): 
