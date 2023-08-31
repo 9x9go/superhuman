@@ -1,0 +1,259 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<link rel="stylesheet" href="css/book.css">
+	<script type="text/javascript" src="js/wgo/wgo.min.js"></script>
+	<script type="text/javascript" src="js/wgo/wgo.player.min.js"></script>
+	<script type="text/javascript" src="js/wgo/wgo.js"></script> 
+	<link rel="stylesheet" type="text/css" href="js/wgo/wgo.player.css" />
+
+</head>
+<div id="wrapper">
+    <div id="container">
+
+        <section class="open-book">
+            <header>
+                <h1>The Art of 9 &#215; 9 Go</h1>
+                <h6>Superhuman Edition</h6>
+            </header>
+            <article>
+                <h2 class="chapter-title">Convert SGF to WGo.js Object</h2>
+            
+<p>
+This chapter offers a tool for converting a commentary-free SGF code to the WGo.js object, to be used as the input of  <em>"board.addObject([...])"</em> command line in the wgo.js file.
+</p>
+
+<br><br><br>
+
+<textarea id='sgf' rol='10' col='100' style="width:100%" placeholder='[Paste SGF code]'>
+</textarea>
+<br><button onclick='convert()'>Objectized</button>
+
+
+
+<br>
+<br>
+<button onclick='copy()'>Copy to Clipboard</button><br>
+<textarea id='wgo'  style="width:100%;height:300px" placeholder='[WGo.board Object output]'></textarea>
+
+</p>
+<br>
+
+   </article>
+            <footer>
+                <ol id="page-numbers">
+                    <li>109</li>
+                    <li>110</li>
+                </ol>
+            </footer>
+        </section>
+
+    </div>
+</div>
+
+
+
+</body>
+
+<script type='text/javascript'>
+
+function copy() {
+	var wgoText = document.getElementById('wgo');
+	wgoText.select();
+	wgoText.setSelectionRange(0, 99999);
+	navigator.clipboard.writeText(wgoText.value);
+	alert("Copied!");
+
+}
+
+function convert() {
+	let sgf = document.getElementById('sgf').value;
+        let sgf1= sgf.replaceAll(';',','); 
+        let sgf2= sgf1.replaceAll('B[aa]','\n{x: 0, y: 0, c: WGo.B}'); 
+        let sgf3= sgf2.replaceAll('B[ab]','\n{x: 0, y: 1, c: WGo.B}'); 
+        let sgf4= sgf3.replaceAll('B[ac]','\n{x: 0, y: 2, c: WGo.B}'); 
+        let sgf5= sgf4.replaceAll('B[ad]','\n{x: 0, y: 3, c: WGo.B}'); 
+        let sgf6= sgf5.replaceAll('B[ae]','\n{x: 0, y: 4, c: WGo.B}'); 
+        let sgf7= sgf6.replaceAll('B[af]','\n{x: 0, y: 5, c: WGo.B}'); 
+        let sgf8= sgf7.replaceAll('B[ag]','\n{x: 0, y: 6, c: WGo.B}'); 
+        let sgf9= sgf8.replaceAll('B[ah]','\n{x: 0, y: 7, c: WGo.B}'); 
+        let sgf10= sgf9.replaceAll('B[ai]','\n{x: 0, y: 8, c: WGo.B}'); 
+
+        let sgf11= sgf10.replaceAll('B[ba]','\n{x: 1, y: 0, c: WGo.B}'); 
+        let sgf12= sgf11.replaceAll('B[bb]','\n{x: 1, y: 1, c: WGo.B}'); 
+        let sgf13= sgf12.replaceAll('B[bc]','\n{x: 1, y: 2, c: WGo.B}'); 
+        let sgf14= sgf13.replaceAll('B[bd]','\n{x: 1, y: 3, c: WGo.B}'); 
+        let sgf15= sgf14.replaceAll('B[be]','\n{x: 1, y: 4, c: WGo.B}'); 
+        let sgf16= sgf15.replaceAll('B[bf]','\n{x: 1, y: 5, c: WGo.B}'); 
+        let sgf17= sgf16.replaceAll('B[bg]','\n{x: 1, y: 6, c: WGo.B}'); 
+        let sgf18= sgf17.replaceAll('B[bh]','\n{x: 1, y: 7, c: WGo.B}'); 
+        let sgf19= sgf18.replaceAll('B[bi]','\n{x: 1, y: 8, c: WGo.B}'); 
+
+        let sgf20= sgf19.replaceAll('B[ca]','\n{x: 2, y: 0, c: WGo.B}'); 
+        let sgf21= sgf20.replaceAll('B[cb]','\n{x: 2, y: 1, c: WGo.B}'); 
+        let sgf22= sgf21.replaceAll('B[cc]','\n{x: 2, y: 2, c: WGo.B}'); 
+        let sgf23= sgf22.replaceAll('B[cd]','\n{x: 2, y: 3, c: WGo.B}'); 
+        let sgf24= sgf23.replaceAll('B[ce]','\n{x: 2, y: 4, c: WGo.B}'); 
+        let sgf25= sgf24.replaceAll('B[cf]','\n{x: 2, y: 5, c: WGo.B}'); 
+        let sgf26= sgf25.replaceAll('B[cg]','\n{x: 2, y: 6, c: WGo.B}'); 
+        let sgf27= sgf26.replaceAll('B[ch]','\n{x: 2, y: 7, c: WGo.B}'); 
+        let sgf28= sgf27.replaceAll('B[ci]','\n{x: 2, y: 8, c: WGo.B}'); 
+
+        let sgf29= sgf28.replaceAll('B[da]','\n{x: 3, y: 0, c: WGo.B}'); 
+        let sgf30= sgf29.replaceAll('B[db]','\n{x: 3, y: 1, c: WGo.B}'); 
+        let sgf31= sgf30.replaceAll('B[dc]','\n{x: 3, y: 2, c: WGo.B}'); 
+        let sgf32= sgf31.replaceAll('B[dd]','\n{x: 3, y: 3, c: WGo.B}'); 
+        let sgf33= sgf32.replaceAll('B[de]','\n{x: 3, y: 4, c: WGo.B}'); 
+        let sgf34= sgf33.replaceAll('B[df]','\n{x: 3, y: 5, c: WGo.B}'); 
+        let sgf35= sgf34.replaceAll('B[dg]','\n{x: 3, y: 6, c: WGo.B}'); 
+        let sgf36= sgf35.replaceAll('B[dh]','\n{x: 3, y: 7, c: WGo.B}'); 
+        let sgf37= sgf36.replaceAll('B[di]','\n{x: 3, y: 8, c: WGo.B}'); 
+
+ 	let sgf38= sgf37.replaceAll('B[ea]','\n{x: 4, y: 0, c: WGo.B}'); 
+        let sgf39= sgf38.replaceAll('B[eb]','\n{x: 4, y: 1, c: WGo.B}'); 
+        let sgf40= sgf39.replaceAll('B[ec]','\n{x: 4, y: 2, c: WGo.B}'); 
+        let sgf41= sgf40.replaceAll('B[ed]','\n{x: 4, y: 3, c: WGo.B}'); 
+        let sgf42= sgf41.replaceAll('B[ee]','\n{x: 4, y: 4, c: WGo.B}'); 
+        let sgf43= sgf42.replaceAll('B[ef]','\n{x: 4, y: 5, c: WGo.B}'); 
+        let sgf44= sgf43.replaceAll('B[eg]','\n{x: 4, y: 6, c: WGo.B}'); 
+        let sgf45= sgf44.replaceAll('B[eh]','\n{x: 4, y: 7, c: WGo.B}'); 
+        let sgf46= sgf45.replaceAll('B[ei]','\n{x: 4, y: 8, c: WGo.B}'); 
+
+ 	let sgf47= sgf46.replaceAll('B[fa]','\n{x: 5, y: 0, c: WGo.B}'); 
+        let sgf48= sgf47.replaceAll('B[fb]','\n{x: 5, y: 1, c: WGo.B}'); 
+        let sgf49= sgf48.replaceAll('B[fc]','\n{x: 5, y: 2, c: WGo.B}'); 
+        let sgf50= sgf49.replaceAll('B[fd]','\n{x: 5, y: 3, c: WGo.B}'); 
+        let sgf51= sgf50.replaceAll('B[fe]','\n{x: 5, y: 4, c: WGo.B}'); 
+        let sgf52= sgf51.replaceAll('B[ff]','\n{x: 5, y: 5, c: WGo.B}'); 
+        let sgf53= sgf52.replaceAll('B[fg]','\n{x: 5, y: 6, c: WGo.B}'); 
+        let sgf54= sgf53.replaceAll('B[fh]','\n{x: 5, y: 7, c: WGo.B}'); 
+        let sgf55= sgf54.replaceAll('B[fi]','\n{x: 5, y: 8, c: WGo.B}'); 
+
+ 	let sgf56= sgf55.replaceAll('B[ga]','\n{x: 6, y: 0, c: WGo.B}'); 
+        let sgf57= sgf56.replaceAll('B[gb]','\n{x: 6, y: 1, c: WGo.B}'); 
+        let sgf58= sgf57.replaceAll('B[gc]','\n{x: 6, y: 2, c: WGo.B}'); 
+        let sgf59= sgf58.replaceAll('B[gd]','\n{x: 6, y: 3, c: WGo.B}'); 
+        let sgf60= sgf59.replaceAll('B[ge]','\n{x: 6, y: 4, c: WGo.B}'); 
+        let sgf61= sgf60.replaceAll('B[gf]','\n{x: 6, y: 5, c: WGo.B}'); 
+        let sgf62= sgf61.replaceAll('B[gg]','\n{x: 6, y: 6, c: WGo.B}'); 
+        let sgf63= sgf62.replaceAll('B[gh]','\n{x: 6, y: 7, c: WGo.B}'); 
+        let sgf64= sgf63.replaceAll('B[gi]','\n{x: 6, y: 8, c: WGo.B}'); 
+
+ 	let sgf65= sgf64.replaceAll('B[ha]','\n{x: 7, y: 0, c: WGo.B}'); 
+        let sgf66= sgf65.replaceAll('B[hb]','\n{x: 7, y: 1, c: WGo.B}'); 
+        let sgf67= sgf66.replaceAll('B[hc]','\n{x: 7, y: 2, c: WGo.B}'); 
+        let sgf68= sgf67.replaceAll('B[hd]','\n{x: 7, y: 3, c: WGo.B}'); 
+        let sgf69= sgf68.replaceAll('B[he]','\n{x: 7, y: 4, c: WGo.B}'); 
+        let sgf70= sgf69.replaceAll('B[hf]','\n{x: 7, y: 5, c: WGo.B}'); 
+        let sgf71= sgf70.replaceAll('B[hg]','\n{x: 7, y: 6, c: WGo.B}'); 
+        let sgf72= sgf71.replaceAll('B[hh]','\n{x: 7, y: 7, c: WGo.B}'); 
+        let sgf73= sgf72.replaceAll('B[hi]','\n{x: 7, y: 8, c: WGo.B}'); 
+
+ 	let sgf74= sgf73.replaceAll('B[ia]','\n{x: 8, y: 0, c: WGo.B}'); 
+        let sgf75= sgf74.replaceAll('B[ib]','\n{x: 8, y: 1, c: WGo.B}'); 
+        let sgf76= sgf75.replaceAll('B[ic]','\n{x: 8, y: 2, c: WGo.B}'); 
+        let sgf77= sgf76.replaceAll('B[id]','\n{x: 8, y: 3, c: WGo.B}'); 
+        let sgf78= sgf77.replaceAll('B[ie]','\n{x: 8, y: 4, c: WGo.B}'); 
+        let sgf79= sgf78.replaceAll('B[if]','\n{x: 8, y: 5, c: WGo.B}'); 
+        let sgf80= sgf79.replaceAll('B[ig]','\n{x: 8, y: 6, c: WGo.B}'); 
+        let sgf81= sgf80.replaceAll('B[ih]','\n{x: 8, y: 7, c: WGo.B}'); 
+        let sgf82= sgf81.replaceAll('B[ii]','\n{x: 8, y: 8, c: WGo.B}'); 
+
+        let sgfw2= sgf82.replaceAll('W[aa]','\n{x: 0, y: 0, c: WGo.W}'); 
+        let sgfw3= sgfw2.replaceAll('W[ab]','\n{x: 0, y: 1, c: WGo.W}'); 
+        let sgfw4= sgfw3.replaceAll('W[ac]','\n{x: 0, y: 2, c: WGo.W}'); 
+        let sgfw5= sgfw4.replaceAll('W[ad]','\n{x: 0, y: 3, c: WGo.W}'); 
+        let sgfw6= sgfw5.replaceAll('W[ae]','\n{x: 0, y: 4, c: WGo.W}'); 
+        let sgfw7= sgfw6.replaceAll('W[af]','\n{x: 0, y: 5, c: WGo.W}'); 
+        let sgfw8= sgfw7.replaceAll('W[ag]','\n{x: 0, y: 6, c: WGo.W}'); 
+        let sgfw9= sgfw8.replaceAll('W[ah]','\n{x: 0, y: 7, c: WGo.W}'); 
+        let sgfw10= sgfw9.replaceAll('W[ai]','\n{x: 0, y: 8, c: WGo.W}'); 
+
+        let sgfw11= sgfw10.replaceAll('W[ba]','\n{x: 1, y: 0, c: WGo.W}'); 
+        let sgfw12= sgfw11.replaceAll('W[bb]','\n{x: 1, y: 1, c: WGo.W}'); 
+        let sgfw13= sgfw12.replaceAll('W[bc]','\n{x: 1, y: 2, c: WGo.W}'); 
+        let sgfw14= sgfw13.replaceAll('W[bd]','\n{x: 1, y: 3, c: WGo.W}'); 
+        let sgfw15= sgfw14.replaceAll('W[be]','\n{x: 1, y: 4, c: WGo.W}'); 
+        let sgfw16= sgfw15.replaceAll('W[bf]','\n{x: 1, y: 5, c: WGo.W}'); 
+        let sgfw17= sgfw16.replaceAll('W[bg]','\n{x: 1, y: 6, c: WGo.W}'); 
+        let sgfw18= sgfw17.replaceAll('W[bh]','\n{x: 1, y: 7, c: WGo.W}'); 
+        let sgfw19= sgfw18.replaceAll('W[bi]','\n{x: 1, y: 8, c: WGo.W}'); 
+
+        let sgfw20= sgfw19.replaceAll('W[ca]','\n{x: 2, y: 0, c: WGo.W}'); 
+        let sgfw21= sgfw20.replaceAll('W[cb]','\n{x: 2, y: 1, c: WGo.W}'); 
+        let sgfw22= sgfw21.replaceAll('W[cc]','\n{x: 2, y: 2, c: WGo.W}'); 
+        let sgfw23= sgfw22.replaceAll('W[cd]','\n{x: 2, y: 3, c: WGo.W}'); 
+        let sgfw24= sgfw23.replaceAll('W[ce]','\n{x: 2, y: 4, c: WGo.W}'); 
+        let sgfw25= sgfw24.replaceAll('W[cf]','\n{x: 2, y: 5, c: WGo.W}'); 
+        let sgfw26= sgfw25.replaceAll('W[cg]','\n{x: 2, y: 6, c: WGo.W}'); 
+        let sgfw27= sgfw26.replaceAll('W[ch]','\n{x: 2, y: 7, c: WGo.W}'); 
+        let sgfw28= sgfw27.replaceAll('W[ci]','\n{x: 2, y: 8, c: WGo.W}'); 
+
+        let sgfw29= sgfw28.replaceAll('W[da]','\n{x: 3, y: 0, c: WGo.W}'); 
+        let sgfw30= sgfw29.replaceAll('W[db]','\n{x: 3, y: 1, c: WGo.W}'); 
+        let sgfw31= sgfw30.replaceAll('W[dc]','\n{x: 3, y: 2, c: WGo.W}'); 
+        let sgfw32= sgfw31.replaceAll('W[dd]','\n{x: 3, y: 3, c: WGo.W}'); 
+        let sgfw33= sgfw32.replaceAll('W[de]','\n{x: 3, y: 4, c: WGo.W}'); 
+        let sgfw34= sgfw33.replaceAll('W[df]','\n{x: 3, y: 5, c: WGo.W}'); 
+        let sgfw35= sgfw34.replaceAll('W[dg]','\n{x: 3, y: 6, c: WGo.W}'); 
+        let sgfw36= sgfw35.replaceAll('W[dh]','\n{x: 3, y: 7, c: WGo.W}'); 
+        let sgfw37= sgfw36.replaceAll('W[di]','\n{x: 3, y: 8, c: WGo.W}'); 
+
+ 	let sgfw38= sgfw37.replaceAll('W[ea]','\n{x: 4, y: 0, c: WGo.W}'); 
+        let sgfw39= sgfw38.replaceAll('W[eb]','\n{x: 4, y: 1, c: WGo.W}'); 
+        let sgfw40= sgfw39.replaceAll('W[ec]','\n{x: 4, y: 2, c: WGo.W}'); 
+        let sgfw41= sgfw40.replaceAll('W[ed]','\n{x: 4, y: 3, c: WGo.W}'); 
+        let sgfw42= sgfw41.replaceAll('W[ee]','\n{x: 4, y: 4, c: WGo.W}'); 
+        let sgfw43= sgfw42.replaceAll('W[ef]','\n{x: 4, y: 5, c: WGo.W}'); 
+        let sgfw44= sgfw43.replaceAll('W[eg]','\n{x: 4, y: 6, c: WGo.W}'); 
+        let sgfw45= sgfw44.replaceAll('W[eh]','\n{x: 4, y: 7, c: WGo.W}'); 
+        let sgfw46= sgfw45.replaceAll('W[ei]','\n{x: 4, y: 8, c: WGo.W}'); 
+
+ 	let sgfw47= sgfw46.replaceAll('W[fa]','\n{x: 5, y: 0, c: WGo.W}'); 
+        let sgfw48= sgfw47.replaceAll('W[fb]','\n{x: 5, y: 1, c: WGo.W}'); 
+        let sgfw49= sgfw48.replaceAll('W[fc]','\n{x: 5, y: 2, c: WGo.W}'); 
+        let sgfw50= sgfw49.replaceAll('W[fd]','\n{x: 5, y: 3, c: WGo.W}'); 
+        let sgfw51= sgfw50.replaceAll('W[fe]','\n{x: 5, y: 4, c: WGo.W}'); 
+        let sgfw52= sgfw51.replaceAll('W[ff]','\n{x: 5, y: 5, c: WGo.W}'); 
+        let sgfw53= sgfw52.replaceAll('W[fg]','\n{x: 5, y: 6, c: WGo.W}'); 
+        let sgfw54= sgfw53.replaceAll('W[fh]','\n{x: 5, y: 7, c: WGo.W}'); 
+        let sgfw55= sgfw54.replaceAll('W[fi]','\n{x: 5, y: 8, c: WGo.W}'); 
+
+ 	let sgfw56= sgfw55.replaceAll('W[ga]','\n{x: 6, y: 0, c: WGo.W}'); 
+        let sgfw57= sgfw56.replaceAll('W[gb]','\n{x: 6, y: 1, c: WGo.W}'); 
+        let sgfw58= sgfw57.replaceAll('W[gc]','\n{x: 6, y: 2, c: WGo.W}'); 
+        let sgfw59= sgfw58.replaceAll('W[gd]','\n{x: 6, y: 3, c: WGo.W}'); 
+        let sgfw60= sgfw59.replaceAll('W[ge]','\n{x: 6, y: 4, c: WGo.W}'); 
+        let sgfw61= sgfw60.replaceAll('W[gf]','\n{x: 6, y: 5, c: WGo.W}'); 
+        let sgfw62= sgfw61.replaceAll('W[gg]','\n{x: 6, y: 6, c: WGo.W}'); 
+        let sgfw63= sgfw62.replaceAll('W[gh]','\n{x: 6, y: 7, c: WGo.W}'); 
+        let sgfw64= sgfw63.replaceAll('W[gi]','\n{x: 6, y: 8, c: WGo.W}'); 
+
+ 	let sgfw65= sgfw64.replaceAll('W[ha]','\n{x: 7, y: 0, c: WGo.W}'); 
+        let sgfw66= sgfw65.replaceAll('W[hb]','\n{x: 7, y: 1, c: WGo.W}'); 
+        let sgfw67= sgfw66.replaceAll('W[hc]','\n{x: 7, y: 2, c: WGo.W}'); 
+        let sgfw68= sgfw67.replaceAll('W[hd]','\n{x: 7, y: 3, c: WGo.W}'); 
+        let sgfw69= sgfw68.replaceAll('W[he]','\n{x: 7, y: 4, c: WGo.W}'); 
+        let sgfw70= sgfw69.replaceAll('W[hf]','\n{x: 7, y: 5, c: WGo.W}'); 
+        let sgfw71= sgfw70.replaceAll('W[hg]','\n{x: 7, y: 6, c: WGo.W}'); 
+        let sgfw72= sgfw71.replaceAll('W[hh]','\n{x: 7, y: 7, c: WGo.W}'); 
+        let sgfw73= sgfw72.replaceAll('W[hi]','\n{x: 7, y: 8, c: WGo.W}'); 
+
+ 	let sgfw74= sgfw73.replaceAll('W[ia]','\n{x: 8, y: 0, c: WGo.W}'); 
+        let sgfw75= sgfw74.replaceAll('W[ib]','\n{x: 8, y: 1, c: WGo.W}'); 
+        let sgfw76= sgfw75.replaceAll('W[ic]','\n{x: 8, y: 2, c: WGo.W}'); 
+        let sgfw77= sgfw76.replaceAll('W[id]','\n{x: 8, y: 3, c: WGo.W}'); 
+        let sgfw78= sgfw77.replaceAll('W[ie]','\n{x: 8, y: 4, c: WGo.W}'); 
+        let sgfw79= sgfw78.replaceAll('W[if]','\n{x: 8, y: 5, c: WGo.W}'); 
+        let sgfw80= sgfw79.replaceAll('W[ig]','\n{x: 8, y: 6, c: WGo.W}'); 
+        let sgfw81= sgfw80.replaceAll('W[ih]','\n{x: 8, y: 7, c: WGo.W}'); 
+        let sgfw82= sgfw81.replaceAll('W[ii]','\n{x: 8, y: 8, c: WGo.W}'); 
+
+	document.getElementById('wgo').value = sgfw82;
+
+}
+ 
+</script>
+</html>
