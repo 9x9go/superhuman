@@ -35,7 +35,8 @@ This chapter offers a tool for converting a commentary-free SGF code to the WGo.
 
 <br>
 <br>
-<button onclick='copy()'>Copy to Clipboard</button><br>
+<button onclick='copy()'>Copy to Clipboard</button> <input type='button' value='Clear' onclick='javascript:clearText();'>
+<br>
 <textarea id='wgo'  style="width:100%;height:300px" placeholder='[WGo.board Object output]'></textarea>
 
 </p>
@@ -66,6 +67,13 @@ function copy() {
 	navigator.clipboard.writeText(wgoText.value);
 	alert("Copied!");
 
+}
+
+function clearText() {
+        document.getElementById('sgf').value = '';
+        document.getElementById('wgo').value = '';
+	
+	
 }
 
 function convert() {
