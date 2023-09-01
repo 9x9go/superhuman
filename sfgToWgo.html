@@ -19,10 +19,10 @@
                 <h6>Superhuman Edition</h6>
             </header>
             <article>
-                <h2 class="chapter-title">Convert SGF to WGo.js Object</h2>
+                <h2 class="chapter-title">Convert SGF to WGo Object</h2>
             
 <p>
-This chapter offers a tool for converting a commentary-free SGF code to the WGo.js object, to be used as the input of  <em>"board.addObject([...])"</em> command line in the wgo.js file.
+This chapter offers a tool for converting an SGF code to the WGo object input of  <em>"board.addObject([...])"</em> in the wgo.js command line. The purpose of this effort is to make it easier for coding a WGo board to show in the &lt;div id='board'&gt; tag. <mark class='pink'>WARNING: Check every output again.</mark>
 </p>
 
 <br><br><br>
@@ -35,12 +35,13 @@ This chapter offers a tool for converting a commentary-free SGF code to the WGo.
 
 <br>
 <br>
-<button onclick='copy()'>Copy to Clipboard</button> <input type='button' value='Clear' onclick='javascript:clearText();'>
+<button onclick='copy()'>Copy to Clipboard</button> <input type='button' value='Clear' onclick='javascript:clearText();'> <input type='button' value='Board' onclick='javascript:boarding();'>
 <br>
 <textarea id='wgo'  style="width:100%;height:300px" placeholder='[WGo.board Object output]'></textarea>
 
 </p>
 <br>
+<div id='board'></div>
 
    </article>
             <footer>
@@ -57,6 +58,7 @@ This chapter offers a tool for converting a commentary-free SGF code to the WGo.
 
 
 </body>
+<script src="https://unpkg.com/json5@^2.0.0/dist/index.min.js"></script>
 
 <script type='text/javascript'>
 
@@ -72,196 +74,1151 @@ function copy() {
 function clearText() {
         document.getElementById('sgf').value = '';
         document.getElementById('wgo').value = '';
-	
+        document.getElementById('board').innerHTML = '';	
 	
 }
 
 function convert() {
 	let sgf = document.getElementById('sgf').value;
-        let sgf1= sgf.replaceAll(';',','); 
-        let sgf2= sgf1.replaceAll('B[aa]','\n{x: 0, y: 0, c: WGo.B}'); 
-        let sgf3= sgf2.replaceAll('B[ab]','\n{x: 0, y: 1, c: WGo.B}'); 
-        let sgf4= sgf3.replaceAll('B[ac]','\n{x: 0, y: 2, c: WGo.B}'); 
-        let sgf5= sgf4.replaceAll('B[ad]','\n{x: 0, y: 3, c: WGo.B}'); 
-        let sgf6= sgf5.replaceAll('B[ae]','\n{x: 0, y: 4, c: WGo.B}'); 
-        let sgf7= sgf6.replaceAll('B[af]','\n{x: 0, y: 5, c: WGo.B}'); 
-        let sgf8= sgf7.replaceAll('B[ag]','\n{x: 0, y: 6, c: WGo.B}'); 
-        let sgf9= sgf8.replaceAll('B[ah]','\n{x: 0, y: 7, c: WGo.B}'); 
-        let sgf10= sgf9.replaceAll('B[ai]','\n{x: 0, y: 8, c: WGo.B}'); 
+        let sgf1= sgf.replaceAll(';',''); 
+        let sgf2= sgf1.replaceAll('B[aa]',',,\n{x: 0, y: 0, c: WGo.B}'); 
+        let sgf3= sgf2.replaceAll('B[ab]',',,\n{x: 0, y: 1, c: WGo.B}'); 
+        let sgf4= sgf3.replaceAll('B[ac]',',,\n{x: 0, y: 2, c: WGo.B}'); 
+        let sgf5= sgf4.replaceAll('B[ad]',',,\n{x: 0, y: 3, c: WGo.B}'); 
+        let sgf6= sgf5.replaceAll('B[ae]',',,\n{x: 0, y: 4, c: WGo.B}'); 
+        let sgf7= sgf6.replaceAll('B[af]',',,\n{x: 0, y: 5, c: WGo.B}'); 
+        let sgf8= sgf7.replaceAll('B[ag]',',,\n{x: 0, y: 6, c: WGo.B}'); 
+        let sgf9= sgf8.replaceAll('B[ah]',',,\n{x: 0, y: 7, c: WGo.B}'); 
+        let sgf10= sgf9.replaceAll('B[ai]',',,\n{x: 0, y: 8, c: WGo.B}'); 
 
-        let sgf11= sgf10.replaceAll('B[ba]','\n{x: 1, y: 0, c: WGo.B}'); 
-        let sgf12= sgf11.replaceAll('B[bb]','\n{x: 1, y: 1, c: WGo.B}'); 
-        let sgf13= sgf12.replaceAll('B[bc]','\n{x: 1, y: 2, c: WGo.B}'); 
-        let sgf14= sgf13.replaceAll('B[bd]','\n{x: 1, y: 3, c: WGo.B}'); 
-        let sgf15= sgf14.replaceAll('B[be]','\n{x: 1, y: 4, c: WGo.B}'); 
-        let sgf16= sgf15.replaceAll('B[bf]','\n{x: 1, y: 5, c: WGo.B}'); 
-        let sgf17= sgf16.replaceAll('B[bg]','\n{x: 1, y: 6, c: WGo.B}'); 
-        let sgf18= sgf17.replaceAll('B[bh]','\n{x: 1, y: 7, c: WGo.B}'); 
-        let sgf19= sgf18.replaceAll('B[bi]','\n{x: 1, y: 8, c: WGo.B}'); 
+        let sgf11= sgf10.replaceAll('B[ba]',',,\n{x: 1, y: 0, c: WGo.B}'); 
+        let sgf12= sgf11.replaceAll('B[bb]',',,\n{x: 1, y: 1, c: WGo.B}'); 
+        let sgf13= sgf12.replaceAll('B[bc]',',,\n{x: 1, y: 2, c: WGo.B}'); 
+        let sgf14= sgf13.replaceAll('B[bd]',',,\n{x: 1, y: 3, c: WGo.B}'); 
+        let sgf15= sgf14.replaceAll('B[be]',',,\n{x: 1, y: 4, c: WGo.B}'); 
+        let sgf16= sgf15.replaceAll('B[bf]',',,\n{x: 1, y: 5, c: WGo.B}'); 
+        let sgf17= sgf16.replaceAll('B[bg]',',,\n{x: 1, y: 6, c: WGo.B}'); 
+        let sgf18= sgf17.replaceAll('B[bh]',',,\n{x: 1, y: 7, c: WGo.B}'); 
+        let sgf19= sgf18.replaceAll('B[bi]',',,\n{x: 1, y: 8, c: WGo.B}'); 
 
-        let sgf20= sgf19.replaceAll('B[ca]','\n{x: 2, y: 0, c: WGo.B}'); 
-        let sgf21= sgf20.replaceAll('B[cb]','\n{x: 2, y: 1, c: WGo.B}'); 
-        let sgf22= sgf21.replaceAll('B[cc]','\n{x: 2, y: 2, c: WGo.B}'); 
-        let sgf23= sgf22.replaceAll('B[cd]','\n{x: 2, y: 3, c: WGo.B}'); 
-        let sgf24= sgf23.replaceAll('B[ce]','\n{x: 2, y: 4, c: WGo.B}'); 
-        let sgf25= sgf24.replaceAll('B[cf]','\n{x: 2, y: 5, c: WGo.B}'); 
-        let sgf26= sgf25.replaceAll('B[cg]','\n{x: 2, y: 6, c: WGo.B}'); 
-        let sgf27= sgf26.replaceAll('B[ch]','\n{x: 2, y: 7, c: WGo.B}'); 
-        let sgf28= sgf27.replaceAll('B[ci]','\n{x: 2, y: 8, c: WGo.B}'); 
+        let sgf20= sgf19.replaceAll('B[ca]',',,\n{x: 2, y: 0, c: WGo.B}'); 
+        let sgf21= sgf20.replaceAll('B[cb]',',,\n{x: 2, y: 1, c: WGo.B}'); 
+        let sgf22= sgf21.replaceAll('B[cc]',',,\n{x: 2, y: 2, c: WGo.B}'); 
+        let sgf23= sgf22.replaceAll('B[cd]',',,\n{x: 2, y: 3, c: WGo.B}'); 
+        let sgf24= sgf23.replaceAll('B[ce]',',,\n{x: 2, y: 4, c: WGo.B}'); 
+        let sgf25= sgf24.replaceAll('B[cf]',',,\n{x: 2, y: 5, c: WGo.B}'); 
+        let sgf26= sgf25.replaceAll('B[cg]',',,\n{x: 2, y: 6, c: WGo.B}'); 
+        let sgf27= sgf26.replaceAll('B[ch]',',,\n{x: 2, y: 7, c: WGo.B}'); 
+        let sgf28= sgf27.replaceAll('B[ci]',',,\n{x: 2, y: 8, c: WGo.B}'); 
 
-        let sgf29= sgf28.replaceAll('B[da]','\n{x: 3, y: 0, c: WGo.B}'); 
-        let sgf30= sgf29.replaceAll('B[db]','\n{x: 3, y: 1, c: WGo.B}'); 
-        let sgf31= sgf30.replaceAll('B[dc]','\n{x: 3, y: 2, c: WGo.B}'); 
-        let sgf32= sgf31.replaceAll('B[dd]','\n{x: 3, y: 3, c: WGo.B}'); 
-        let sgf33= sgf32.replaceAll('B[de]','\n{x: 3, y: 4, c: WGo.B}'); 
-        let sgf34= sgf33.replaceAll('B[df]','\n{x: 3, y: 5, c: WGo.B}'); 
-        let sgf35= sgf34.replaceAll('B[dg]','\n{x: 3, y: 6, c: WGo.B}'); 
-        let sgf36= sgf35.replaceAll('B[dh]','\n{x: 3, y: 7, c: WGo.B}'); 
-        let sgf37= sgf36.replaceAll('B[di]','\n{x: 3, y: 8, c: WGo.B}'); 
+        let sgf29= sgf28.replaceAll('B[da]',',,\n{x: 3, y: 0, c: WGo.B}'); 
+        let sgf30= sgf29.replaceAll('B[db]',',,\n{x: 3, y: 1, c: WGo.B}'); 
+        let sgf31= sgf30.replaceAll('B[dc]',',,\n{x: 3, y: 2, c: WGo.B}'); 
+        let sgf32= sgf31.replaceAll('B[dd]',',,\n{x: 3, y: 3, c: WGo.B}'); 
+        let sgf33= sgf32.replaceAll('B[de]',',,\n{x: 3, y: 4, c: WGo.B}'); 
+        let sgf34= sgf33.replaceAll('B[df]',',,\n{x: 3, y: 5, c: WGo.B}'); 
+        let sgf35= sgf34.replaceAll('B[dg]',',,\n{x: 3, y: 6, c: WGo.B}'); 
+        let sgf36= sgf35.replaceAll('B[dh]',',,\n{x: 3, y: 7, c: WGo.B}'); 
+        let sgf37= sgf36.replaceAll('B[di]',',,\n{x: 3, y: 8, c: WGo.B}'); 
 
- 	let sgf38= sgf37.replaceAll('B[ea]','\n{x: 4, y: 0, c: WGo.B}'); 
-        let sgf39= sgf38.replaceAll('B[eb]','\n{x: 4, y: 1, c: WGo.B}'); 
-        let sgf40= sgf39.replaceAll('B[ec]','\n{x: 4, y: 2, c: WGo.B}'); 
-        let sgf41= sgf40.replaceAll('B[ed]','\n{x: 4, y: 3, c: WGo.B}'); 
-        let sgf42= sgf41.replaceAll('B[ee]','\n{x: 4, y: 4, c: WGo.B}'); 
-        let sgf43= sgf42.replaceAll('B[ef]','\n{x: 4, y: 5, c: WGo.B}'); 
-        let sgf44= sgf43.replaceAll('B[eg]','\n{x: 4, y: 6, c: WGo.B}'); 
-        let sgf45= sgf44.replaceAll('B[eh]','\n{x: 4, y: 7, c: WGo.B}'); 
-        let sgf46= sgf45.replaceAll('B[ei]','\n{x: 4, y: 8, c: WGo.B}'); 
+ 	let sgf38= sgf37.replaceAll('B[ea]',',,\n{x: 4, y: 0, c: WGo.B}'); 
+        let sgf39= sgf38.replaceAll('B[eb]',',,\n{x: 4, y: 1, c: WGo.B}'); 
+        let sgf40= sgf39.replaceAll('B[ec]',',,\n{x: 4, y: 2, c: WGo.B}'); 
+        let sgf41= sgf40.replaceAll('B[ed]',',,\n{x: 4, y: 3, c: WGo.B}'); 
+        let sgf42= sgf41.replaceAll('B[ee]',',,\n{x: 4, y: 4, c: WGo.B}'); 
+        let sgf43= sgf42.replaceAll('B[ef]',',,\n{x: 4, y: 5, c: WGo.B}'); 
+        let sgf44= sgf43.replaceAll('B[eg]',',,\n{x: 4, y: 6, c: WGo.B}'); 
+        let sgf45= sgf44.replaceAll('B[eh]',',,\n{x: 4, y: 7, c: WGo.B}'); 
+        let sgf46= sgf45.replaceAll('B[ei]',',,\n{x: 4, y: 8, c: WGo.B}'); 
 
- 	let sgf47= sgf46.replaceAll('B[fa]','\n{x: 5, y: 0, c: WGo.B}'); 
-        let sgf48= sgf47.replaceAll('B[fb]','\n{x: 5, y: 1, c: WGo.B}'); 
-        let sgf49= sgf48.replaceAll('B[fc]','\n{x: 5, y: 2, c: WGo.B}'); 
-        let sgf50= sgf49.replaceAll('B[fd]','\n{x: 5, y: 3, c: WGo.B}'); 
-        let sgf51= sgf50.replaceAll('B[fe]','\n{x: 5, y: 4, c: WGo.B}'); 
-        let sgf52= sgf51.replaceAll('B[ff]','\n{x: 5, y: 5, c: WGo.B}'); 
-        let sgf53= sgf52.replaceAll('B[fg]','\n{x: 5, y: 6, c: WGo.B}'); 
-        let sgf54= sgf53.replaceAll('B[fh]','\n{x: 5, y: 7, c: WGo.B}'); 
-        let sgf55= sgf54.replaceAll('B[fi]','\n{x: 5, y: 8, c: WGo.B}'); 
+ 	let sgf47= sgf46.replaceAll('B[fa]',',,\n{x: 5, y: 0, c: WGo.B}'); 
+        let sgf48= sgf47.replaceAll('B[fb]',',,\n{x: 5, y: 1, c: WGo.B}'); 
+        let sgf49= sgf48.replaceAll('B[fc]',',,\n{x: 5, y: 2, c: WGo.B}'); 
+        let sgf50= sgf49.replaceAll('B[fd]',',,\n{x: 5, y: 3, c: WGo.B}'); 
+        let sgf51= sgf50.replaceAll('B[fe]',',,\n{x: 5, y: 4, c: WGo.B}'); 
+        let sgf52= sgf51.replaceAll('B[ff]',',,\n{x: 5, y: 5, c: WGo.B}'); 
+        let sgf53= sgf52.replaceAll('B[fg]',',,\n{x: 5, y: 6, c: WGo.B}'); 
+        let sgf54= sgf53.replaceAll('B[fh]',',,\n{x: 5, y: 7, c: WGo.B}'); 
+        let sgf55= sgf54.replaceAll('B[fi]',',,\n{x: 5, y: 8, c: WGo.B}'); 
 
- 	let sgf56= sgf55.replaceAll('B[ga]','\n{x: 6, y: 0, c: WGo.B}'); 
-        let sgf57= sgf56.replaceAll('B[gb]','\n{x: 6, y: 1, c: WGo.B}'); 
-        let sgf58= sgf57.replaceAll('B[gc]','\n{x: 6, y: 2, c: WGo.B}'); 
-        let sgf59= sgf58.replaceAll('B[gd]','\n{x: 6, y: 3, c: WGo.B}'); 
-        let sgf60= sgf59.replaceAll('B[ge]','\n{x: 6, y: 4, c: WGo.B}'); 
-        let sgf61= sgf60.replaceAll('B[gf]','\n{x: 6, y: 5, c: WGo.B}'); 
-        let sgf62= sgf61.replaceAll('B[gg]','\n{x: 6, y: 6, c: WGo.B}'); 
-        let sgf63= sgf62.replaceAll('B[gh]','\n{x: 6, y: 7, c: WGo.B}'); 
-        let sgf64= sgf63.replaceAll('B[gi]','\n{x: 6, y: 8, c: WGo.B}'); 
+ 	let sgf56= sgf55.replaceAll('B[ga]',',,\n{x: 6, y: 0, c: WGo.B}'); 
+        let sgf57= sgf56.replaceAll('B[gb]',',,\n{x: 6, y: 1, c: WGo.B}'); 
+        let sgf58= sgf57.replaceAll('B[gc]',',,\n{x: 6, y: 2, c: WGo.B}'); 
+        let sgf59= sgf58.replaceAll('B[gd]',',,\n{x: 6, y: 3, c: WGo.B}'); 
+        let sgf60= sgf59.replaceAll('B[ge]',',,\n{x: 6, y: 4, c: WGo.B}'); 
+        let sgf61= sgf60.replaceAll('B[gf]',',,\n{x: 6, y: 5, c: WGo.B}'); 
+        let sgf62= sgf61.replaceAll('B[gg]',',,\n{x: 6, y: 6, c: WGo.B}'); 
+        let sgf63= sgf62.replaceAll('B[gh]',',,\n{x: 6, y: 7, c: WGo.B}'); 
+        let sgf64= sgf63.replaceAll('B[gi]',',,\n{x: 6, y: 8, c: WGo.B}'); 
 
- 	let sgf65= sgf64.replaceAll('B[ha]','\n{x: 7, y: 0, c: WGo.B}'); 
-        let sgf66= sgf65.replaceAll('B[hb]','\n{x: 7, y: 1, c: WGo.B}'); 
-        let sgf67= sgf66.replaceAll('B[hc]','\n{x: 7, y: 2, c: WGo.B}'); 
-        let sgf68= sgf67.replaceAll('B[hd]','\n{x: 7, y: 3, c: WGo.B}'); 
-        let sgf69= sgf68.replaceAll('B[he]','\n{x: 7, y: 4, c: WGo.B}'); 
-        let sgf70= sgf69.replaceAll('B[hf]','\n{x: 7, y: 5, c: WGo.B}'); 
-        let sgf71= sgf70.replaceAll('B[hg]','\n{x: 7, y: 6, c: WGo.B}'); 
-        let sgf72= sgf71.replaceAll('B[hh]','\n{x: 7, y: 7, c: WGo.B}'); 
-        let sgf73= sgf72.replaceAll('B[hi]','\n{x: 7, y: 8, c: WGo.B}'); 
+ 	let sgf65= sgf64.replaceAll('B[ha]',',,\n{x: 7, y: 0, c: WGo.B}'); 
+        let sgf66= sgf65.replaceAll('B[hb]',',,\n{x: 7, y: 1, c: WGo.B}'); 
+        let sgf67= sgf66.replaceAll('B[hc]',',,\n{x: 7, y: 2, c: WGo.B}'); 
+        let sgf68= sgf67.replaceAll('B[hd]',',,\n{x: 7, y: 3, c: WGo.B}'); 
+        let sgf69= sgf68.replaceAll('B[he]',',,\n{x: 7, y: 4, c: WGo.B}'); 
+        let sgf70= sgf69.replaceAll('B[hf]',',,\n{x: 7, y: 5, c: WGo.B}'); 
+        let sgf71= sgf70.replaceAll('B[hg]',',,\n{x: 7, y: 6, c: WGo.B}'); 
+        let sgf72= sgf71.replaceAll('B[hh]',',,\n{x: 7, y: 7, c: WGo.B}'); 
+        let sgf73= sgf72.replaceAll('B[hi]',',,\n{x: 7, y: 8, c: WGo.B}'); 
 
- 	let sgf74= sgf73.replaceAll('B[ia]','\n{x: 8, y: 0, c: WGo.B}'); 
-        let sgf75= sgf74.replaceAll('B[ib]','\n{x: 8, y: 1, c: WGo.B}'); 
-        let sgf76= sgf75.replaceAll('B[ic]','\n{x: 8, y: 2, c: WGo.B}'); 
-        let sgf77= sgf76.replaceAll('B[id]','\n{x: 8, y: 3, c: WGo.B}'); 
-        let sgf78= sgf77.replaceAll('B[ie]','\n{x: 8, y: 4, c: WGo.B}'); 
-        let sgf79= sgf78.replaceAll('B[if]','\n{x: 8, y: 5, c: WGo.B}'); 
-        let sgf80= sgf79.replaceAll('B[ig]','\n{x: 8, y: 6, c: WGo.B}'); 
-        let sgf81= sgf80.replaceAll('B[ih]','\n{x: 8, y: 7, c: WGo.B}'); 
-        let sgf82= sgf81.replaceAll('B[ii]','\n{x: 8, y: 8, c: WGo.B}'); 
+ 	let sgf74= sgf73.replaceAll('B[ia]',',,\n{x: 8, y: 0, c: WGo.B}'); 
+        let sgf75= sgf74.replaceAll('B[ib]',',,\n{x: 8, y: 1, c: WGo.B}'); 
+        let sgf76= sgf75.replaceAll('B[ic]',',,\n{x: 8, y: 2, c: WGo.B}'); 
+        let sgf77= sgf76.replaceAll('B[id]',',,\n{x: 8, y: 3, c: WGo.B}'); 
+        let sgf78= sgf77.replaceAll('B[ie]',',,\n{x: 8, y: 4, c: WGo.B}'); 
+        let sgf79= sgf78.replaceAll('B[if]',',,\n{x: 8, y: 5, c: WGo.B}'); 
+        let sgf80= sgf79.replaceAll('B[ig]',',,\n{x: 8, y: 6, c: WGo.B}'); 
+        let sgf81= sgf80.replaceAll('B[ih]',',,\n{x: 8, y: 7, c: WGo.B}'); 
+        let sgf82= sgf81.replaceAll('B[ii]',',,\n{x: 8, y: 8, c: WGo.B}'); 
 
-        let sgfw2= sgf82.replaceAll('W[aa]','\n{x: 0, y: 0, c: WGo.W}'); 
-        let sgfw3= sgfw2.replaceAll('W[ab]','\n{x: 0, y: 1, c: WGo.W}'); 
-        let sgfw4= sgfw3.replaceAll('W[ac]','\n{x: 0, y: 2, c: WGo.W}'); 
-        let sgfw5= sgfw4.replaceAll('W[ad]','\n{x: 0, y: 3, c: WGo.W}'); 
-        let sgfw6= sgfw5.replaceAll('W[ae]','\n{x: 0, y: 4, c: WGo.W}'); 
-        let sgfw7= sgfw6.replaceAll('W[af]','\n{x: 0, y: 5, c: WGo.W}'); 
-        let sgfw8= sgfw7.replaceAll('W[ag]','\n{x: 0, y: 6, c: WGo.W}'); 
-        let sgfw9= sgfw8.replaceAll('W[ah]','\n{x: 0, y: 7, c: WGo.W}'); 
-        let sgfw10= sgfw9.replaceAll('W[ai]','\n{x: 0, y: 8, c: WGo.W}'); 
+        let sgfw2= sgf82.replaceAll('W[aa]',',,\n{x: 0, y: 0, c: WGo.W}'); 
+        let sgfw3= sgfw2.replaceAll('W[ab]',',,\n{x: 0, y: 1, c: WGo.W}'); 
+        let sgfw4= sgfw3.replaceAll('W[ac]',',,\n{x: 0, y: 2, c: WGo.W}'); 
+        let sgfw5= sgfw4.replaceAll('W[ad]',',,\n{x: 0, y: 3, c: WGo.W}'); 
+        let sgfw6= sgfw5.replaceAll('W[ae]',',,\n{x: 0, y: 4, c: WGo.W}'); 
+        let sgfw7= sgfw6.replaceAll('W[af]',',,\n{x: 0, y: 5, c: WGo.W}'); 
+        let sgfw8= sgfw7.replaceAll('W[ag]',',,\n{x: 0, y: 6, c: WGo.W}'); 
+        let sgfw9= sgfw8.replaceAll('W[ah]',',,\n{x: 0, y: 7, c: WGo.W}'); 
+        let sgfw10= sgfw9.replaceAll('W[ai]',',,\n{x: 0, y: 8, c: WGo.W}'); 
 
-        let sgfw11= sgfw10.replaceAll('W[ba]','\n{x: 1, y: 0, c: WGo.W}'); 
-        let sgfw12= sgfw11.replaceAll('W[bb]','\n{x: 1, y: 1, c: WGo.W}'); 
-        let sgfw13= sgfw12.replaceAll('W[bc]','\n{x: 1, y: 2, c: WGo.W}'); 
-        let sgfw14= sgfw13.replaceAll('W[bd]','\n{x: 1, y: 3, c: WGo.W}'); 
-        let sgfw15= sgfw14.replaceAll('W[be]','\n{x: 1, y: 4, c: WGo.W}'); 
-        let sgfw16= sgfw15.replaceAll('W[bf]','\n{x: 1, y: 5, c: WGo.W}'); 
-        let sgfw17= sgfw16.replaceAll('W[bg]','\n{x: 1, y: 6, c: WGo.W}'); 
-        let sgfw18= sgfw17.replaceAll('W[bh]','\n{x: 1, y: 7, c: WGo.W}'); 
-        let sgfw19= sgfw18.replaceAll('W[bi]','\n{x: 1, y: 8, c: WGo.W}'); 
+        let sgfw11= sgfw10.replaceAll('W[ba]',',,\n{x: 1, y: 0, c: WGo.W}'); 
+        let sgfw12= sgfw11.replaceAll('W[bb]',',,\n{x: 1, y: 1, c: WGo.W}'); 
+        let sgfw13= sgfw12.replaceAll('W[bc]',',,\n{x: 1, y: 2, c: WGo.W}'); 
+        let sgfw14= sgfw13.replaceAll('W[bd]',',,\n{x: 1, y: 3, c: WGo.W}'); 
+        let sgfw15= sgfw14.replaceAll('W[be]',',,\n{x: 1, y: 4, c: WGo.W}'); 
+        let sgfw16= sgfw15.replaceAll('W[bf]',',,\n{x: 1, y: 5, c: WGo.W}'); 
+        let sgfw17= sgfw16.replaceAll('W[bg]',',,\n{x: 1, y: 6, c: WGo.W}'); 
+        let sgfw18= sgfw17.replaceAll('W[bh]',',,\n{x: 1, y: 7, c: WGo.W}'); 
+        let sgfw19= sgfw18.replaceAll('W[bi]',',,\n{x: 1, y: 8, c: WGo.W}'); 
 
-        let sgfw20= sgfw19.replaceAll('W[ca]','\n{x: 2, y: 0, c: WGo.W}'); 
-        let sgfw21= sgfw20.replaceAll('W[cb]','\n{x: 2, y: 1, c: WGo.W}'); 
-        let sgfw22= sgfw21.replaceAll('W[cc]','\n{x: 2, y: 2, c: WGo.W}'); 
-        let sgfw23= sgfw22.replaceAll('W[cd]','\n{x: 2, y: 3, c: WGo.W}'); 
-        let sgfw24= sgfw23.replaceAll('W[ce]','\n{x: 2, y: 4, c: WGo.W}'); 
-        let sgfw25= sgfw24.replaceAll('W[cf]','\n{x: 2, y: 5, c: WGo.W}'); 
-        let sgfw26= sgfw25.replaceAll('W[cg]','\n{x: 2, y: 6, c: WGo.W}'); 
-        let sgfw27= sgfw26.replaceAll('W[ch]','\n{x: 2, y: 7, c: WGo.W}'); 
-        let sgfw28= sgfw27.replaceAll('W[ci]','\n{x: 2, y: 8, c: WGo.W}'); 
+        let sgfw20= sgfw19.replaceAll('W[ca]',',,\n{x: 2, y: 0, c: WGo.W}'); 
+        let sgfw21= sgfw20.replaceAll('W[cb]',',,\n{x: 2, y: 1, c: WGo.W}'); 
+        let sgfw22= sgfw21.replaceAll('W[cc]',',,\n{x: 2, y: 2, c: WGo.W}'); 
+        let sgfw23= sgfw22.replaceAll('W[cd]',',,\n{x: 2, y: 3, c: WGo.W}'); 
+        let sgfw24= sgfw23.replaceAll('W[ce]',',,\n{x: 2, y: 4, c: WGo.W}'); 
+        let sgfw25= sgfw24.replaceAll('W[cf]',',,\n{x: 2, y: 5, c: WGo.W}'); 
+        let sgfw26= sgfw25.replaceAll('W[cg]',',,\n{x: 2, y: 6, c: WGo.W}'); 
+        let sgfw27= sgfw26.replaceAll('W[ch]',',,\n{x: 2, y: 7, c: WGo.W}'); 
+        let sgfw28= sgfw27.replaceAll('W[ci]',',,\n{x: 2, y: 8, c: WGo.W}'); 
 
-        let sgfw29= sgfw28.replaceAll('W[da]','\n{x: 3, y: 0, c: WGo.W}'); 
-        let sgfw30= sgfw29.replaceAll('W[db]','\n{x: 3, y: 1, c: WGo.W}'); 
-        let sgfw31= sgfw30.replaceAll('W[dc]','\n{x: 3, y: 2, c: WGo.W}'); 
-        let sgfw32= sgfw31.replaceAll('W[dd]','\n{x: 3, y: 3, c: WGo.W}'); 
-        let sgfw33= sgfw32.replaceAll('W[de]','\n{x: 3, y: 4, c: WGo.W}'); 
-        let sgfw34= sgfw33.replaceAll('W[df]','\n{x: 3, y: 5, c: WGo.W}'); 
-        let sgfw35= sgfw34.replaceAll('W[dg]','\n{x: 3, y: 6, c: WGo.W}'); 
-        let sgfw36= sgfw35.replaceAll('W[dh]','\n{x: 3, y: 7, c: WGo.W}'); 
-        let sgfw37= sgfw36.replaceAll('W[di]','\n{x: 3, y: 8, c: WGo.W}'); 
+        let sgfw29= sgfw28.replaceAll('W[da]',',,\n{x: 3, y: 0, c: WGo.W}'); 
+        let sgfw30= sgfw29.replaceAll('W[db]',',,\n{x: 3, y: 1, c: WGo.W}'); 
+        let sgfw31= sgfw30.replaceAll('W[dc]',',,\n{x: 3, y: 2, c: WGo.W}'); 
+        let sgfw32= sgfw31.replaceAll('W[dd]',',,\n{x: 3, y: 3, c: WGo.W}'); 
+        let sgfw33= sgfw32.replaceAll('W[de]',',,\n{x: 3, y: 4, c: WGo.W}'); 
+        let sgfw34= sgfw33.replaceAll('W[df]',',,\n{x: 3, y: 5, c: WGo.W}'); 
+        let sgfw35= sgfw34.replaceAll('W[dg]',',,\n{x: 3, y: 6, c: WGo.W}'); 
+        let sgfw36= sgfw35.replaceAll('W[dh]',',,\n{x: 3, y: 7, c: WGo.W}'); 
+        let sgfw37= sgfw36.replaceAll('W[di]',',,\n{x: 3, y: 8, c: WGo.W}'); 
 
- 	let sgfw38= sgfw37.replaceAll('W[ea]','\n{x: 4, y: 0, c: WGo.W}'); 
-        let sgfw39= sgfw38.replaceAll('W[eb]','\n{x: 4, y: 1, c: WGo.W}'); 
-        let sgfw40= sgfw39.replaceAll('W[ec]','\n{x: 4, y: 2, c: WGo.W}'); 
-        let sgfw41= sgfw40.replaceAll('W[ed]','\n{x: 4, y: 3, c: WGo.W}'); 
-        let sgfw42= sgfw41.replaceAll('W[ee]','\n{x: 4, y: 4, c: WGo.W}'); 
-        let sgfw43= sgfw42.replaceAll('W[ef]','\n{x: 4, y: 5, c: WGo.W}'); 
-        let sgfw44= sgfw43.replaceAll('W[eg]','\n{x: 4, y: 6, c: WGo.W}'); 
-        let sgfw45= sgfw44.replaceAll('W[eh]','\n{x: 4, y: 7, c: WGo.W}'); 
-        let sgfw46= sgfw45.replaceAll('W[ei]','\n{x: 4, y: 8, c: WGo.W}'); 
+ 	let sgfw38= sgfw37.replaceAll('W[ea]',',,\n{x: 4, y: 0, c: WGo.W}'); 
+        let sgfw39= sgfw38.replaceAll('W[eb]',',,\n{x: 4, y: 1, c: WGo.W}'); 
+        let sgfw40= sgfw39.replaceAll('W[ec]',',,\n{x: 4, y: 2, c: WGo.W}'); 
+        let sgfw41= sgfw40.replaceAll('W[ed]',',,\n{x: 4, y: 3, c: WGo.W}'); 
+        let sgfw42= sgfw41.replaceAll('W[ee]',',,\n{x: 4, y: 4, c: WGo.W}'); 
+        let sgfw43= sgfw42.replaceAll('W[ef]',',,\n{x: 4, y: 5, c: WGo.W}'); 
+        let sgfw44= sgfw43.replaceAll('W[eg]',',,\n{x: 4, y: 6, c: WGo.W}'); 
+        let sgfw45= sgfw44.replaceAll('W[eh]',',,\n{x: 4, y: 7, c: WGo.W}'); 
+        let sgfw46= sgfw45.replaceAll('W[ei]',',,\n{x: 4, y: 8, c: WGo.W}'); 
 
- 	let sgfw47= sgfw46.replaceAll('W[fa]','\n{x: 5, y: 0, c: WGo.W}'); 
-        let sgfw48= sgfw47.replaceAll('W[fb]','\n{x: 5, y: 1, c: WGo.W}'); 
-        let sgfw49= sgfw48.replaceAll('W[fc]','\n{x: 5, y: 2, c: WGo.W}'); 
-        let sgfw50= sgfw49.replaceAll('W[fd]','\n{x: 5, y: 3, c: WGo.W}'); 
-        let sgfw51= sgfw50.replaceAll('W[fe]','\n{x: 5, y: 4, c: WGo.W}'); 
-        let sgfw52= sgfw51.replaceAll('W[ff]','\n{x: 5, y: 5, c: WGo.W}'); 
-        let sgfw53= sgfw52.replaceAll('W[fg]','\n{x: 5, y: 6, c: WGo.W}'); 
-        let sgfw54= sgfw53.replaceAll('W[fh]','\n{x: 5, y: 7, c: WGo.W}'); 
-        let sgfw55= sgfw54.replaceAll('W[fi]','\n{x: 5, y: 8, c: WGo.W}'); 
+ 	let sgfw47= sgfw46.replaceAll('W[fa]',',,\n{x: 5, y: 0, c: WGo.W}'); 
+        let sgfw48= sgfw47.replaceAll('W[fb]',',,\n{x: 5, y: 1, c: WGo.W}'); 
+        let sgfw49= sgfw48.replaceAll('W[fc]',',,\n{x: 5, y: 2, c: WGo.W}'); 
+        let sgfw50= sgfw49.replaceAll('W[fd]',',,\n{x: 5, y: 3, c: WGo.W}'); 
+        let sgfw51= sgfw50.replaceAll('W[fe]',',,\n{x: 5, y: 4, c: WGo.W}'); 
+        let sgfw52= sgfw51.replaceAll('W[ff]',',,\n{x: 5, y: 5, c: WGo.W}'); 
+        let sgfw53= sgfw52.replaceAll('W[fg]',',,\n{x: 5, y: 6, c: WGo.W}'); 
+        let sgfw54= sgfw53.replaceAll('W[fh]',',,\n{x: 5, y: 7, c: WGo.W}'); 
+        let sgfw55= sgfw54.replaceAll('W[fi]',',,\n{x: 5, y: 8, c: WGo.W}'); 
 
- 	let sgfw56= sgfw55.replaceAll('W[ga]','\n{x: 6, y: 0, c: WGo.W}'); 
-        let sgfw57= sgfw56.replaceAll('W[gb]','\n{x: 6, y: 1, c: WGo.W}'); 
-        let sgfw58= sgfw57.replaceAll('W[gc]','\n{x: 6, y: 2, c: WGo.W}'); 
-        let sgfw59= sgfw58.replaceAll('W[gd]','\n{x: 6, y: 3, c: WGo.W}'); 
-        let sgfw60= sgfw59.replaceAll('W[ge]','\n{x: 6, y: 4, c: WGo.W}'); 
-        let sgfw61= sgfw60.replaceAll('W[gf]','\n{x: 6, y: 5, c: WGo.W}'); 
-        let sgfw62= sgfw61.replaceAll('W[gg]','\n{x: 6, y: 6, c: WGo.W}'); 
-        let sgfw63= sgfw62.replaceAll('W[gh]','\n{x: 6, y: 7, c: WGo.W}'); 
-        let sgfw64= sgfw63.replaceAll('W[gi]','\n{x: 6, y: 8, c: WGo.W}'); 
+ 	let sgfw56= sgfw55.replaceAll('W[ga]',',,\n{x: 6, y: 0, c: WGo.W}'); 
+        let sgfw57= sgfw56.replaceAll('W[gb]',',,\n{x: 6, y: 1, c: WGo.W}'); 
+        let sgfw58= sgfw57.replaceAll('W[gc]',',,\n{x: 6, y: 2, c: WGo.W}'); 
+        let sgfw59= sgfw58.replaceAll('W[gd]',',,\n{x: 6, y: 3, c: WGo.W}'); 
+        let sgfw60= sgfw59.replaceAll('W[ge]',',,\n{x: 6, y: 4, c: WGo.W}'); 
+        let sgfw61= sgfw60.replaceAll('W[gf]',',,\n{x: 6, y: 5, c: WGo.W}'); 
+        let sgfw62= sgfw61.replaceAll('W[gg]',',,\n{x: 6, y: 6, c: WGo.W}'); 
+        let sgfw63= sgfw62.replaceAll('W[gh]',',,\n{x: 6, y: 7, c: WGo.W}'); 
+        let sgfw64= sgfw63.replaceAll('W[gi]',',,\n{x: 6, y: 8, c: WGo.W}'); 
 
- 	let sgfw65= sgfw64.replaceAll('W[ha]','\n{x: 7, y: 0, c: WGo.W}'); 
-        let sgfw66= sgfw65.replaceAll('W[hb]','\n{x: 7, y: 1, c: WGo.W}'); 
-        let sgfw67= sgfw66.replaceAll('W[hc]','\n{x: 7, y: 2, c: WGo.W}'); 
-        let sgfw68= sgfw67.replaceAll('W[hd]','\n{x: 7, y: 3, c: WGo.W}'); 
-        let sgfw69= sgfw68.replaceAll('W[he]','\n{x: 7, y: 4, c: WGo.W}'); 
-        let sgfw70= sgfw69.replaceAll('W[hf]','\n{x: 7, y: 5, c: WGo.W}'); 
-        let sgfw71= sgfw70.replaceAll('W[hg]','\n{x: 7, y: 6, c: WGo.W}'); 
-        let sgfw72= sgfw71.replaceAll('W[hh]','\n{x: 7, y: 7, c: WGo.W}'); 
-        let sgfw73= sgfw72.replaceAll('W[hi]','\n{x: 7, y: 8, c: WGo.W}'); 
+ 	let sgfw65= sgfw64.replaceAll('W[ha]',',,\n{x: 7, y: 0, c: WGo.W}'); 
+        let sgfw66= sgfw65.replaceAll('W[hb]',',,\n{x: 7, y: 1, c: WGo.W}'); 
+        let sgfw67= sgfw66.replaceAll('W[hc]',',,\n{x: 7, y: 2, c: WGo.W}'); 
+        let sgfw68= sgfw67.replaceAll('W[hd]',',,\n{x: 7, y: 3, c: WGo.W}'); 
+        let sgfw69= sgfw68.replaceAll('W[he]',',,\n{x: 7, y: 4, c: WGo.W}'); 
+        let sgfw70= sgfw69.replaceAll('W[hf]',',,\n{x: 7, y: 5, c: WGo.W}'); 
+        let sgfw71= sgfw70.replaceAll('W[hg]',',,\n{x: 7, y: 6, c: WGo.W}'); 
+        let sgfw72= sgfw71.replaceAll('W[hh]',',,\n{x: 7, y: 7, c: WGo.W}'); 
+        let sgfw73= sgfw72.replaceAll('W[hi]',',,\n{x: 7, y: 8, c: WGo.W}'); 
 
- 	let sgfw74= sgfw73.replaceAll('W[ia]','\n{x: 8, y: 0, c: WGo.W}'); 
-        let sgfw75= sgfw74.replaceAll('W[ib]','\n{x: 8, y: 1, c: WGo.W}'); 
-        let sgfw76= sgfw75.replaceAll('W[ic]','\n{x: 8, y: 2, c: WGo.W}'); 
-        let sgfw77= sgfw76.replaceAll('W[id]','\n{x: 8, y: 3, c: WGo.W}'); 
-        let sgfw78= sgfw77.replaceAll('W[ie]','\n{x: 8, y: 4, c: WGo.W}'); 
-        let sgfw79= sgfw78.replaceAll('W[if]','\n{x: 8, y: 5, c: WGo.W}'); 
-        let sgfw80= sgfw79.replaceAll('W[ig]','\n{x: 8, y: 6, c: WGo.W}'); 
-        let sgfw81= sgfw80.replaceAll('W[ih]','\n{x: 8, y: 7, c: WGo.W}'); 
-        let sgfw82= sgfw81.replaceAll('W[ii]','\n{x: 8, y: 8, c: WGo.W}'); 
+ 	let sgfw74= sgfw73.replaceAll('W[ia]',',,\n{x: 8, y: 0, c: WGo.W}'); 
+        let sgfw75= sgfw74.replaceAll('W[ib]',',,\n{x: 8, y: 1, c: WGo.W}'); 
+        let sgfw76= sgfw75.replaceAll('W[ic]',',,\n{x: 8, y: 2, c: WGo.W}'); 
+        let sgfw77= sgfw76.replaceAll('W[id]',',,\n{x: 8, y: 3, c: WGo.W}'); 
+        let sgfw78= sgfw77.replaceAll('W[ie]',',,\n{x: 8, y: 4, c: WGo.W}'); 
+        let sgfw79= sgfw78.replaceAll('W[if]',',,\n{x: 8, y: 5, c: WGo.W}'); 
+        let sgfw80= sgfw79.replaceAll('W[ig]',',,\n{x: 8, y: 6, c: WGo.W}'); 
+        let sgfw81= sgfw80.replaceAll('W[ih]',',,\n{x: 8, y: 7, c: WGo.W}'); 
+        let sgfw82= sgfw81.replaceAll('W[ii]',',,\n{x: 8, y: 8, c: WGo.W}'); 
 
-	document.getElementById('wgo').value = sgfw82;
+   	let sgflb2= sgfw82.replaceAll('LB[aa:A]',',,\n{x: 0, y: 0, type: "LB", text: "A"}'); 
+        let sgflb3= sgflb2.replaceAll('LB[ab:A]',',,\n{x: 0, y: 1, type: "LB", text: "A"}'); 
+        let sgflb4= sgflb3.replaceAll('LB[ac:A]',',,\n{x: 0, y: 2, type: "LB", text: "A"}'); 
+        let sgflb5= sgflb4.replaceAll('LB[ad:A]',',,\n{x: 0, y: 3, type: "LB", text: "A"}'); 
+        let sgflb6= sgflb5.replaceAll('LB[ae:A]',',,\n{x: 0, y: 4, type: "LB", text: "A"}'); 
+        let sgflb7= sgflb6.replaceAll('LB[af:A]',',,\n{x: 0, y: 5, type: "LB", text: "A"}'); 
+        let sgflb8= sgflb7.replaceAll('LB[ag:A]',',,\n{x: 0, y: 6, type: "LB", text: "A"}'); 
+        let sgflb9= sgflb8.replaceAll('LB[ah:A]',',,\n{x: 0, y: 7, type: "LB", text: "A"}'); 
+        let sgflb10= sgflb9.replaceAll('LB[ai:A]',',,\n{x: 0, y: 8, type: "LB", text: "A"}'); 
 
+        let sgflb11= sgflb10.replaceAll('LB[ba:A]',',,\n{x: 1, y: 0, type: "LB", text: "A"}'); 
+        let sgflb12= sgflb11.replaceAll('LB[bb:A]',',,\n{x: 1, y: 1, type: "LB", text: "A"}'); 
+        let sgflb13= sgflb12.replaceAll('LB[bc:A]',',,\n{x: 1, y: 2, type: "LB", text: "A"}'); 
+        let sgflb14= sgflb13.replaceAll('LB[bd:A]',',,\n{x: 1, y: 3, type: "LB", text: "A"}'); 
+        let sgflb15= sgflb14.replaceAll('LB[be:A]',',,\n{x: 1, y: 4, type: "LB", text: "A"}'); 
+        let sgflb16= sgflb15.replaceAll('LB[bf:A]',',,\n{x: 1, y: 5, type: "LB", text: "A"}'); 
+        let sgflb17= sgflb16.replaceAll('LB[bg:A]',',,\n{x: 1, y: 6, type: "LB", text: "A"}'); 
+        let sgflb18= sgflb17.replaceAll('LB[bh:A]',',,\n{x: 1, y: 7, type: "LB", text: "A"}'); 
+        let sgflb19= sgflb18.replaceAll('LB[bi:A]',',,\n{x: 1, y: 8, type: "LB", text: "A"}'); 
+
+        let sgflb20= sgflb19.replaceAll('LB[ca:A]',',,\n{x: 2, y: 0, type: "LB", text: "A"}'); 
+        let sgflb21= sgflb20.replaceAll('LB[cb:A]',',,\n{x: 2, y: 1, type: "LB", text: "A"}'); 
+        let sgflb22= sgflb21.replaceAll('LB[cc:A]',',,\n{x: 2, y: 2, type: "LB", text: "A"}'); 
+        let sgflb23= sgflb22.replaceAll('LB[cd:A]',',,\n{x: 2, y: 3, type: "LB", text: "A"}'); 
+        let sgflb24= sgflb23.replaceAll('LB[ce:A]',',,\n{x: 2, y: 4, type: "LB", text: "A"}'); 
+        let sgflb25= sgflb24.replaceAll('LB[cf:A]',',,\n{x: 2, y: 5, type: "LB", text: "A"}'); 
+        let sgflb26= sgflb25.replaceAll('LB[cg:A]',',,\n{x: 2, y: 6, type: "LB", text: "A"}'); 
+        let sgflb27= sgflb26.replaceAll('LB[ch:A]',',,\n{x: 2, y: 7, type: "LB", text: "A"}'); 
+        let sgflb28= sgflb27.replaceAll('LB[ci:A]',',,\n{x: 2, y: 8, type: "LB", text: "A"}'); 
+
+        let sgflb29= sgflb28.replaceAll('LB[da:A]',',,\n{x: 3, y: 0, type: "LB", text: "A"}'); 
+        let sgflb30= sgflb29.replaceAll('LB[db:A]',',,\n{x: 3, y: 1, type: "LB", text: "A"}'); 
+        let sgflb31= sgflb30.replaceAll('LB[dc:A]',',,\n{x: 3, y: 2, type: "LB", text: "A"}'); 
+        let sgflb32= sgflb31.replaceAll('LB[dd:A]',',,\n{x: 3, y: 3, type: "LB", text: "A"}'); 
+        let sgflb33= sgflb32.replaceAll('LB[de:A]',',,\n{x: 3, y: 4, type: "LB", text: "A"}'); 
+        let sgflb34= sgflb33.replaceAll('LB[df:A]',',,\n{x: 3, y: 5, type: "LB", text: "A"}'); 
+        let sgflb35= sgflb34.replaceAll('LB[dg:A]',',,\n{x: 3, y: 6, type: "LB", text: "A"}'); 
+        let sgflb36= sgflb35.replaceAll('LB[dh:A]',',,\n{x: 3, y: 7, type: "LB", text: "A"}'); 
+        let sgflb37= sgflb36.replaceAll('LB[di:A]',',,\n{x: 3, y: 8, type: "LB", text: "A"}'); 
+
+ 	let sgflb38= sgflb37.replaceAll('LB[ea:A]',',,\n{x: 4, y: 0, type: "LB", text: "A"}'); 
+        let sgflb39= sgflb38.replaceAll('LB[eb:A]',',,\n{x: 4, y: 1, type: "LB", text: "A"}'); 
+        let sgflb40= sgflb39.replaceAll('LB[ec:A]',',,\n{x: 4, y: 2, type: "LB", text: "A"}'); 
+        let sgflb41= sgflb40.replaceAll('LB[ed:A]',',,\n{x: 4, y: 3, type: "LB", text: "A"}'); 
+        let sgflb42= sgflb41.replaceAll('LB[ee:A]',',,\n{x: 4, y: 4, type: "LB", text: "A"}'); 
+        let sgflb43= sgflb42.replaceAll('LB[ef:A]',',,\n{x: 4, y: 5, type: "LB", text: "A"}'); 
+        let sgflb44= sgflb43.replaceAll('LB[eg:A]',',,\n{x: 4, y: 6, type: "LB", text: "A"}'); 
+        let sgflb45= sgflb44.replaceAll('LB[eh:A]',',,\n{x: 4, y: 7, type: "LB", text: "A"}'); 
+        let sgflb46= sgflb45.replaceAll('LB[ei:A]',',,\n{x: 4, y: 8, type: "LB", text: "A"}'); 
+
+ 	let sgflb47= sgflb46.replaceAll('LB[fa:A]',',,\n{x: 5, y: 0, type: "LB", text: "A"}'); 
+        let sgflb48= sgflb47.replaceAll('LB[fb:A]',',,\n{x: 5, y: 1, type: "LB", text: "A"}'); 
+        let sgflb49= sgflb48.replaceAll('LB[fc:A]',',,\n{x: 5, y: 2, type: "LB", text: "A"}'); 
+        let sgflb50= sgflb49.replaceAll('LB[fd:A]',',,\n{x: 5, y: 3, type: "LB", text: "A"}'); 
+        let sgflb51= sgflb50.replaceAll('LB[fe:A]',',,\n{x: 5, y: 4, type: "LB", text: "A"}'); 
+        let sgflb52= sgflb51.replaceAll('LB[ff:A]',',,\n{x: 5, y: 5, type: "LB", text: "A"}'); 
+        let sgflb53= sgflb52.replaceAll('LB[fg:A]',',,\n{x: 5, y: 6, type: "LB", text: "A"}'); 
+        let sgflb54= sgflb53.replaceAll('LB[fh:A]',',,\n{x: 5, y: 7, type: "LB", text: "A"}'); 
+        let sgflb55= sgflb54.replaceAll('LB[fi:A]',',,\n{x: 5, y: 8, type: "LB", text: "A"}'); 
+
+ 	let sgflb56= sgflb55.replaceAll('LB[ga:A]',',,\n{x: 6, y: 0, type: "LB", text: "A"}'); 
+        let sgflb57= sgflb56.replaceAll('LB[gb:A]',',,\n{x: 6, y: 1, type: "LB", text: "A"}'); 
+        let sgflb58= sgflb57.replaceAll('LB[gc:A]',',,\n{x: 6, y: 2, type: "LB", text: "A"}'); 
+        let sgflb59= sgflb58.replaceAll('LB[gd:A]',',,\n{x: 6, y: 3, type: "LB", text: "A"}'); 
+        let sgflb60= sgflb59.replaceAll('LB[ge:A]',',,\n{x: 6, y: 4, type: "LB", text: "A"}'); 
+        let sgflb61= sgflb60.replaceAll('LB[gf:A]',',,\n{x: 6, y: 5, type: "LB", text: "A"}'); 
+        let sgflb62= sgflb61.replaceAll('LB[gg:A]',',,\n{x: 6, y: 6, type: "LB", text: "A"}'); 
+        let sgflb63= sgflb62.replaceAll('LB[gh:A]',',,\n{x: 6, y: 7, type: "LB", text: "A"}'); 
+        let sgflb64= sgflb63.replaceAll('LB[gi:A]',',,\n{x: 6, y: 8, type: "LB", text: "A"}'); 
+
+ 	let sgflb65= sgflb64.replaceAll('LB[ha:A]',',,\n{x: 7, y: 0, type: "LB", text: "A"}'); 
+        let sgflb66= sgflb65.replaceAll('LB[hb:A]',',,\n{x: 7, y: 1, type: "LB", text: "A"}'); 
+        let sgflb67= sgflb66.replaceAll('LB[hc:A]',',,\n{x: 7, y: 2, type: "LB", text: "A"}'); 
+        let sgflb68= sgflb67.replaceAll('LB[hd:A]',',,\n{x: 7, y: 3, type: "LB", text: "A"}'); 
+        let sgflb69= sgflb68.replaceAll('LB[he:A]',',,\n{x: 7, y: 4, type: "LB", text: "A"}'); 
+        let sgflb70= sgflb69.replaceAll('LB[hf:A]',',,\n{x: 7, y: 5, type: "LB", text: "A"}'); 
+        let sgflb71= sgflb70.replaceAll('LB[hg:A]',',,\n{x: 7, y: 6, type: "LB", text: "A"}'); 
+        let sgflb72= sgflb71.replaceAll('LB[hh:A]',',,\n{x: 7, y: 7, type: "LB", text: "A"}'); 
+        let sgflb73= sgflb72.replaceAll('LB[hi:A]',',,\n{x: 7, y: 8, type: "LB", text: "A"}'); 
+
+ 	let sgflb74= sgflb73.replaceAll('LB[ia:A]',',,\n{x: 8, y: 0, type: "LB", text: "A"}'); 
+        let sgflb75= sgflb74.replaceAll('LB[ib:A]',',,\n{x: 8, y: 1, type: "LB", text: "A"}'); 
+        let sgflb76= sgflb75.replaceAll('LB[ic:A]',',,\n{x: 8, y: 2, type: "LB", text: "A"}'); 
+        let sgflb77= sgflb76.replaceAll('LB[id:A]',',,\n{x: 8, y: 3, type: "LB", text: "A"}'); 
+        let sgflb78= sgflb77.replaceAll('LB[ie:A]',',,\n{x: 8, y: 4, type: "LB", text: "A"}'); 
+        let sgflb79= sgflb78.replaceAll('LB[if:A]',',,\n{x: 8, y: 5, type: "LB", text: "A"}'); 
+        let sgflb80= sgflb79.replaceAll('LB[ig:A]',',,\n{x: 8, y: 6, type: "LB", text: "A"}'); 
+        let sgflb81= sgflb80.replaceAll('LB[ih:A]',',,\n{x: 8, y: 7, type: "LB", text: "A"}'); 
+        let sgflb82= sgflb81.replaceAll('LB[ii:A]',',,\n{x: 8, y: 8, type: "LB", text: "A"}'); 
+
+   	let sgflbb2= sgflb82.replaceAll('LB[aa:B]',',,\n{x: 0, y: 0, type: "LB", text: "B"}'); 
+        let sgflbb3= sgflbb2.replaceAll('LB[ab:B]',',,\n{x: 0, y: 1, type: "LB", text: "B"}'); 
+        let sgflbb4= sgflbb3.replaceAll('LB[ac:B]',',,\n{x: 0, y: 2, type: "LB", text: "B"}'); 
+        let sgflbb5= sgflbb4.replaceAll('LB[ad:B]',',,\n{x: 0, y: 3, type: "LB", text: "B"}'); 
+        let sgflbb6= sgflbb5.replaceAll('LB[ae:B]',',,\n{x: 0, y: 4, type: "LB", text: "B"}'); 
+        let sgflbb7= sgflbb6.replaceAll('LB[af:B]',',,\n{x: 0, y: 5, type: "LB", text: "B"}'); 
+        let sgflbb8= sgflbb7.replaceAll('LB[ag:B]',',,\n{x: 0, y: 6, type: "LB", text: "B"}'); 
+        let sgflbb9= sgflbb8.replaceAll('LB[ah:B]',',,\n{x: 0, y: 7, type: "LB", text: "B"}'); 
+        let sgflbb10= sgflbb9.replaceAll('LB[ai:B]',',,\n{x: 0, y: 8, type: "LB", text: "B"}'); 
+
+        let sgflbb11= sgflbb10.replaceAll('LB[ba:B]',',,\n{x: 1, y: 0, type: "LB", text: "B"}'); 
+        let sgflbb12= sgflbb11.replaceAll('LB[bb:B]',',,\n{x: 1, y: 1, type: "LB", text: "B"}'); 
+        let sgflbb13= sgflbb12.replaceAll('LB[bc:B]',',,\n{x: 1, y: 2, type: "LB", text: "B"}'); 
+        let sgflbb14= sgflbb13.replaceAll('LB[bd:B]',',,\n{x: 1, y: 3, type: "LB", text: "B"}'); 
+        let sgflbb15= sgflbb14.replaceAll('LB[be:B]',',,\n{x: 1, y: 4, type: "LB", text: "B"}'); 
+        let sgflbb16= sgflbb15.replaceAll('LB[bf:B]',',,\n{x: 1, y: 5, type: "LB", text: "B"}'); 
+        let sgflbb17= sgflbb16.replaceAll('LB[bg:B]',',,\n{x: 1, y: 6, type: "LB", text: "B"}'); 
+        let sgflbb18= sgflbb17.replaceAll('LB[bh:B]',',,\n{x: 1, y: 7, type: "LB", text: "B"}'); 
+        let sgflbb19= sgflbb18.replaceAll('LB[bi:B]',',,\n{x: 1, y: 8, type: "LB", text: "B"}'); 
+
+        let sgflbb20= sgflbb19.replaceAll('LB[ca:B]',',,\n{x: 2, y: 0, type: "LB", text: "B"}'); 
+        let sgflbb21= sgflbb20.replaceAll('LB[cb:B]',',,\n{x: 2, y: 1, type: "LB", text: "B"}'); 
+        let sgflbb22= sgflbb21.replaceAll('LB[cc:B]',',,\n{x: 2, y: 2, type: "LB", text: "B"}'); 
+        let sgflbb23= sgflbb22.replaceAll('LB[cd:B]',',,\n{x: 2, y: 3, type: "LB", text: "B"}'); 
+        let sgflbb24= sgflbb23.replaceAll('LB[ce:B]',',,\n{x: 2, y: 4, type: "LB", text: "B"}'); 
+        let sgflbb25= sgflbb24.replaceAll('LB[cf:B]',',,\n{x: 2, y: 5, type: "LB", text: "B"}'); 
+        let sgflbb26= sgflbb25.replaceAll('LB[cg:B]',',,\n{x: 2, y: 6, type: "LB", text: "B"}'); 
+        let sgflbb27= sgflbb26.replaceAll('LB[ch:B]',',,\n{x: 2, y: 7, type: "LB", text: "B"}'); 
+        let sgflbb28= sgflbb27.replaceAll('LB[ci:B]',',,\n{x: 2, y: 8, type: "LB", text: "B"}'); 
+
+        let sgflbb29= sgflbb28.replaceAll('LB[da:B]',',,\n{x: 3, y: 0, type: "LB", text: "B"}'); 
+        let sgflbb30= sgflbb29.replaceAll('LB[db:B]',',,\n{x: 3, y: 1, type: "LB", text: "B"}'); 
+        let sgflbb31= sgflbb30.replaceAll('LB[dc:B]',',,\n{x: 3, y: 2, type: "LB", text: "B"}'); 
+        let sgflbb32= sgflbb31.replaceAll('LB[dd:B]',',,\n{x: 3, y: 3, type: "LB", text: "B"}'); 
+        let sgflbb33= sgflbb32.replaceAll('LB[de:B]',',,\n{x: 3, y: 4, type: "LB", text: "B"}'); 
+        let sgflbb34= sgflbb33.replaceAll('LB[df:B]',',,\n{x: 3, y: 5, type: "LB", text: "B"}'); 
+        let sgflbb35= sgflbb34.replaceAll('LB[dg:B]',',,\n{x: 3, y: 6, type: "LB", text: "B"}'); 
+        let sgflbb36= sgflbb35.replaceAll('LB[dh:B]',',,\n{x: 3, y: 7, type: "LB", text: "B"}'); 
+        let sgflbb37= sgflbb36.replaceAll('LB[di:B]',',,\n{x: 3, y: 8, type: "LB", text: "B"}'); 
+
+ 	let sgflbb38= sgflbb37.replaceAll('LB[ea:B]',',,\n{x: 4, y: 0, type: "LB", text: "B"}'); 
+        let sgflbb39= sgflbb38.replaceAll('LB[eb:B]',',,\n{x: 4, y: 1, type: "LB", text: "B"}'); 
+        let sgflbb40= sgflbb39.replaceAll('LB[ec:B]',',,\n{x: 4, y: 2, type: "LB", text: "B"}'); 
+        let sgflbb41= sgflbb40.replaceAll('LB[ed:B]',',,\n{x: 4, y: 3, type: "LB", text: "B"}'); 
+        let sgflbb42= sgflbb41.replaceAll('LB[ee:B]',',,\n{x: 4, y: 4, type: "LB", text: "B"}'); 
+        let sgflbb43= sgflbb42.replaceAll('LB[ef:B]',',,\n{x: 4, y: 5, type: "LB", text: "B"}'); 
+        let sgflbb44= sgflbb43.replaceAll('LB[eg:B]',',,\n{x: 4, y: 6, type: "LB", text: "B"}'); 
+        let sgflbb45= sgflbb44.replaceAll('LB[eh:B]',',,\n{x: 4, y: 7, type: "LB", text: "B"}'); 
+        let sgflbb46= sgflbb45.replaceAll('LB[ei:B]',',,\n{x: 4, y: 8, type: "LB", text: "B"}'); 
+
+ 	let sgflbb47= sgflbb46.replaceAll('LB[fa:B]',',,\n{x: 5, y: 0, type: "LB", text: "B"}'); 
+        let sgflbb48= sgflbb47.replaceAll('LB[fb:B]',',,\n{x: 5, y: 1, type: "LB", text: "B"}'); 
+        let sgflbb49= sgflbb48.replaceAll('LB[fc:B]',',,\n{x: 5, y: 2, type: "LB", text: "B"}'); 
+        let sgflbb50= sgflbb49.replaceAll('LB[fd:B]',',,\n{x: 5, y: 3, type: "LB", text: "B"}'); 
+        let sgflbb51= sgflbb50.replaceAll('LB[fe:B]',',,\n{x: 5, y: 4, type: "LB", text: "B"}'); 
+        let sgflbb52= sgflbb51.replaceAll('LB[ff:B]',',,\n{x: 5, y: 5, type: "LB", text: "B"}'); 
+        let sgflbb53= sgflbb52.replaceAll('LB[fg:B]',',,\n{x: 5, y: 6, type: "LB", text: "B"}'); 
+        let sgflbb54= sgflbb53.replaceAll('LB[fh:B]',',,\n{x: 5, y: 7, type: "LB", text: "B"}'); 
+        let sgflbb55= sgflbb54.replaceAll('LB[fi:B]',',,\n{x: 5, y: 8, type: "LB", text: "B"}'); 
+
+ 	let sgflbb56= sgflbb55.replaceAll('LB[ga:B]',',,\n{x: 6, y: 0, type: "LB", text: "B"}'); 
+        let sgflbb57= sgflbb56.replaceAll('LB[gb:B]',',,\n{x: 6, y: 1, type: "LB", text: "B"}'); 
+        let sgflbb58= sgflbb57.replaceAll('LB[gc:B]',',,\n{x: 6, y: 2, type: "LB", text: "B"}'); 
+        let sgflbb59= sgflbb58.replaceAll('LB[gd:B]',',,\n{x: 6, y: 3, type: "LB", text: "B"}'); 
+        let sgflbb60= sgflbb59.replaceAll('LB[ge:B]',',,\n{x: 6, y: 4, type: "LB", text: "B"}'); 
+        let sgflbb61= sgflbb60.replaceAll('LB[gf:B]',',,\n{x: 6, y: 5, type: "LB", text: "B"}'); 
+        let sgflbb62= sgflbb61.replaceAll('LB[gg:B]',',,\n{x: 6, y: 6, type: "LB", text: "B"}'); 
+        let sgflbb63= sgflbb62.replaceAll('LB[gh:B]',',,\n{x: 6, y: 7, type: "LB", text: "B"}'); 
+        let sgflbb64= sgflbb63.replaceAll('LB[gi:B]',',,\n{x: 6, y: 8, type: "LB", text: "B"}'); 
+
+ 	let sgflbb65= sgflbb64.replaceAll('LB[ha:B]',',,\n{x: 7, y: 0, type: "LB", text: "B"}'); 
+        let sgflbb66= sgflbb65.replaceAll('LB[hb:B]',',,\n{x: 7, y: 1, type: "LB", text: "B"}'); 
+        let sgflbb67= sgflbb66.replaceAll('LB[hc:B]',',,\n{x: 7, y: 2, type: "LB", text: "B"}'); 
+        let sgflbb68= sgflbb67.replaceAll('LB[hd:B]',',,\n{x: 7, y: 3, type: "LB", text: "B"}'); 
+        let sgflbb69= sgflbb68.replaceAll('LB[he:B]',',,\n{x: 7, y: 4, type: "LB", text: "B"}'); 
+        let sgflbb70= sgflbb69.replaceAll('LB[hf:B]',',,\n{x: 7, y: 5, type: "LB", text: "B"}'); 
+        let sgflbb71= sgflbb70.replaceAll('LB[hg:B]',',,\n{x: 7, y: 6, type: "LB", text: "B"}'); 
+        let sgflbb72= sgflbb71.replaceAll('LB[hh:B]',',,\n{x: 7, y: 7, type: "LB", text: "B"}'); 
+        let sgflbb73= sgflbb72.replaceAll('LB[hi:B]',',,\n{x: 7, y: 8, type: "LB", text: "B"}'); 
+
+ 	let sgflbb74= sgflbb73.replaceAll('LB[ia:B]',',,\n{x: 8, y: 0, type: "LB", text: "B"}'); 
+        let sgflbb75= sgflbb74.replaceAll('LB[ib:B]',',,\n{x: 8, y: 1, type: "LB", text: "B"}'); 
+        let sgflbb76= sgflbb75.replaceAll('LB[ic:B]',',,\n{x: 8, y: 2, type: "LB", text: "B"}'); 
+        let sgflbb77= sgflbb76.replaceAll('LB[id:B]',',,\n{x: 8, y: 3, type: "LB", text: "B"}'); 
+        let sgflbb78= sgflbb77.replaceAll('LB[ie:B]',',,\n{x: 8, y: 4, type: "LB", text: "B"}'); 
+        let sgflbb79= sgflbb78.replaceAll('LB[if:B]',',,\n{x: 8, y: 5, type: "LB", text: "B"}'); 
+        let sgflbb80= sgflbb79.replaceAll('LB[ig:B]',',,\n{x: 8, y: 6, type: "LB", text: "B"}'); 
+        let sgflbb81= sgflbb80.replaceAll('LB[ih:B]',',,\n{x: 8, y: 7, type: "LB", text: "B"}'); 
+        let sgflbb82= sgflbb81.replaceAll('LB[ii:B]',',,\n{x: 8, y: 8, type: "LB", text: "B"}'); 
+
+   	let sgflbc2= sgflbb82.replaceAll('LB[aa:C]',',,\n{x: 0, y: 0, type: "LB", text: "C"}'); 
+        let sgflbc3= sgflbc2.replaceAll('LB[ab:C]',',,\n{x: 0, y: 1, type: "LB", text: "C"}'); 
+        let sgflbc4= sgflbc3.replaceAll('LB[ac:C]',',,\n{x: 0, y: 2, type: "LB", text: "C"}'); 
+        let sgflbc5= sgflbc4.replaceAll('LB[ad:C]',',,\n{x: 0, y: 3, type: "LB", text: "C"}'); 
+        let sgflbc6= sgflbc5.replaceAll('LB[ae:C]',',,\n{x: 0, y: 4, type: "LB", text: "C"}'); 
+        let sgflbc7= sgflbc6.replaceAll('LB[af:C]',',,\n{x: 0, y: 5, type: "LB", text: "C"}'); 
+        let sgflbc8= sgflbc7.replaceAll('LB[ag:C]',',,\n{x: 0, y: 6, type: "LB", text: "C"}'); 
+        let sgflbc9= sgflbc8.replaceAll('LB[ah:C]',',,\n{x: 0, y: 7, type: "LB", text: "C"}'); 
+        let sgflbc10= sgflbc9.replaceAll('LB[ai:C]',',,\n{x: 0, y: 8, type: "LB", text: "C"}'); 
+
+        let sgflbc11= sgflbc10.replaceAll('LB[ba:C]',',,\n{x: 1, y: 0, type: "LB", text: "C"}'); 
+        let sgflbc12= sgflbc11.replaceAll('LB[bb:C]',',,\n{x: 1, y: 1, type: "LB", text: "C"}'); 
+        let sgflbc13= sgflbc12.replaceAll('LB[bc:C]',',,\n{x: 1, y: 2, type: "LB", text: "C"}'); 
+        let sgflbc14= sgflbc13.replaceAll('LB[bd:C]',',,\n{x: 1, y: 3, type: "LB", text: "C"}'); 
+        let sgflbc15= sgflbc14.replaceAll('LB[be:C]',',,\n{x: 1, y: 4, type: "LB", text: "C"}'); 
+        let sgflbc16= sgflbc15.replaceAll('LB[bf:C]',',,\n{x: 1, y: 5, type: "LB", text: "C"}'); 
+        let sgflbc17= sgflbc16.replaceAll('LB[bg:C]',',,\n{x: 1, y: 6, type: "LB", text: "C"}'); 
+        let sgflbc18= sgflbc17.replaceAll('LB[bh:C]',',,\n{x: 1, y: 7, type: "LB", text: "C"}'); 
+        let sgflbc19= sgflbc18.replaceAll('LB[bi:C]',',,\n{x: 1, y: 8, type: "LB", text: "C"}'); 
+
+        let sgflbc20= sgflbc19.replaceAll('LB[ca:C]',',,\n{x: 2, y: 0, type: "LB", text: "C"}'); 
+        let sgflbc21= sgflbc20.replaceAll('LB[cb:C]',',,\n{x: 2, y: 1, type: "LB", text: "C"}'); 
+        let sgflbc22= sgflbc21.replaceAll('LB[cc:C]',',,\n{x: 2, y: 2, type: "LB", text: "C"}'); 
+        let sgflbc23= sgflbc22.replaceAll('LB[cd:C]',',,\n{x: 2, y: 3, type: "LB", text: "C"}'); 
+        let sgflbc24= sgflbc23.replaceAll('LB[ce:C]',',,\n{x: 2, y: 4, type: "LB", text: "C"}'); 
+        let sgflbc25= sgflbc24.replaceAll('LB[cf:C]',',,\n{x: 2, y: 5, type: "LB", text: "C"}'); 
+        let sgflbc26= sgflbc25.replaceAll('LB[cg:C]',',,\n{x: 2, y: 6, type: "LB", text: "C"}'); 
+        let sgflbc27= sgflbc26.replaceAll('LB[ch:C]',',,\n{x: 2, y: 7, type: "LB", text: "C"}'); 
+        let sgflbc28= sgflbc27.replaceAll('LB[ci:C]',',,\n{x: 2, y: 8, type: "LB", text: "C"}'); 
+
+        let sgflbc29= sgflbc28.replaceAll('LB[da:C]',',,\n{x: 3, y: 0, type: "LB", text: "C"}'); 
+        let sgflbc30= sgflbc29.replaceAll('LB[db:C]',',,\n{x: 3, y: 1, type: "LB", text: "C"}'); 
+        let sgflbc31= sgflbc30.replaceAll('LB[dc:C]',',,\n{x: 3, y: 2, type: "LB", text: "C"}'); 
+        let sgflbc32= sgflbc31.replaceAll('LB[dd:C]',',,\n{x: 3, y: 3, type: "LB", text: "C"}'); 
+        let sgflbc33= sgflbc32.replaceAll('LB[de:C]',',,\n{x: 3, y: 4, type: "LB", text: "C"}'); 
+        let sgflbc34= sgflbc33.replaceAll('LB[df:C]',',,\n{x: 3, y: 5, type: "LB", text: "C"}'); 
+        let sgflbc35= sgflbc34.replaceAll('LB[dg:C]',',,\n{x: 3, y: 6, type: "LB", text: "C"}'); 
+        let sgflbc36= sgflbc35.replaceAll('LB[dh:C]',',,\n{x: 3, y: 7, type: "LB", text: "C"}'); 
+        let sgflbc37= sgflbc36.replaceAll('LB[di:C]',',,\n{x: 3, y: 8, type: "LB", text: "C"}'); 
+
+ 	let sgflbc38= sgflbc37.replaceAll('LB[ea:C]',',,\n{x: 4, y: 0, type: "LB", text: "C"}'); 
+        let sgflbc39= sgflbc38.replaceAll('LB[eb:C]',',,\n{x: 4, y: 1, type: "LB", text: "C"}'); 
+        let sgflbc40= sgflbc39.replaceAll('LB[ec:C]',',,\n{x: 4, y: 2, type: "LB", text: "C"}'); 
+        let sgflbc41= sgflbc40.replaceAll('LB[ed:C]',',,\n{x: 4, y: 3, type: "LB", text: "C"}'); 
+        let sgflbc42= sgflbc41.replaceAll('LB[ee:C]',',,\n{x: 4, y: 4, type: "LB", text: "C"}'); 
+        let sgflbc43= sgflbc42.replaceAll('LB[ef:C]',',,\n{x: 4, y: 5, type: "LB", text: "C"}'); 
+        let sgflbc44= sgflbc43.replaceAll('LB[eg:C]',',,\n{x: 4, y: 6, type: "LB", text: "C"}'); 
+        let sgflbc45= sgflbc44.replaceAll('LB[eh:C]',',,\n{x: 4, y: 7, type: "LB", text: "C"}'); 
+        let sgflbc46= sgflbc45.replaceAll('LB[ei:C]',',,\n{x: 4, y: 8, type: "LB", text: "C"}'); 
+
+ 	let sgflbc47= sgflbc46.replaceAll('LB[fa:C]',',,\n{x: 5, y: 0, type: "LB", text: "C"}'); 
+        let sgflbc48= sgflbc47.replaceAll('LB[fb:C]',',,\n{x: 5, y: 1, type: "LB", text: "C"}'); 
+        let sgflbc49= sgflbc48.replaceAll('LB[fc:C]',',,\n{x: 5, y: 2, type: "LB", text: "C"}'); 
+        let sgflbc50= sgflbc49.replaceAll('LB[fd:C]',',,\n{x: 5, y: 3, type: "LB", text: "C"}'); 
+        let sgflbc51= sgflbc50.replaceAll('LB[fe:C]',',,\n{x: 5, y: 4, type: "LB", text: "C"}'); 
+        let sgflbc52= sgflbc51.replaceAll('LB[ff:C]',',,\n{x: 5, y: 5, type: "LB", text: "C"}'); 
+        let sgflbc53= sgflbc52.replaceAll('LB[fg:C]',',,\n{x: 5, y: 6, type: "LB", text: "C"}'); 
+        let sgflbc54= sgflbc53.replaceAll('LB[fh:C]',',,\n{x: 5, y: 7, type: "LB", text: "C"}'); 
+        let sgflbc55= sgflbc54.replaceAll('LB[fi:C]',',,\n{x: 5, y: 8, type: "LB", text: "C"}'); 
+
+ 	let sgflbc56= sgflbc55.replaceAll('LB[ga:C]',',,\n{x: 6, y: 0, type: "LB", text: "C"}'); 
+        let sgflbc57= sgflbc56.replaceAll('LB[gb:C]',',,\n{x: 6, y: 1, type: "LB", text: "C"}'); 
+        let sgflbc58= sgflbc57.replaceAll('LB[gc:C]',',,\n{x: 6, y: 2, type: "LB", text: "C"}'); 
+        let sgflbc59= sgflbc58.replaceAll('LB[gd:C]',',,\n{x: 6, y: 3, type: "LB", text: "C"}'); 
+        let sgflbc60= sgflbc59.replaceAll('LB[ge:C]',',,\n{x: 6, y: 4, type: "LB", text: "C"}'); 
+        let sgflbc61= sgflbc60.replaceAll('LB[gf:C]',',,\n{x: 6, y: 5, type: "LB", text: "C"}'); 
+        let sgflbc62= sgflbc61.replaceAll('LB[gg:C]',',,\n{x: 6, y: 6, type: "LB", text: "C"}'); 
+        let sgflbc63= sgflbc62.replaceAll('LB[gh:C]',',,\n{x: 6, y: 7, type: "LB", text: "C"}'); 
+        let sgflbc64= sgflbc63.replaceAll('LB[gi:C]',',,\n{x: 6, y: 8, type: "LB", text: "C"}'); 
+
+ 	let sgflbc65= sgflbc64.replaceAll('LB[ha:C]',',,\n{x: 7, y: 0, type: "LB", text: "C"}'); 
+        let sgflbc66= sgflbc65.replaceAll('LB[hb:C]',',,\n{x: 7, y: 1, type: "LB", text: "C"}'); 
+        let sgflbc67= sgflbc66.replaceAll('LB[hc:C]',',,\n{x: 7, y: 2, type: "LB", text: "C"}'); 
+        let sgflbc68= sgflbc67.replaceAll('LB[hd:C]',',,\n{x: 7, y: 3, type: "LB", text: "C"}'); 
+        let sgflbc69= sgflbc68.replaceAll('LB[he:C]',',,\n{x: 7, y: 4, type: "LB", text: "C"}'); 
+        let sgflbc70= sgflbc69.replaceAll('LB[hf:C]',',,\n{x: 7, y: 5, type: "LB", text: "C"}'); 
+        let sgflbc71= sgflbc70.replaceAll('LB[hg:C]',',,\n{x: 7, y: 6, type: "LB", text: "C"}'); 
+        let sgflbc72= sgflbc71.replaceAll('LB[hh:C]',',,\n{x: 7, y: 7, type: "LB", text: "C"}'); 
+        let sgflbc73= sgflbc72.replaceAll('LB[hi:C]',',,\n{x: 7, y: 8, type: "LB", text: "C"}'); 
+
+ 	let sgflbc74= sgflbc73.replaceAll('LB[ia:C]',',,\n{x: 8, y: 0, type: "LB", text: "C"}'); 
+        let sgflbc75= sgflbc74.replaceAll('LB[ib:C]',',,\n{x: 8, y: 1, type: "LB", text: "C"}'); 
+        let sgflbc76= sgflbc75.replaceAll('LB[ic:C]',',,\n{x: 8, y: 2, type: "LB", text: "C"}'); 
+        let sgflbc77= sgflbc76.replaceAll('LB[id:C]',',,\n{x: 8, y: 3, type: "LB", text: "C"}'); 
+        let sgflbc78= sgflbc77.replaceAll('LB[ie:C]',',,\n{x: 8, y: 4, type: "LB", text: "C"}'); 
+        let sgflbc79= sgflbc78.replaceAll('LB[if:C]',',,\n{x: 8, y: 5, type: "LB", text: "C"}'); 
+        let sgflbc80= sgflbc79.replaceAll('LB[ig:C]',',,\n{x: 8, y: 6, type: "LB", text: "C"}'); 
+        let sgflbc81= sgflbc80.replaceAll('LB[ih:C]',',,\n{x: 8, y: 7, type: "LB", text: "C"}'); 
+        let sgflbc82= sgflbc81.replaceAll('LB[ii:C]',',,\n{x: 8, y: 8, type: "LB", text: "C"}'); 
+
+	let sgflbd2= sgflbc82.replaceAll('LB[aa:D]',',,\n{x: 0, y: 0, type: "LB", text: "D"}'); 
+        let sgflbd3= sgflbd2.replaceAll('LB[ab:D]',',,\n{x: 0, y: 1, type: "LB", text: "D"}'); 
+        let sgflbd4= sgflbd3.replaceAll('LB[ac:D]',',,\n{x: 0, y: 2, type: "LB", text: "D"}'); 
+        let sgflbd5= sgflbd4.replaceAll('LB[ad:D]',',,\n{x: 0, y: 3, type: "LB", text: "D"}'); 
+        let sgflbd6= sgflbd5.replaceAll('LB[ae:D]',',,\n{x: 0, y: 4, type: "LB", text: "D"}'); 
+        let sgflbd7= sgflbd6.replaceAll('LB[af:D]',',,\n{x: 0, y: 5, type: "LB", text: "D"}'); 
+        let sgflbd8= sgflbd7.replaceAll('LB[ag:D]',',,\n{x: 0, y: 6, type: "LB", text: "D"}'); 
+        let sgflbd9= sgflbd8.replaceAll('LB[ah:D]',',,\n{x: 0, y: 7, type: "LB", text: "D"}'); 
+        let sgflbd10= sgflbd9.replaceAll('LB[ai:D]',',,\n{x: 0, y: 8, type: "LB", text: "D"}'); 
+
+        let sgflbd11= sgflbd10.replaceAll('LB[ba:D]',',,\n{x: 1, y: 0, type: "LB", text: "D"}'); 
+        let sgflbd12= sgflbd11.replaceAll('LB[bb:D]',',,\n{x: 1, y: 1, type: "LB", text: "D"}'); 
+        let sgflbd13= sgflbd12.replaceAll('LB[bc:D]',',,\n{x: 1, y: 2, type: "LB", text: "D"}'); 
+        let sgflbd14= sgflbd13.replaceAll('LB[bd:D]',',,\n{x: 1, y: 3, type: "LB", text: "D"}'); 
+        let sgflbd15= sgflbd14.replaceAll('LB[be:D]',',,\n{x: 1, y: 4, type: "LB", text: "D"}'); 
+        let sgflbd16= sgflbd15.replaceAll('LB[bf:D]',',,\n{x: 1, y: 5, type: "LB", text: "D"}'); 
+        let sgflbd17= sgflbd16.replaceAll('LB[bg:D]',',,\n{x: 1, y: 6, type: "LB", text: "D"}'); 
+        let sgflbd18= sgflbd17.replaceAll('LB[bh:D]',',,\n{x: 1, y: 7, type: "LB", text: "D"}'); 
+        let sgflbd19= sgflbd18.replaceAll('LB[bi:D]',',,\n{x: 1, y: 8, type: "LB", text: "D"}'); 
+
+        let sgflbd20= sgflbd19.replaceAll('LB[ca:D]',',,\n{x: 2, y: 0, type: "LB", text: "D"}'); 
+        let sgflbd21= sgflbd20.replaceAll('LB[cb:D]',',,\n{x: 2, y: 1, type: "LB", text: "D"}'); 
+        let sgflbd22= sgflbd21.replaceAll('LB[cc:D]',',,\n{x: 2, y: 2, type: "LB", text: "D"}'); 
+        let sgflbd23= sgflbd22.replaceAll('LB[cd:D]',',,\n{x: 2, y: 3, type: "LB", text: "D"}'); 
+        let sgflbd24= sgflbd23.replaceAll('LB[ce:D]',',,\n{x: 2, y: 4, type: "LB", text: "D"}'); 
+        let sgflbd25= sgflbd24.replaceAll('LB[cf:D]',',,\n{x: 2, y: 5, type: "LB", text: "D"}'); 
+        let sgflbd26= sgflbd25.replaceAll('LB[cg:D]',',,\n{x: 2, y: 6, type: "LB", text: "D"}'); 
+        let sgflbd27= sgflbd26.replaceAll('LB[ch:D]',',,\n{x: 2, y: 7, type: "LB", text: "D"}'); 
+        let sgflbd28= sgflbd27.replaceAll('LB[ci:D]',',,\n{x: 2, y: 8, type: "LB", text: "D"}'); 
+
+        let sgflbd29= sgflbd28.replaceAll('LB[da:D]',',,\n{x: 3, y: 0, type: "LB", text: "D"}'); 
+        let sgflbd30= sgflbd29.replaceAll('LB[db:D]',',,\n{x: 3, y: 1, type: "LB", text: "D"}'); 
+        let sgflbd31= sgflbd30.replaceAll('LB[dc:D]',',,\n{x: 3, y: 2, type: "LB", text: "D"}'); 
+        let sgflbd32= sgflbd31.replaceAll('LB[dd:D]',',,\n{x: 3, y: 3, type: "LB", text: "D"}'); 
+        let sgflbd33= sgflbd32.replaceAll('LB[de:D]',',,\n{x: 3, y: 4, type: "LB", text: "D"}'); 
+        let sgflbd34= sgflbd33.replaceAll('LB[df:D]',',,\n{x: 3, y: 5, type: "LB", text: "D"}'); 
+        let sgflbd35= sgflbd34.replaceAll('LB[dg:D]',',,\n{x: 3, y: 6, type: "LB", text: "D"}'); 
+        let sgflbd36= sgflbd35.replaceAll('LB[dh:D]',',,\n{x: 3, y: 7, type: "LB", text: "D"}'); 
+        let sgflbd37= sgflbd36.replaceAll('LB[di:D]',',,\n{x: 3, y: 8, type: "LB", text: "D"}'); 
+
+ 	let sgflbd38= sgflbd37.replaceAll('LB[ea:D]',',,\n{x: 4, y: 0, type: "LB", text: "D"}'); 
+        let sgflbd39= sgflbd38.replaceAll('LB[eb:D]',',,\n{x: 4, y: 1, type: "LB", text: "D"}'); 
+        let sgflbd40= sgflbd39.replaceAll('LB[ec:D]',',,\n{x: 4, y: 2, type: "LB", text: "D"}'); 
+        let sgflbd41= sgflbd40.replaceAll('LB[ed:D]',',,\n{x: 4, y: 3, type: "LB", text: "D"}'); 
+        let sgflbd42= sgflbd41.replaceAll('LB[ee:D]',',,\n{x: 4, y: 4, type: "LB", text: "D"}'); 
+        let sgflbd43= sgflbd42.replaceAll('LB[ef:D]',',,\n{x: 4, y: 5, type: "LB", text: "D"}'); 
+        let sgflbd44= sgflbd43.replaceAll('LB[eg:D]',',,\n{x: 4, y: 6, type: "LB", text: "D"}'); 
+        let sgflbd45= sgflbd44.replaceAll('LB[eh:D]',',,\n{x: 4, y: 7, type: "LB", text: "D"}'); 
+        let sgflbd46= sgflbd45.replaceAll('LB[ei:D]',',,\n{x: 4, y: 8, type: "LB", text: "D"}'); 
+
+ 	let sgflbd47= sgflbd46.replaceAll('LB[fa:D]',',,\n{x: 5, y: 0, type: "LB", text: "D"}'); 
+        let sgflbd48= sgflbd47.replaceAll('LB[fb:D]',',,\n{x: 5, y: 1, type: "LB", text: "D"}'); 
+        let sgflbd49= sgflbd48.replaceAll('LB[fc:D]',',,\n{x: 5, y: 2, type: "LB", text: "D"}'); 
+        let sgflbd50= sgflbd49.replaceAll('LB[fd:D]',',,\n{x: 5, y: 3, type: "LB", text: "D"}'); 
+        let sgflbd51= sgflbd50.replaceAll('LB[fe:D]',',,\n{x: 5, y: 4, type: "LB", text: "D"}'); 
+        let sgflbd52= sgflbd51.replaceAll('LB[ff:D]',',,\n{x: 5, y: 5, type: "LB", text: "D"}'); 
+        let sgflbd53= sgflbd52.replaceAll('LB[fg:D]',',,\n{x: 5, y: 6, type: "LB", text: "D"}'); 
+        let sgflbd54= sgflbd53.replaceAll('LB[fh:D]',',,\n{x: 5, y: 7, type: "LB", text: "D"}'); 
+        let sgflbd55= sgflbd54.replaceAll('LB[fi:D]',',,\n{x: 5, y: 8, type: "LB", text: "D"}'); 
+
+ 	let sgflbd56= sgflbd55.replaceAll('LB[ga:D]',',,\n{x: 6, y: 0, type: "LB", text: "D"}'); 
+        let sgflbd57= sgflbd56.replaceAll('LB[gb:D]',',,\n{x: 6, y: 1, type: "LB", text: "D"}'); 
+        let sgflbd58= sgflbd57.replaceAll('LB[gc:D]',',,\n{x: 6, y: 2, type: "LB", text: "D"}'); 
+        let sgflbd59= sgflbd58.replaceAll('LB[gd:D]',',,\n{x: 6, y: 3, type: "LB", text: "D"}'); 
+        let sgflbd60= sgflbd59.replaceAll('LB[ge:D]',',,\n{x: 6, y: 4, type: "LB", text: "D"}'); 
+        let sgflbd61= sgflbd60.replaceAll('LB[gf:D]',',,\n{x: 6, y: 5, type: "LB", text: "D"}'); 
+        let sgflbd62= sgflbd61.replaceAll('LB[gg:D]',',,\n{x: 6, y: 6, type: "LB", text: "D"}'); 
+        let sgflbd63= sgflbd62.replaceAll('LB[gh:D]',',,\n{x: 6, y: 7, type: "LB", text: "D"}'); 
+        let sgflbd64= sgflbd63.replaceAll('LB[gi:D]',',,\n{x: 6, y: 8, type: "LB", text: "D"}'); 
+
+ 	let sgflbd65= sgflbd64.replaceAll('LB[ha:D]',',,\n{x: 7, y: 0, type: "LB", text: "D"}'); 
+        let sgflbd66= sgflbd65.replaceAll('LB[hb:D]',',,\n{x: 7, y: 1, type: "LB", text: "D"}'); 
+        let sgflbd67= sgflbd66.replaceAll('LB[hc:D]',',,\n{x: 7, y: 2, type: "LB", text: "D"}'); 
+        let sgflbd68= sgflbd67.replaceAll('LB[hd:D]',',,\n{x: 7, y: 3, type: "LB", text: "D"}'); 
+        let sgflbd69= sgflbd68.replaceAll('LB[he:D]',',,\n{x: 7, y: 4, type: "LB", text: "D"}'); 
+        let sgflbd70= sgflbd69.replaceAll('LB[hf:D]',',,\n{x: 7, y: 5, type: "LB", text: "D"}'); 
+        let sgflbd71= sgflbd70.replaceAll('LB[hg:D]',',,\n{x: 7, y: 6, type: "LB", text: "D"}'); 
+        let sgflbd72= sgflbd71.replaceAll('LB[hh:D]',',,\n{x: 7, y: 7, type: "LB", text: "D"}'); 
+        let sgflbd73= sgflbd72.replaceAll('LB[hi:D]',',,\n{x: 7, y: 8, type: "LB", text: "D"}'); 
+
+ 	let sgflbd74= sgflbd73.replaceAll('LB[ia:D]',',,\n{x: 8, y: 0, type: "LB", text: "D"}'); 
+        let sgflbd75= sgflbd74.replaceAll('LB[ib:D]',',,\n{x: 8, y: 1, type: "LB", text: "D"}'); 
+        let sgflbd76= sgflbd75.replaceAll('LB[ic:D]',',,\n{x: 8, y: 2, type: "LB", text: "D"}'); 
+        let sgflbd77= sgflbd76.replaceAll('LB[id:D]',',,\n{x: 8, y: 3, type: "LB", text: "D"}'); 
+        let sgflbd78= sgflbd77.replaceAll('LB[ie:D]',',,\n{x: 8, y: 4, type: "LB", text: "D"}'); 
+        let sgflbd79= sgflbd78.replaceAll('LB[if:D]',',,\n{x: 8, y: 5, type: "LB", text: "D"}'); 
+        let sgflbd80= sgflbd79.replaceAll('LB[ig:D]',',,\n{x: 8, y: 6, type: "LB", text: "D"}'); 
+        let sgflbd81= sgflbd80.replaceAll('LB[ih:D]',',,\n{x: 8, y: 7, type: "LB", text: "D"}'); 
+        let sgflbd82= sgflbd81.replaceAll('LB[ii:D]',',,\n{x: 8, y: 8, type: "LB", text: "D"}'); 
+
+	let sgflbe2= sgflbd82.replaceAll('LB[aa:E]',',,\n{x: 0, y: 0, type: "LB", text: "E"}'); 
+        let sgflbe3= sgflbe2.replaceAll('LB[ab:E]',',,\n{x: 0, y: 1, type: "LB", text: "E"}'); 
+        let sgflbe4= sgflbe3.replaceAll('LB[ac:E]',',,\n{x: 0, y: 2, type: "LB", text: "E"}'); 
+        let sgflbe5= sgflbe4.replaceAll('LB[ad:E]',',,\n{x: 0, y: 3, type: "LB", text: "E"}'); 
+        let sgflbe6= sgflbe5.replaceAll('LB[ae:E]',',,\n{x: 0, y: 4, type: "LB", text: "E"}'); 
+        let sgflbe7= sgflbe6.replaceAll('LB[af:E]',',,\n{x: 0, y: 5, type: "LB", text: "E"}'); 
+        let sgflbe8= sgflbe7.replaceAll('LB[ag:E]',',,\n{x: 0, y: 6, type: "LB", text: "E"}'); 
+        let sgflbe9= sgflbe8.replaceAll('LB[ah:E]',',,\n{x: 0, y: 7, type: "LB", text: "E"}'); 
+        let sgflbe10= sgflbe9.replaceAll('LB[ai:E]',',,\n{x: 0, y: 8, type: "LB", text: "E"}'); 
+
+        let sgflbe11= sgflbe10.replaceAll('LB[ba:E]',',,\n{x: 1, y: 0, type: "LB", text: "E"}'); 
+        let sgflbe12= sgflbe11.replaceAll('LB[bb:E]',',,\n{x: 1, y: 1, type: "LB", text: "E"}'); 
+        let sgflbe13= sgflbe12.replaceAll('LB[bc:E]',',,\n{x: 1, y: 2, type: "LB", text: "E"}'); 
+        let sgflbe14= sgflbe13.replaceAll('LB[bd:E]',',,\n{x: 1, y: 3, type: "LB", text: "E"}'); 
+        let sgflbe15= sgflbe14.replaceAll('LB[be:E]',',,\n{x: 1, y: 4, type: "LB", text: "E"}'); 
+        let sgflbe16= sgflbe15.replaceAll('LB[bf:E]',',,\n{x: 1, y: 5, type: "LB", text: "E"}'); 
+        let sgflbe17= sgflbe16.replaceAll('LB[bg:E]',',,\n{x: 1, y: 6, type: "LB", text: "E"}'); 
+        let sgflbe18= sgflbe17.replaceAll('LB[bh:E]',',,\n{x: 1, y: 7, type: "LB", text: "E"}'); 
+        let sgflbe19= sgflbe18.replaceAll('LB[bi:E]',',,\n{x: 1, y: 8, type: "LB", text: "E"}'); 
+
+        let sgflbe20= sgflbe19.replaceAll('LB[ca:E]',',,\n{x: 2, y: 0, type: "LB", text: "E"}'); 
+        let sgflbe21= sgflbe20.replaceAll('LB[cb:E]',',,\n{x: 2, y: 1, type: "LB", text: "E"}'); 
+        let sgflbe22= sgflbe21.replaceAll('LB[cc:E]',',,\n{x: 2, y: 2, type: "LB", text: "E"}'); 
+        let sgflbe23= sgflbe22.replaceAll('LB[cd:E]',',,\n{x: 2, y: 3, type: "LB", text: "E"}'); 
+        let sgflbe24= sgflbe23.replaceAll('LB[ce:E]',',,\n{x: 2, y: 4, type: "LB", text: "E"}'); 
+        let sgflbe25= sgflbe24.replaceAll('LB[cf:E]',',,\n{x: 2, y: 5, type: "LB", text: "E"}'); 
+        let sgflbe26= sgflbe25.replaceAll('LB[cg:E]',',,\n{x: 2, y: 6, type: "LB", text: "E"}'); 
+        let sgflbe27= sgflbe26.replaceAll('LB[ch:E]',',,\n{x: 2, y: 7, type: "LB", text: "E"}'); 
+        let sgflbe28= sgflbe27.replaceAll('LB[ci:E]',',,\n{x: 2, y: 8, type: "LB", text: "E"}'); 
+
+        let sgflbe29= sgflbe28.replaceAll('LB[da:E]',',,\n{x: 3, y: 0, type: "LB", text: "E"}'); 
+        let sgflbe30= sgflbe29.replaceAll('LB[db:E]',',,\n{x: 3, y: 1, type: "LB", text: "E"}'); 
+        let sgflbe31= sgflbe30.replaceAll('LB[dc:E]',',,\n{x: 3, y: 2, type: "LB", text: "E"}'); 
+        let sgflbe32= sgflbe31.replaceAll('LB[dd:E]',',,\n{x: 3, y: 3, type: "LB", text: "E"}'); 
+        let sgflbe33= sgflbe32.replaceAll('LB[de:E]',',,\n{x: 3, y: 4, type: "LB", text: "E"}'); 
+        let sgflbe34= sgflbe33.replaceAll('LB[df:E]',',,\n{x: 3, y: 5, type: "LB", text: "E"}'); 
+        let sgflbe35= sgflbe34.replaceAll('LB[dg:E]',',,\n{x: 3, y: 6, type: "LB", text: "E"}'); 
+        let sgflbe36= sgflbe35.replaceAll('LB[dh:E]',',,\n{x: 3, y: 7, type: "LB", text: "E"}'); 
+        let sgflbe37= sgflbe36.replaceAll('LB[di:E]',',,\n{x: 3, y: 8, type: "LB", text: "E"}'); 
+
+ 	let sgflbe38= sgflbe37.replaceAll('LB[ea:E]',',,\n{x: 4, y: 0, type: "LB", text: "E"}'); 
+        let sgflbe39= sgflbe38.replaceAll('LB[eb:E]',',,\n{x: 4, y: 1, type: "LB", text: "E"}'); 
+        let sgflbe40= sgflbe39.replaceAll('LB[ec:E]',',,\n{x: 4, y: 2, type: "LB", text: "E"}'); 
+        let sgflbe41= sgflbe40.replaceAll('LB[ed:E]',',,\n{x: 4, y: 3, type: "LB", text: "E"}'); 
+        let sgflbe42= sgflbe41.replaceAll('LB[ee:E]',',,\n{x: 4, y: 4, type: "LB", text: "E"}'); 
+        let sgflbe43= sgflbe42.replaceAll('LB[ef:E]',',,\n{x: 4, y: 5, type: "LB", text: "E"}'); 
+        let sgflbe44= sgflbe43.replaceAll('LB[eg:E]',',,\n{x: 4, y: 6, type: "LB", text: "E"}'); 
+        let sgflbe45= sgflbe44.replaceAll('LB[eh:E]',',,\n{x: 4, y: 7, type: "LB", text: "E"}'); 
+        let sgflbe46= sgflbe45.replaceAll('LB[ei:E]',',,\n{x: 4, y: 8, type: "LB", text: "E"}'); 
+
+ 	let sgflbe47= sgflbe46.replaceAll('LB[fa:E]',',,\n{x: 5, y: 0, type: "LB", text: "E"}'); 
+        let sgflbe48= sgflbe47.replaceAll('LB[fb:E]',',,\n{x: 5, y: 1, type: "LB", text: "E"}'); 
+        let sgflbe49= sgflbe48.replaceAll('LB[fc:E]',',,\n{x: 5, y: 2, type: "LB", text: "E"}'); 
+        let sgflbe50= sgflbe49.replaceAll('LB[fd:E]',',,\n{x: 5, y: 3, type: "LB", text: "E"}'); 
+        let sgflbe51= sgflbe50.replaceAll('LB[fe:E]',',,\n{x: 5, y: 4, type: "LB", text: "E"}'); 
+        let sgflbe52= sgflbe51.replaceAll('LB[ff:E]',',,\n{x: 5, y: 5, type: "LB", text: "E"}'); 
+        let sgflbe53= sgflbe52.replaceAll('LB[fg:E]',',,\n{x: 5, y: 6, type: "LB", text: "E"}'); 
+        let sgflbe54= sgflbe53.replaceAll('LB[fh:E]',',,\n{x: 5, y: 7, type: "LB", text: "E"}'); 
+        let sgflbe55= sgflbe54.replaceAll('LB[fi:E]',',,\n{x: 5, y: 8, type: "LB", text: "E"}'); 
+
+ 	let sgflbe56= sgflbe55.replaceAll('LB[ga:E]',',,\n{x: 6, y: 0, type: "LB", text: "E"}'); 
+        let sgflbe57= sgflbe56.replaceAll('LB[gb:E]',',,\n{x: 6, y: 1, type: "LB", text: "E"}'); 
+        let sgflbe58= sgflbe57.replaceAll('LB[gc:E]',',,\n{x: 6, y: 2, type: "LB", text: "E"}'); 
+        let sgflbe59= sgflbe58.replaceAll('LB[gd:E]',',,\n{x: 6, y: 3, type: "LB", text: "E"}'); 
+        let sgflbe60= sgflbe59.replaceAll('LB[ge:E]',',,\n{x: 6, y: 4, type: "LB", text: "E"}'); 
+        let sgflbe61= sgflbe60.replaceAll('LB[gf:E]',',,\n{x: 6, y: 5, type: "LB", text: "E"}'); 
+        let sgflbe62= sgflbe61.replaceAll('LB[gg:E]',',,\n{x: 6, y: 6, type: "LB", text: "E"}'); 
+        let sgflbe63= sgflbe62.replaceAll('LB[gh:E]',',,\n{x: 6, y: 7, type: "LB", text: "E"}'); 
+        let sgflbe64= sgflbe63.replaceAll('LB[gi:E]',',,\n{x: 6, y: 8, type: "LB", text: "E"}'); 
+
+ 	let sgflbe65= sgflbe64.replaceAll('LB[ha:E]',',,\n{x: 7, y: 0, type: "LB", text: "E"}'); 
+        let sgflbe66= sgflbe65.replaceAll('LB[hb:E]',',,\n{x: 7, y: 1, type: "LB", text: "E"}'); 
+        let sgflbe67= sgflbe66.replaceAll('LB[hc:E]',',,\n{x: 7, y: 2, type: "LB", text: "E"}'); 
+        let sgflbe68= sgflbe67.replaceAll('LB[hd:E]',',,\n{x: 7, y: 3, type: "LB", text: "E"}'); 
+        let sgflbe69= sgflbe68.replaceAll('LB[he:E]',',,\n{x: 7, y: 4, type: "LB", text: "E"}'); 
+        let sgflbe70= sgflbe69.replaceAll('LB[hf:E]',',,\n{x: 7, y: 5, type: "LB", text: "E"}'); 
+        let sgflbe71= sgflbe70.replaceAll('LB[hg:E]',',,\n{x: 7, y: 6, type: "LB", text: "E"}'); 
+        let sgflbe72= sgflbe71.replaceAll('LB[hh:E]',',,\n{x: 7, y: 7, type: "LB", text: "E"}'); 
+        let sgflbe73= sgflbe72.replaceAll('LB[hi:E]',',,\n{x: 7, y: 8, type: "LB", text: "E"}'); 
+
+ 	let sgflbe74= sgflbe73.replaceAll('LB[ia:E]',',,\n{x: 8, y: 0, type: "LB", text: "E"}'); 
+        let sgflbe75= sgflbe74.replaceAll('LB[ib:E]',',,\n{x: 8, y: 1, type: "LB", text: "E"}'); 
+        let sgflbe76= sgflbe75.replaceAll('LB[ic:E]',',,\n{x: 8, y: 2, type: "LB", text: "E"}'); 
+        let sgflbe77= sgflbe76.replaceAll('LB[id:E]',',,\n{x: 8, y: 3, type: "LB", text: "E"}'); 
+        let sgflbe78= sgflbe77.replaceAll('LB[ie:E]',',,\n{x: 8, y: 4, type: "LB", text: "E"}'); 
+        let sgflbe79= sgflbe78.replaceAll('LB[if:E]',',,\n{x: 8, y: 5, type: "LB", text: "E"}'); 
+        let sgflbe80= sgflbe79.replaceAll('LB[ig:E]',',,\n{x: 8, y: 6, type: "LB", text: "E"}'); 
+        let sgflbe81= sgflbe80.replaceAll('LB[ih:E]',',,\n{x: 8, y: 7, type: "LB", text: "E"}'); 
+        let sgflbe82= sgflbe81.replaceAll('LB[ii:E]',',,\n{x: 8, y: 8, type: "LB", text: "E"}'); 
+
+	let sgflbs2= sgflbe82.replaceAll('LB[aa:S]',',,\n{x: 0, y: 0, type: "LB", text: "S"}'); 
+        let sgflbs3= sgflbs2.replaceAll('LB[ab:S]',',,\n{x: 0, y: 1, type: "LB", text: "S"}'); 
+        let sgflbs4= sgflbs3.replaceAll('LB[ac:S]',',,\n{x: 0, y: 2, type: "LB", text: "S"}'); 
+        let sgflbs5= sgflbs4.replaceAll('LB[ad:S]',',,\n{x: 0, y: 3, type: "LB", text: "S"}'); 
+        let sgflbs6= sgflbs5.replaceAll('LB[ae:S]',',,\n{x: 0, y: 4, type: "LB", text: "S"}'); 
+        let sgflbs7= sgflbs6.replaceAll('LB[af:S]',',,\n{x: 0, y: 5, type: "LB", text: "S"}'); 
+        let sgflbs8= sgflbs7.replaceAll('LB[ag:S]',',,\n{x: 0, y: 6, type: "LB", text: "S"}'); 
+        let sgflbs9= sgflbs8.replaceAll('LB[ah:S]',',,\n{x: 0, y: 7, type: "LB", text: "S"}'); 
+        let sgflbs10= sgflbs9.replaceAll('LB[ai:S]',',,\n{x: 0, y: 8, type: "LB", text: "S"}'); 
+
+        let sgflbs11= sgflbs10.replaceAll('LB[ba:S]',',,\n{x: 1, y: 0, type: "LB", text: "S"}'); 
+        let sgflbs12= sgflbs11.replaceAll('LB[bb:S]',',,\n{x: 1, y: 1, type: "LB", text: "S"}'); 
+        let sgflbs13= sgflbs12.replaceAll('LB[bc:S]',',,\n{x: 1, y: 2, type: "LB", text: "S"}'); 
+        let sgflbs14= sgflbs13.replaceAll('LB[bd:S]',',,\n{x: 1, y: 3, type: "LB", text: "S"}'); 
+        let sgflbs15= sgflbs14.replaceAll('LB[be:S]',',,\n{x: 1, y: 4, type: "LB", text: "S"}'); 
+        let sgflbs16= sgflbs15.replaceAll('LB[bf:S]',',,\n{x: 1, y: 5, type: "LB", text: "S"}'); 
+        let sgflbs17= sgflbs16.replaceAll('LB[bg:S]',',,\n{x: 1, y: 6, type: "LB", text: "S"}'); 
+        let sgflbs18= sgflbs17.replaceAll('LB[bh:S]',',,\n{x: 1, y: 7, type: "LB", text: "S"}'); 
+        let sgflbs19= sgflbs18.replaceAll('LB[bi:S]',',,\n{x: 1, y: 8, type: "LB", text: "S"}'); 
+
+        let sgflbs20= sgflbs19.replaceAll('LB[ca:S]',',,\n{x: 2, y: 0, type: "LB", text: "S"}'); 
+        let sgflbs21= sgflbs20.replaceAll('LB[cb:S]',',,\n{x: 2, y: 1, type: "LB", text: "S"}'); 
+        let sgflbs22= sgflbs21.replaceAll('LB[cc:S]',',,\n{x: 2, y: 2, type: "LB", text: "S"}'); 
+        let sgflbs23= sgflbs22.replaceAll('LB[cd:S]',',,\n{x: 2, y: 3, type: "LB", text: "S"}'); 
+        let sgflbs24= sgflbs23.replaceAll('LB[ce:S]',',,\n{x: 2, y: 4, type: "LB", text: "S"}'); 
+        let sgflbs25= sgflbs24.replaceAll('LB[cf:S]',',,\n{x: 2, y: 5, type: "LB", text: "S"}'); 
+        let sgflbs26= sgflbs25.replaceAll('LB[cg:S]',',,\n{x: 2, y: 6, type: "LB", text: "S"}'); 
+        let sgflbs27= sgflbs26.replaceAll('LB[ch:S]',',,\n{x: 2, y: 7, type: "LB", text: "S"}'); 
+        let sgflbs28= sgflbs27.replaceAll('LB[ci:S]',',,\n{x: 2, y: 8, type: "LB", text: "S"}'); 
+
+        let sgflbs29= sgflbs28.replaceAll('LB[da:S]',',,\n{x: 3, y: 0, type: "LB", text: "S"}'); 
+        let sgflbs30= sgflbs29.replaceAll('LB[db:S]',',,\n{x: 3, y: 1, type: "LB", text: "S"}'); 
+        let sgflbs31= sgflbs30.replaceAll('LB[dc:S]',',,\n{x: 3, y: 2, type: "LB", text: "S"}'); 
+        let sgflbs32= sgflbs31.replaceAll('LB[dd:S]',',,\n{x: 3, y: 3, type: "LB", text: "S"}'); 
+        let sgflbs33= sgflbs32.replaceAll('LB[de:S]',',,\n{x: 3, y: 4, type: "LB", text: "S"}'); 
+        let sgflbs34= sgflbs33.replaceAll('LB[df:S]',',,\n{x: 3, y: 5, type: "LB", text: "S"}'); 
+        let sgflbs35= sgflbs34.replaceAll('LB[dg:S]',',,\n{x: 3, y: 6, type: "LB", text: "S"}'); 
+        let sgflbs36= sgflbs35.replaceAll('LB[dh:S]',',,\n{x: 3, y: 7, type: "LB", text: "S"}'); 
+        let sgflbs37= sgflbs36.replaceAll('LB[di:S]',',,\n{x: 3, y: 8, type: "LB", text: "S"}'); 
+
+ 	let sgflbs38= sgflbs37.replaceAll('LB[ea:S]',',,\n{x: 4, y: 0, type: "LB", text: "S"}'); 
+        let sgflbs39= sgflbs38.replaceAll('LB[eb:S]',',,\n{x: 4, y: 1, type: "LB", text: "S"}'); 
+        let sgflbs40= sgflbs39.replaceAll('LB[ec:S]',',,\n{x: 4, y: 2, type: "LB", text: "S"}'); 
+        let sgflbs41= sgflbs40.replaceAll('LB[ed:S]',',,\n{x: 4, y: 3, type: "LB", text: "S"}'); 
+        let sgflbs42= sgflbs41.replaceAll('LB[ee:S]',',,\n{x: 4, y: 4, type: "LB", text: "S"}'); 
+        let sgflbs43= sgflbs42.replaceAll('LB[ef:S]',',,\n{x: 4, y: 5, type: "LB", text: "S"}'); 
+        let sgflbs44= sgflbs43.replaceAll('LB[eg:S]',',,\n{x: 4, y: 6, type: "LB", text: "S"}'); 
+        let sgflbs45= sgflbs44.replaceAll('LB[eh:S]',',,\n{x: 4, y: 7, type: "LB", text: "S"}'); 
+        let sgflbs46= sgflbs45.replaceAll('LB[ei:S]',',,\n{x: 4, y: 8, type: "LB", text: "S"}'); 
+
+ 	let sgflbs47= sgflbs46.replaceAll('LB[fa:S]',',,\n{x: 5, y: 0, type: "LB", text: "S"}'); 
+        let sgflbs48= sgflbs47.replaceAll('LB[fb:S]',',,\n{x: 5, y: 1, type: "LB", text: "S"}'); 
+        let sgflbs49= sgflbs48.replaceAll('LB[fc:S]',',,\n{x: 5, y: 2, type: "LB", text: "S"}'); 
+        let sgflbs50= sgflbs49.replaceAll('LB[fd:S]',',,\n{x: 5, y: 3, type: "LB", text: "S"}'); 
+        let sgflbs51= sgflbs50.replaceAll('LB[fe:S]',',,\n{x: 5, y: 4, type: "LB", text: "S"}'); 
+        let sgflbs52= sgflbs51.replaceAll('LB[ff:S]',',,\n{x: 5, y: 5, type: "LB", text: "S"}'); 
+        let sgflbs53= sgflbs52.replaceAll('LB[fg:S]',',,\n{x: 5, y: 6, type: "LB", text: "S"}'); 
+        let sgflbs54= sgflbs53.replaceAll('LB[fh:S]',',,\n{x: 5, y: 7, type: "LB", text: "S"}'); 
+        let sgflbs55= sgflbs54.replaceAll('LB[fi:S]',',,\n{x: 5, y: 8, type: "LB", text: "S"}'); 
+
+ 	let sgflbs56= sgflbs55.replaceAll('LB[ga:S]',',,\n{x: 6, y: 0, type: "LB", text: "S"}'); 
+        let sgflbs57= sgflbs56.replaceAll('LB[gb:S]',',,\n{x: 6, y: 1, type: "LB", text: "S"}'); 
+        let sgflbs58= sgflbs57.replaceAll('LB[gc:S]',',,\n{x: 6, y: 2, type: "LB", text: "S"}'); 
+        let sgflbs59= sgflbs58.replaceAll('LB[gd:S]',',,\n{x: 6, y: 3, type: "LB", text: "S"}'); 
+        let sgflbs60= sgflbs59.replaceAll('LB[ge:S]',',,\n{x: 6, y: 4, type: "LB", text: "S"}'); 
+        let sgflbs61= sgflbs60.replaceAll('LB[gf:S]',',,\n{x: 6, y: 5, type: "LB", text: "S"}'); 
+        let sgflbs62= sgflbs61.replaceAll('LB[gg:S]',',,\n{x: 6, y: 6, type: "LB", text: "S"}'); 
+        let sgflbs63= sgflbs62.replaceAll('LB[gh:S]',',,\n{x: 6, y: 7, type: "LB", text: "S"}'); 
+        let sgflbs64= sgflbs63.replaceAll('LB[gi:S]',',,\n{x: 6, y: 8, type: "LB", text: "S"}'); 
+
+ 	let sgflbs65= sgflbs64.replaceAll('LB[ha:S]',',,\n{x: 7, y: 0, type: "LB", text: "S"}'); 
+        let sgflbs66= sgflbs65.replaceAll('LB[hb:S]',',,\n{x: 7, y: 1, type: "LB", text: "S"}'); 
+        let sgflbs67= sgflbs66.replaceAll('LB[hc:S]',',,\n{x: 7, y: 2, type: "LB", text: "S"}'); 
+        let sgflbs68= sgflbs67.replaceAll('LB[hd:S]',',,\n{x: 7, y: 3, type: "LB", text: "S"}'); 
+        let sgflbs69= sgflbs68.replaceAll('LB[he:S]',',,\n{x: 7, y: 4, type: "LB", text: "S"}'); 
+        let sgflbs70= sgflbs69.replaceAll('LB[hf:S]',',,\n{x: 7, y: 5, type: "LB", text: "S"}'); 
+        let sgflbs71= sgflbs70.replaceAll('LB[hg:S]',',,\n{x: 7, y: 6, type: "LB", text: "S"}'); 
+        let sgflbs72= sgflbs71.replaceAll('LB[hh:S]',',,\n{x: 7, y: 7, type: "LB", text: "S"}'); 
+        let sgflbs73= sgflbs72.replaceAll('LB[hi:S]',',,\n{x: 7, y: 8, type: "LB", text: "S"}'); 
+
+ 	let sgflbs74= sgflbs73.replaceAll('LB[ia:S]',',,\n{x: 8, y: 0, type: "LB", text: "S"}'); 
+        let sgflbs75= sgflbs74.replaceAll('LB[ib:S]',',,\n{x: 8, y: 1, type: "LB", text: "S"}'); 
+        let sgflbs76= sgflbs75.replaceAll('LB[ic:S]',',,\n{x: 8, y: 2, type: "LB", text: "S"}'); 
+        let sgflbs77= sgflbs76.replaceAll('LB[id:S]',',,\n{x: 8, y: 3, type: "LB", text: "S"}'); 
+        let sgflbs78= sgflbs77.replaceAll('LB[ie:S]',',,\n{x: 8, y: 4, type: "LB", text: "S"}'); 
+        let sgflbs79= sgflbs78.replaceAll('LB[if:S]',',,\n{x: 8, y: 5, type: "LB", text: "S"}'); 
+        let sgflbs80= sgflbs79.replaceAll('LB[ig:S]',',,\n{x: 8, y: 6, type: "LB", text: "S"}'); 
+        let sgflbs81= sgflbs80.replaceAll('LB[ih:S]',',,\n{x: 8, y: 7, type: "LB", text: "S"}'); 
+        let sgflbs82= sgflbs81.replaceAll('LB[ii:S]',',,\n{x: 8, y: 8, type: "LB", text: "S"}'); 
+
+	let sgftr2= sgflbs82.replaceAll('TR[aa]',',,\n{x: 0, y: 0, type: "TR"}'); 
+        let sgftr3= sgftr2.replaceAll('TR[ab]',',,\n{x: 0, y: 1, type: "TR"}'); 
+        let sgftr4= sgftr3.replaceAll('TR[ac]',',,\n{x: 0, y: 2, type: "TR"}'); 
+        let sgftr5= sgftr4.replaceAll('TR[ad]',',,\n{x: 0, y: 3, type: "TR"}'); 
+        let sgftr6= sgftr5.replaceAll('TR[ae]',',,\n{x: 0, y: 4, type: "TR"}'); 
+        let sgftr7= sgftr6.replaceAll('TR[af]',',,\n{x: 0, y: 5, type: "TR"}'); 
+        let sgftr8= sgftr7.replaceAll('TR[ag]',',,\n{x: 0, y: 6, type: "TR"}'); 
+        let sgftr9= sgftr8.replaceAll('TR[ah]',',,\n{x: 0, y: 7, type: "TR"}'); 
+        let sgftr10= sgftr9.replaceAll('TR[ai]',',,\n{x: 0, y: 8, type: "TR"}'); 
+
+        let sgftr11= sgftr10.replaceAll('TR[ba]',',,\n{x: 1, y: 0, type: "TR"}'); 
+        let sgftr12= sgftr11.replaceAll('TR[bb]',',,\n{x: 1, y: 1, type: "TR"}'); 
+        let sgftr13= sgftr12.replaceAll('TR[bc]',',,\n{x: 1, y: 2, type: "TR"}'); 
+        let sgftr14= sgftr13.replaceAll('TR[bd]',',,\n{x: 1, y: 3, type: "TR"}'); 
+        let sgftr15= sgftr14.replaceAll('TR[be]',',,\n{x: 1, y: 4, type: "TR"}'); 
+        let sgftr16= sgftr15.replaceAll('TR[bf]',',,\n{x: 1, y: 5, type: "TR"}'); 
+        let sgftr17= sgftr16.replaceAll('TR[bg]',',,\n{x: 1, y: 6, type: "TR"}'); 
+        let sgftr18= sgftr17.replaceAll('TR[bh]',',,\n{x: 1, y: 7, type: "TR"}'); 
+        let sgftr19= sgftr18.replaceAll('TR[bi]',',,\n{x: 1, y: 8, type: "TR"}'); 
+
+        let sgftr20= sgftr19.replaceAll('TR[ca]',',,\n{x: 2, y: 0, type: "TR"}'); 
+        let sgftr21= sgftr20.replaceAll('TR[cb]',',,\n{x: 2, y: 1, type: "TR"}'); 
+        let sgftr22= sgftr21.replaceAll('TR[cc]',',,\n{x: 2, y: 2, type: "TR"}'); 
+        let sgftr23= sgftr22.replaceAll('TR[cd]',',,\n{x: 2, y: 3, type: "TR"}'); 
+        let sgftr24= sgftr23.replaceAll('TR[ce]',',,\n{x: 2, y: 4, type: "TR"}'); 
+        let sgftr25= sgftr24.replaceAll('TR[cf]',',,\n{x: 2, y: 5, type: "TR"}'); 
+        let sgftr26= sgftr25.replaceAll('TR[cg]',',,\n{x: 2, y: 6, type: "TR"}'); 
+        let sgftr27= sgftr26.replaceAll('TR[ch]',',,\n{x: 2, y: 7, type: "TR"}'); 
+        let sgftr28= sgftr27.replaceAll('TR[ci]',',,\n{x: 2, y: 8, type: "TR"}'); 
+
+        let sgftr29= sgftr28.replaceAll('TR[da]',',,\n{x: 3, y: 0, type: "TR"}'); 
+        let sgftr30= sgftr29.replaceAll('TR[db]',',,\n{x: 3, y: 1, type: "TR"}'); 
+        let sgftr31= sgftr30.replaceAll('TR[dc]',',,\n{x: 3, y: 2, type: "TR"}'); 
+        let sgftr32= sgftr31.replaceAll('TR[dd]',',,\n{x: 3, y: 3, type: "TR"}'); 
+        let sgftr33= sgftr32.replaceAll('TR[de]',',,\n{x: 3, y: 4, type: "TR"}'); 
+        let sgftr34= sgftr33.replaceAll('TR[df]',',,\n{x: 3, y: 5, type: "TR"}'); 
+        let sgftr35= sgftr34.replaceAll('TR[dg]',',,\n{x: 3, y: 6, type: "TR"}'); 
+        let sgftr36= sgftr35.replaceAll('TR[dh]',',,\n{x: 3, y: 7, type: "TR"}'); 
+        let sgftr37= sgftr36.replaceAll('TR[di]',',,\n{x: 3, y: 8, type: "TR"}'); 
+
+ 	let sgftr38= sgftr37.replaceAll('TR[ea]',',,\n{x: 4, y: 0, type: "TR"}'); 
+        let sgftr39= sgftr38.replaceAll('TR[eb]',',,\n{x: 4, y: 1, type: "TR"}'); 
+        let sgftr40= sgftr39.replaceAll('TR[ec]',',,\n{x: 4, y: 2, type: "TR"}'); 
+        let sgftr41= sgftr40.replaceAll('TR[ed]',',,\n{x: 4, y: 3, type: "TR"}'); 
+        let sgftr42= sgftr41.replaceAll('TR[ee]',',,\n{x: 4, y: 4, type: "TR"}'); 
+        let sgftr43= sgftr42.replaceAll('TR[ef]',',,\n{x: 4, y: 5, type: "TR"}'); 
+        let sgftr44= sgftr43.replaceAll('TR[eg]',',,\n{x: 4, y: 6, type: "TR"}'); 
+        let sgftr45= sgftr44.replaceAll('TR[eh]',',,\n{x: 4, y: 7, type: "TR"}'); 
+        let sgftr46= sgftr45.replaceAll('TR[ei]',',,\n{x: 4, y: 8, type: "TR"}'); 
+
+ 	let sgftr47= sgftr46.replaceAll('TR[fa]',',,\n{x: 5, y: 0, type: "TR"}'); 
+        let sgftr48= sgftr47.replaceAll('TR[fb]',',,\n{x: 5, y: 1, type: "TR"}'); 
+        let sgftr49= sgftr48.replaceAll('TR[fc]',',,\n{x: 5, y: 2, type: "TR"}'); 
+        let sgftr50= sgftr49.replaceAll('TR[fd]',',,\n{x: 5, y: 3, type: "TR"}'); 
+        let sgftr51= sgftr50.replaceAll('TR[fe]',',,\n{x: 5, y: 4, type: "TR"}'); 
+        let sgftr52= sgftr51.replaceAll('TR[ff]',',,\n{x: 5, y: 5, type: "TR"}'); 
+        let sgftr53= sgftr52.replaceAll('TR[fg]',',,\n{x: 5, y: 6, type: "TR"}'); 
+        let sgftr54= sgftr53.replaceAll('TR[fh]',',,\n{x: 5, y: 7, type: "TR"}'); 
+        let sgftr55= sgftr54.replaceAll('TR[fi]',',,\n{x: 5, y: 8, type: "TR"}'); 
+
+ 	let sgftr56= sgftr55.replaceAll('TR[ga]',',,\n{x: 6, y: 0, type: "TR"}'); 
+        let sgftr57= sgftr56.replaceAll('TR[gb]',',,\n{x: 6, y: 1, type: "TR"}'); 
+        let sgftr58= sgftr57.replaceAll('TR[gc]',',,\n{x: 6, y: 2, type: "TR"}'); 
+        let sgftr59= sgftr58.replaceAll('TR[gd]',',,\n{x: 6, y: 3, type: "TR"}'); 
+        let sgftr60= sgftr59.replaceAll('TR[ge]',',,\n{x: 6, y: 4, type: "TR"}'); 
+        let sgftr61= sgftr60.replaceAll('TR[gf]',',,\n{x: 6, y: 5, type: "TR"}'); 
+        let sgftr62= sgftr61.replaceAll('TR[gg]',',,\n{x: 6, y: 6, type: "TR"}'); 
+        let sgftr63= sgftr62.replaceAll('TR[gh]',',,\n{x: 6, y: 7, type: "TR"}'); 
+        let sgftr64= sgftr63.replaceAll('TR[gi]',',,\n{x: 6, y: 8, type: "TR"}'); 
+
+ 	let sgftr65= sgftr64.replaceAll('TR[ha]',',,\n{x: 7, y: 0, type: "TR"}'); 
+        let sgftr66= sgftr65.replaceAll('TR[hb]',',,\n{x: 7, y: 1, type: "TR"}'); 
+        let sgftr67= sgftr66.replaceAll('TR[hc]',',,\n{x: 7, y: 2, type: "TR"}'); 
+        let sgftr68= sgftr67.replaceAll('TR[hd]',',,\n{x: 7, y: 3, type: "TR"}'); 
+        let sgftr69= sgftr68.replaceAll('TR[he]',',,\n{x: 7, y: 4, type: "TR"}'); 
+        let sgftr70= sgftr69.replaceAll('TR[hf]',',,\n{x: 7, y: 5, type: "TR"}'); 
+        let sgftr71= sgftr70.replaceAll('TR[hg]',',,\n{x: 7, y: 6, type: "TR"}'); 
+        let sgftr72= sgftr71.replaceAll('TR[hh]',',,\n{x: 7, y: 7, type: "TR"}'); 
+        let sgftr73= sgftr72.replaceAll('TR[hi]',',,\n{x: 7, y: 8, type: "TR"}'); 
+
+ 	let sgftr74= sgftr73.replaceAll('TR[ia]',',,\n{x: 8, y: 0, type: "TR"}'); 
+        let sgftr75= sgftr74.replaceAll('TR[ib]',',,\n{x: 8, y: 1, type: "TR"}'); 
+        let sgftr76= sgftr75.replaceAll('TR[ic]',',,\n{x: 8, y: 2, type: "TR"}'); 
+        let sgftr77= sgftr76.replaceAll('TR[id]',',,\n{x: 8, y: 3, type: "TR"}'); 
+        let sgftr78= sgftr77.replaceAll('TR[ie]',',,\n{x: 8, y: 4, type: "TR"}'); 
+        let sgftr79= sgftr78.replaceAll('TR[if]',',,\n{x: 8, y: 5, type: "TR"}'); 
+        let sgftr80= sgftr79.replaceAll('TR[ig]',',,\n{x: 8, y: 6, type: "TR"}'); 
+        let sgftr81= sgftr80.replaceAll('TR[ih]',',,\n{x: 8, y: 7, type: "TR"}'); 
+        let sgftr82= sgftr81.replaceAll('TR[ii]',',,\n{x: 8, y: 8, type: "TR"}'); 
+
+	let sgfma2= sgftr82.replaceAll('MA[aa]',',,\n{x: 0, y: 0, type: "MA"}'); 
+        let sgfma3= sgfma2.replaceAll('MA[ab]',',,\n{x: 0, y: 1, type: "MA"}'); 
+        let sgfma4= sgfma3.replaceAll('MA[ac]',',,\n{x: 0, y: 2, type: "MA"}'); 
+        let sgfma5= sgfma4.replaceAll('MA[ad]',',,\n{x: 0, y: 3, type: "MA"}'); 
+        let sgfma6= sgfma5.replaceAll('MA[ae]',',,\n{x: 0, y: 4, type: "MA"}'); 
+        let sgfma7= sgfma6.replaceAll('MA[af]',',,\n{x: 0, y: 5, type: "MA"}'); 
+        let sgfma8= sgfma7.replaceAll('MA[ag]',',,\n{x: 0, y: 6, type: "MA"}'); 
+        let sgfma9= sgfma8.replaceAll('MA[ah]',',,\n{x: 0, y: 7, type: "MA"}'); 
+        let sgfma10= sgfma9.replaceAll('MA[ai]',',,\n{x: 0, y: 8, type: "MA"}'); 
+
+        let sgfma11= sgfma10.replaceAll('MA[ba]',',,\n{x: 1, y: 0, type: "MA"}'); 
+        let sgfma12= sgfma11.replaceAll('MA[bb]',',,\n{x: 1, y: 1, type: "MA"}'); 
+        let sgfma13= sgfma12.replaceAll('MA[bc]',',,\n{x: 1, y: 2, type: "MA"}'); 
+        let sgfma14= sgfma13.replaceAll('MA[bd]',',,\n{x: 1, y: 3, type: "MA"}'); 
+        let sgfma15= sgfma14.replaceAll('MA[be]',',,\n{x: 1, y: 4, type: "MA"}'); 
+        let sgfma16= sgfma15.replaceAll('MA[bf]',',,\n{x: 1, y: 5, type: "MA"}'); 
+        let sgfma17= sgfma16.replaceAll('MA[bg]',',,\n{x: 1, y: 6, type: "MA"}'); 
+        let sgfma18= sgfma17.replaceAll('MA[bh]',',,\n{x: 1, y: 7, type: "MA"}'); 
+        let sgfma19= sgfma18.replaceAll('MA[bi]',',,\n{x: 1, y: 8, type: "MA"}'); 
+
+        let sgfma20= sgfma19.replaceAll('MA[ca]',',,\n{x: 2, y: 0, type: "MA"}'); 
+        let sgfma21= sgfma20.replaceAll('MA[cb]',',,\n{x: 2, y: 1, type: "MA"}'); 
+        let sgfma22= sgfma21.replaceAll('MA[cc]',',,\n{x: 2, y: 2, type: "MA"}'); 
+        let sgfma23= sgfma22.replaceAll('MA[cd]',',,\n{x: 2, y: 3, type: "MA"}'); 
+        let sgfma24= sgfma23.replaceAll('MA[ce]',',,\n{x: 2, y: 4, type: "MA"}'); 
+        let sgfma25= sgfma24.replaceAll('MA[cf]',',,\n{x: 2, y: 5, type: "MA"}'); 
+        let sgfma26= sgfma25.replaceAll('MA[cg]',',,\n{x: 2, y: 6, type: "MA"}'); 
+        let sgfma27= sgfma26.replaceAll('MA[ch]',',,\n{x: 2, y: 7, type: "MA"}'); 
+        let sgfma28= sgfma27.replaceAll('MA[ci]',',,\n{x: 2, y: 8, type: "MA"}'); 
+
+        let sgfma29= sgfma28.replaceAll('MA[da]',',,\n{x: 3, y: 0, type: "MA"}'); 
+        let sgfma30= sgfma29.replaceAll('MA[db]',',,\n{x: 3, y: 1, type: "MA"}'); 
+        let sgfma31= sgfma30.replaceAll('MA[dc]',',,\n{x: 3, y: 2, type: "MA"}'); 
+        let sgfma32= sgfma31.replaceAll('MA[dd]',',,\n{x: 3, y: 3, type: "MA"}'); 
+        let sgfma33= sgfma32.replaceAll('MA[de]',',,\n{x: 3, y: 4, type: "MA"}'); 
+        let sgfma34= sgfma33.replaceAll('MA[df]',',,\n{x: 3, y: 5, type: "MA"}'); 
+        let sgfma35= sgfma34.replaceAll('MA[dg]',',,\n{x: 3, y: 6, type: "MA"}'); 
+        let sgfma36= sgfma35.replaceAll('MA[dh]',',,\n{x: 3, y: 7, type: "MA"}'); 
+        let sgfma37= sgfma36.replaceAll('MA[di]',',,\n{x: 3, y: 8, type: "MA"}'); 
+
+ 	let sgfma38= sgfma37.replaceAll('MA[ea]',',,\n{x: 4, y: 0, type: "MA"}'); 
+        let sgfma39= sgfma38.replaceAll('MA[eb]',',,\n{x: 4, y: 1, type: "MA"}'); 
+        let sgfma40= sgfma39.replaceAll('MA[ec]',',,\n{x: 4, y: 2, type: "MA"}'); 
+        let sgfma41= sgfma40.replaceAll('MA[ed]',',,\n{x: 4, y: 3, type: "MA"}'); 
+        let sgfma42= sgfma41.replaceAll('MA[ee]',',,\n{x: 4, y: 4, type: "MA"}'); 
+        let sgfma43= sgfma42.replaceAll('MA[ef]',',,\n{x: 4, y: 5, type: "MA"}'); 
+        let sgfma44= sgfma43.replaceAll('MA[eg]',',,\n{x: 4, y: 6, type: "MA"}'); 
+        let sgfma45= sgfma44.replaceAll('MA[eh]',',,\n{x: 4, y: 7, type: "MA"}'); 
+        let sgfma46= sgfma45.replaceAll('MA[ei]',',,\n{x: 4, y: 8, type: "MA"}'); 
+
+ 	let sgfma47= sgfma46.replaceAll('MA[fa]',',,\n{x: 5, y: 0, type: "MA"}'); 
+        let sgfma48= sgfma47.replaceAll('MA[fb]',',,\n{x: 5, y: 1, type: "MA"}'); 
+        let sgfma49= sgfma48.replaceAll('MA[fc]',',,\n{x: 5, y: 2, type: "MA"}'); 
+        let sgfma50= sgfma49.replaceAll('MA[fd]',',,\n{x: 5, y: 3, type: "MA"}'); 
+        let sgfma51= sgfma50.replaceAll('MA[fe]',',,\n{x: 5, y: 4, type: "MA"}'); 
+        let sgfma52= sgfma51.replaceAll('MA[ff]',',,\n{x: 5, y: 5, type: "MA"}'); 
+        let sgfma53= sgfma52.replaceAll('MA[fg]',',,\n{x: 5, y: 6, type: "MA"}'); 
+        let sgfma54= sgfma53.replaceAll('MA[fh]',',,\n{x: 5, y: 7, type: "MA"}'); 
+        let sgfma55= sgfma54.replaceAll('MA[fi]',',,\n{x: 5, y: 8, type: "MA"}'); 
+
+ 	let sgfma56= sgfma55.replaceAll('MA[ga]',',,\n{x: 6, y: 0, type: "MA"}'); 
+        let sgfma57= sgfma56.replaceAll('MA[gb]',',,\n{x: 6, y: 1, type: "MA"}'); 
+        let sgfma58= sgfma57.replaceAll('MA[gc]',',,\n{x: 6, y: 2, type: "MA"}'); 
+        let sgfma59= sgfma58.replaceAll('MA[gd]',',,\n{x: 6, y: 3, type: "MA"}'); 
+        let sgfma60= sgfma59.replaceAll('MA[ge]',',,\n{x: 6, y: 4, type: "MA"}'); 
+        let sgfma61= sgfma60.replaceAll('MA[gf]',',,\n{x: 6, y: 5, type: "MA"}'); 
+        let sgfma62= sgfma61.replaceAll('MA[gg]',',,\n{x: 6, y: 6, type: "MA"}'); 
+        let sgfma63= sgfma62.replaceAll('MA[gh]',',,\n{x: 6, y: 7, type: "MA"}'); 
+        let sgfma64= sgfma63.replaceAll('MA[gi]',',,\n{x: 6, y: 8, type: "MA"}'); 
+
+ 	let sgfma65= sgfma64.replaceAll('MA[ha]',',,\n{x: 7, y: 0, type: "MA"}'); 
+        let sgfma66= sgfma65.replaceAll('MA[hb]',',,\n{x: 7, y: 1, type: "MA"}'); 
+        let sgfma67= sgfma66.replaceAll('MA[hc]',',,\n{x: 7, y: 2, type: "MA"}'); 
+        let sgfma68= sgfma67.replaceAll('MA[hd]',',,\n{x: 7, y: 3, type: "MA"}'); 
+        let sgfma69= sgfma68.replaceAll('MA[he]',',,\n{x: 7, y: 4, type: "MA"}'); 
+        let sgfma70= sgfma69.replaceAll('MA[hf]',',,\n{x: 7, y: 5, type: "MA"}'); 
+        let sgfma71= sgfma70.replaceAll('MA[hg]',',,\n{x: 7, y: 6, type: "MA"}'); 
+        let sgfma72= sgfma71.replaceAll('MA[hh]',',,\n{x: 7, y: 7, type: "MA"}'); 
+        let sgfma73= sgfma72.replaceAll('MA[hi]',',,\n{x: 7, y: 8, type: "MA"}'); 
+
+ 	let sgfma74= sgfma73.replaceAll('MA[ia]',',,\n{x: 8, y: 0, type: "MA"}'); 
+        let sgfma75= sgfma74.replaceAll('MA[ib]',',,\n{x: 8, y: 1, type: "MA"}'); 
+        let sgfma76= sgfma75.replaceAll('MA[ic]',',,\n{x: 8, y: 2, type: "MA"}'); 
+        let sgfma77= sgfma76.replaceAll('MA[id]',',,\n{x: 8, y: 3, type: "MA"}'); 
+        let sgfma78= sgfma77.replaceAll('MA[ie]',',,\n{x: 8, y: 4, type: "MA"}'); 
+        let sgfma79= sgfma78.replaceAll('MA[if]',',,\n{x: 8, y: 5, type: "MA"}'); 
+        let sgfma80= sgfma79.replaceAll('MA[ig]',',,\n{x: 8, y: 6, type: "MA"}'); 
+        let sgfma81= sgfma80.replaceAll('MA[ih]',',,\n{x: 8, y: 7, type: "MA"}'); 
+        let sgfma82= sgfma81.replaceAll('MA[ii]',',,\n{x: 8, y: 8, type: "MA"}'); 
+
+	let sgfcr2= sgfma82.replaceAll('CR[aa]',',,\n{x: 0, y: 0, type: "CR"}'); 
+        let sgfcr3= sgfcr2.replaceAll('CR[ab]',',,\n{x: 0, y: 1, type: "CR"}'); 
+        let sgfcr4= sgfcr3.replaceAll('CR[ac]',',,\n{x: 0, y: 2, type: "CR"}'); 
+        let sgfcr5= sgfcr4.replaceAll('CR[ad]',',,\n{x: 0, y: 3, type: "CR"}'); 
+        let sgfcr6= sgfcr5.replaceAll('CR[ae]',',,\n{x: 0, y: 4, type: "CR"}'); 
+        let sgfcr7= sgfcr6.replaceAll('CR[af]',',,\n{x: 0, y: 5, type: "CR"}'); 
+        let sgfcr8= sgfcr7.replaceAll('CR[ag]',',,\n{x: 0, y: 6, type: "CR"}'); 
+        let sgfcr9= sgfcr8.replaceAll('CR[ah]',',,\n{x: 0, y: 7, type: "CR"}'); 
+        let sgfcr10= sgfcr9.replaceAll('CR[ai]',',,\n{x: 0, y: 8, type: "CR"}'); 
+
+        let sgfcr11= sgfcr10.replaceAll('CR[ba]',',,\n{x: 1, y: 0, type: "CR"}'); 
+        let sgfcr12= sgfcr11.replaceAll('CR[bb]',',,\n{x: 1, y: 1, type: "CR"}'); 
+        let sgfcr13= sgfcr12.replaceAll('CR[bc]',',,\n{x: 1, y: 2, type: "CR"}'); 
+        let sgfcr14= sgfcr13.replaceAll('CR[bd]',',,\n{x: 1, y: 3, type: "CR"}'); 
+        let sgfcr15= sgfcr14.replaceAll('CR[be]',',,\n{x: 1, y: 4, type: "CR"}'); 
+        let sgfcr16= sgfcr15.replaceAll('CR[bf]',',,\n{x: 1, y: 5, type: "CR"}'); 
+        let sgfcr17= sgfcr16.replaceAll('CR[bg]',',,\n{x: 1, y: 6, type: "CR"}'); 
+        let sgfcr18= sgfcr17.replaceAll('CR[bh]',',,\n{x: 1, y: 7, type: "CR"}'); 
+        let sgfcr19= sgfcr18.replaceAll('CR[bi]',',,\n{x: 1, y: 8, type: "CR"}'); 
+
+        let sgfcr20= sgfcr19.replaceAll('CR[ca]',',,\n{x: 2, y: 0, type: "CR"}'); 
+        let sgfcr21= sgfcr20.replaceAll('CR[cb]',',,\n{x: 2, y: 1, type: "CR"}'); 
+        let sgfcr22= sgfcr21.replaceAll('CR[cc]',',,\n{x: 2, y: 2, type: "CR"}'); 
+        let sgfcr23= sgfcr22.replaceAll('CR[cd]',',,\n{x: 2, y: 3, type: "CR"}'); 
+        let sgfcr24= sgfcr23.replaceAll('CR[ce]',',,\n{x: 2, y: 4, type: "CR"}'); 
+        let sgfcr25= sgfcr24.replaceAll('CR[cf]',',,\n{x: 2, y: 5, type: "CR"}'); 
+        let sgfcr26= sgfcr25.replaceAll('CR[cg]',',,\n{x: 2, y: 6, type: "CR"}'); 
+        let sgfcr27= sgfcr26.replaceAll('CR[ch]',',,\n{x: 2, y: 7, type: "CR"}'); 
+        let sgfcr28= sgfcr27.replaceAll('CR[ci]',',,\n{x: 2, y: 8, type: "CR"}'); 
+
+        let sgfcr29= sgfcr28.replaceAll('CR[da]',',,\n{x: 3, y: 0, type: "CR"}'); 
+        let sgfcr30= sgfcr29.replaceAll('CR[db]',',,\n{x: 3, y: 1, type: "CR"}'); 
+        let sgfcr31= sgfcr30.replaceAll('CR[dc]',',,\n{x: 3, y: 2, type: "CR"}'); 
+        let sgfcr32= sgfcr31.replaceAll('CR[dd]',',,\n{x: 3, y: 3, type: "CR"}'); 
+        let sgfcr33= sgfcr32.replaceAll('CR[de]',',,\n{x: 3, y: 4, type: "CR"}'); 
+        let sgfcr34= sgfcr33.replaceAll('CR[df]',',,\n{x: 3, y: 5, type: "CR"}'); 
+        let sgfcr35= sgfcr34.replaceAll('CR[dg]',',,\n{x: 3, y: 6, type: "CR"}'); 
+        let sgfcr36= sgfcr35.replaceAll('CR[dh]',',,\n{x: 3, y: 7, type: "CR"}'); 
+        let sgfcr37= sgfcr36.replaceAll('CR[di]',',,\n{x: 3, y: 8, type: "CR"}'); 
+
+ 	let sgfcr38= sgfcr37.replaceAll('CR[ea]',',,\n{x: 4, y: 0, type: "CR"}'); 
+        let sgfcr39= sgfcr38.replaceAll('CR[eb]',',,\n{x: 4, y: 1, type: "CR"}'); 
+        let sgfcr40= sgfcr39.replaceAll('CR[ec]',',,\n{x: 4, y: 2, type: "CR"}'); 
+        let sgfcr41= sgfcr40.replaceAll('CR[ed]',',,\n{x: 4, y: 3, type: "CR"}'); 
+        let sgfcr42= sgfcr41.replaceAll('CR[ee]',',,\n{x: 4, y: 4, type: "CR"}'); 
+        let sgfcr43= sgfcr42.replaceAll('CR[ef]',',,\n{x: 4, y: 5, type: "CR"}'); 
+        let sgfcr44= sgfcr43.replaceAll('CR[eg]',',,\n{x: 4, y: 6, type: "CR"}'); 
+        let sgfcr45= sgfcr44.replaceAll('CR[eh]',',,\n{x: 4, y: 7, type: "CR"}'); 
+        let sgfcr46= sgfcr45.replaceAll('CR[ei]',',,\n{x: 4, y: 8, type: "CR"}'); 
+
+ 	let sgfcr47= sgfcr46.replaceAll('CR[fa]',',,\n{x: 5, y: 0, type: "CR"}'); 
+        let sgfcr48= sgfcr47.replaceAll('CR[fb]',',,\n{x: 5, y: 1, type: "CR"}'); 
+        let sgfcr49= sgfcr48.replaceAll('CR[fc]',',,\n{x: 5, y: 2, type: "CR"}'); 
+        let sgfcr50= sgfcr49.replaceAll('CR[fd]',',,\n{x: 5, y: 3, type: "CR"}'); 
+        let sgfcr51= sgfcr50.replaceAll('CR[fe]',',,\n{x: 5, y: 4, type: "CR"}'); 
+        let sgfcr52= sgfcr51.replaceAll('CR[ff]',',,\n{x: 5, y: 5, type: "CR"}'); 
+        let sgfcr53= sgfcr52.replaceAll('CR[fg]',',,\n{x: 5, y: 6, type: "CR"}'); 
+        let sgfcr54= sgfcr53.replaceAll('CR[fh]',',,\n{x: 5, y: 7, type: "CR"}'); 
+        let sgfcr55= sgfcr54.replaceAll('CR[fi]',',,\n{x: 5, y: 8, type: "CR"}'); 
+
+ 	let sgfcr56= sgfcr55.replaceAll('CR[ga]',',,\n{x: 6, y: 0, type: "CR"}'); 
+        let sgfcr57= sgfcr56.replaceAll('CR[gb]',',,\n{x: 6, y: 1, type: "CR"}'); 
+        let sgfcr58= sgfcr57.replaceAll('CR[gc]',',,\n{x: 6, y: 2, type: "CR"}'); 
+        let sgfcr59= sgfcr58.replaceAll('CR[gd]',',,\n{x: 6, y: 3, type: "CR"}'); 
+        let sgfcr60= sgfcr59.replaceAll('CR[ge]',',,\n{x: 6, y: 4, type: "CR"}'); 
+        let sgfcr61= sgfcr60.replaceAll('CR[gf]',',,\n{x: 6, y: 5, type: "CR"}'); 
+        let sgfcr62= sgfcr61.replaceAll('CR[gg]',',,\n{x: 6, y: 6, type: "CR"}'); 
+        let sgfcr63= sgfcr62.replaceAll('CR[gh]',',,\n{x: 6, y: 7, type: "CR"}'); 
+        let sgfcr64= sgfcr63.replaceAll('CR[gi]',',,\n{x: 6, y: 8, type: "CR"}'); 
+
+ 	let sgfcr65= sgfcr64.replaceAll('CR[ha]',',,\n{x: 7, y: 0, type: "CR"}'); 
+        let sgfcr66= sgfcr65.replaceAll('CR[hb]',',,\n{x: 7, y: 1, type: "CR"}'); 
+        let sgfcr67= sgfcr66.replaceAll('CR[hc]',',,\n{x: 7, y: 2, type: "CR"}'); 
+        let sgfcr68= sgfcr67.replaceAll('CR[hd]',',,\n{x: 7, y: 3, type: "CR"}'); 
+        let sgfcr69= sgfcr68.replaceAll('CR[he]',',,\n{x: 7, y: 4, type: "CR"}'); 
+        let sgfcr70= sgfcr69.replaceAll('CR[hf]',',,\n{x: 7, y: 5, type: "CR"}'); 
+        let sgfcr71= sgfcr70.replaceAll('CR[hg]',',,\n{x: 7, y: 6, type: "CR"}'); 
+        let sgfcr72= sgfcr71.replaceAll('CR[hh]',',,\n{x: 7, y: 7, type: "CR"}'); 
+        let sgfcr73= sgfcr72.replaceAll('CR[hi]',',,\n{x: 7, y: 8, type: "CR"}'); 
+
+ 	let sgfcr74= sgfcr73.replaceAll('CR[ia]',',,\n{x: 8, y: 0, type: "CR"}'); 
+        let sgfcr75= sgfcr74.replaceAll('CR[ib]',',,\n{x: 8, y: 1, type: "CR"}'); 
+        let sgfcr76= sgfcr75.replaceAll('CR[ic]',',,\n{x: 8, y: 2, type: "CR"}'); 
+        let sgfcr77= sgfcr76.replaceAll('CR[id]',',,\n{x: 8, y: 3, type: "CR"}'); 
+        let sgfcr78= sgfcr77.replaceAll('CR[ie]',',,\n{x: 8, y: 4, type: "CR"}'); 
+        let sgfcr79= sgfcr78.replaceAll('CR[if]',',,\n{x: 8, y: 5, type: "CR"}'); 
+        let sgfcr80= sgfcr79.replaceAll('CR[ig]',',,\n{x: 8, y: 6, type: "CR"}'); 
+        let sgfcr81= sgfcr80.replaceAll('CR[ih]',',,\n{x: 8, y: 7, type: "CR"}'); 
+        let sgfcr82= sgfcr81.replaceAll('CR[ii]',',,\n{x: 8, y: 8, type: "CR"}'); 
+
+	let sgfsq2= sgfcr82.replaceAll('SQ[aa]',',,\n{x: 0, y: 0, type: "SQ"}'); 
+        let sgfsq3= sgfsq2.replaceAll('SQ[ab]',',,\n{x: 0, y: 1, type: "SQ"}'); 
+        let sgfsq4= sgfsq3.replaceAll('SQ[ac]',',,\n{x: 0, y: 2, type: "SQ"}'); 
+        let sgfsq5= sgfsq4.replaceAll('SQ[ad]',',,\n{x: 0, y: 3, type: "SQ"}'); 
+        let sgfsq6= sgfsq5.replaceAll('SQ[ae]',',,\n{x: 0, y: 4, type: "SQ"}'); 
+        let sgfsq7= sgfsq6.replaceAll('SQ[af]',',,\n{x: 0, y: 5, type: "SQ"}'); 
+        let sgfsq8= sgfsq7.replaceAll('SQ[ag]',',,\n{x: 0, y: 6, type: "SQ"}'); 
+        let sgfsq9= sgfsq8.replaceAll('SQ[ah]',',,\n{x: 0, y: 7, type: "SQ"}'); 
+        let sgfsq10= sgfsq9.replaceAll('SQ[ai]',',,\n{x: 0, y: 8, type: "SQ"}'); 
+
+        let sgfsq11= sgfsq10.replaceAll('SQ[ba]',',,\n{x: 1, y: 0, type: "SQ"}'); 
+        let sgfsq12= sgfsq11.replaceAll('SQ[bb]',',,\n{x: 1, y: 1, type: "SQ"}'); 
+        let sgfsq13= sgfsq12.replaceAll('SQ[bc]',',,\n{x: 1, y: 2, type: "SQ"}'); 
+        let sgfsq14= sgfsq13.replaceAll('SQ[bd]',',,\n{x: 1, y: 3, type: "SQ"}'); 
+        let sgfsq15= sgfsq14.replaceAll('SQ[be]',',,\n{x: 1, y: 4, type: "SQ"}'); 
+        let sgfsq16= sgfsq15.replaceAll('SQ[bf]',',,\n{x: 1, y: 5, type: "SQ"}'); 
+        let sgfsq17= sgfsq16.replaceAll('SQ[bg]',',,\n{x: 1, y: 6, type: "SQ"}'); 
+        let sgfsq18= sgfsq17.replaceAll('SQ[bh]',',,\n{x: 1, y: 7, type: "SQ"}'); 
+        let sgfsq19= sgfsq18.replaceAll('SQ[bi]',',,\n{x: 1, y: 8, type: "SQ"}'); 
+
+        let sgfsq20= sgfsq19.replaceAll('SQ[ca]',',,\n{x: 2, y: 0, type: "SQ"}'); 
+        let sgfsq21= sgfsq20.replaceAll('SQ[cb]',',,\n{x: 2, y: 1, type: "SQ"}'); 
+        let sgfsq22= sgfsq21.replaceAll('SQ[cc]',',,\n{x: 2, y: 2, type: "SQ"}'); 
+        let sgfsq23= sgfsq22.replaceAll('SQ[cd]',',,\n{x: 2, y: 3, type: "SQ"}'); 
+        let sgfsq24= sgfsq23.replaceAll('SQ[ce]',',,\n{x: 2, y: 4, type: "SQ"}'); 
+        let sgfsq25= sgfsq24.replaceAll('SQ[cf]',',,\n{x: 2, y: 5, type: "SQ"}'); 
+        let sgfsq26= sgfsq25.replaceAll('SQ[cg]',',,\n{x: 2, y: 6, type: "SQ"}'); 
+        let sgfsq27= sgfsq26.replaceAll('SQ[ch]',',,\n{x: 2, y: 7, type: "SQ"}'); 
+        let sgfsq28= sgfsq27.replaceAll('SQ[ci]',',,\n{x: 2, y: 8, type: "SQ"}'); 
+
+        let sgfsq29= sgfsq28.replaceAll('SQ[da]',',,\n{x: 3, y: 0, type: "SQ"}'); 
+        let sgfsq30= sgfsq29.replaceAll('SQ[db]',',,\n{x: 3, y: 1, type: "SQ"}'); 
+        let sgfsq31= sgfsq30.replaceAll('SQ[dc]',',,\n{x: 3, y: 2, type: "SQ"}'); 
+        let sgfsq32= sgfsq31.replaceAll('SQ[dd]',',,\n{x: 3, y: 3, type: "SQ"}'); 
+        let sgfsq33= sgfsq32.replaceAll('SQ[de]',',,\n{x: 3, y: 4, type: "SQ"}'); 
+        let sgfsq34= sgfsq33.replaceAll('SQ[df]',',,\n{x: 3, y: 5, type: "SQ"}'); 
+        let sgfsq35= sgfsq34.replaceAll('SQ[dg]',',,\n{x: 3, y: 6, type: "SQ"}'); 
+        let sgfsq36= sgfsq35.replaceAll('SQ[dh]',',,\n{x: 3, y: 7, type: "SQ"}'); 
+        let sgfsq37= sgfsq36.replaceAll('SQ[di]',',,\n{x: 3, y: 8, type: "SQ"}'); 
+
+ 	let sgfsq38= sgfsq37.replaceAll('SQ[ea]',',,\n{x: 4, y: 0, type: "SQ"}'); 
+        let sgfsq39= sgfsq38.replaceAll('SQ[eb]',',,\n{x: 4, y: 1, type: "SQ"}'); 
+        let sgfsq40= sgfsq39.replaceAll('SQ[ec]',',,\n{x: 4, y: 2, type: "SQ"}'); 
+        let sgfsq41= sgfsq40.replaceAll('SQ[ed]',',,\n{x: 4, y: 3, type: "SQ"}'); 
+        let sgfsq42= sgfsq41.replaceAll('SQ[ee]',',,\n{x: 4, y: 4, type: "SQ"}'); 
+        let sgfsq43= sgfsq42.replaceAll('SQ[ef]',',,\n{x: 4, y: 5, type: "SQ"}'); 
+        let sgfsq44= sgfsq43.replaceAll('SQ[eg]',',,\n{x: 4, y: 6, type: "SQ"}'); 
+        let sgfsq45= sgfsq44.replaceAll('SQ[eh]',',,\n{x: 4, y: 7, type: "SQ"}'); 
+        let sgfsq46= sgfsq45.replaceAll('SQ[ei]',',,\n{x: 4, y: 8, type: "SQ"}'); 
+
+ 	let sgfsq47= sgfsq46.replaceAll('SQ[fa]',',,\n{x: 5, y: 0, type: "SQ"}'); 
+        let sgfsq48= sgfsq47.replaceAll('SQ[fb]',',,\n{x: 5, y: 1, type: "SQ"}'); 
+        let sgfsq49= sgfsq48.replaceAll('SQ[fc]',',,\n{x: 5, y: 2, type: "SQ"}'); 
+        let sgfsq50= sgfsq49.replaceAll('SQ[fd]',',,\n{x: 5, y: 3, type: "SQ"}'); 
+        let sgfsq51= sgfsq50.replaceAll('SQ[fe]',',,\n{x: 5, y: 4, type: "SQ"}'); 
+        let sgfsq52= sgfsq51.replaceAll('SQ[ff]',',,\n{x: 5, y: 5, type: "SQ"}'); 
+        let sgfsq53= sgfsq52.replaceAll('SQ[fg]',',,\n{x: 5, y: 6, type: "SQ"}'); 
+        let sgfsq54= sgfsq53.replaceAll('SQ[fh]',',,\n{x: 5, y: 7, type: "SQ"}'); 
+        let sgfsq55= sgfsq54.replaceAll('SQ[fi]',',,\n{x: 5, y: 8, type: "SQ"}'); 
+
+ 	let sgfsq56= sgfsq55.replaceAll('SQ[ga]',',,\n{x: 6, y: 0, type: "SQ"}'); 
+        let sgfsq57= sgfsq56.replaceAll('SQ[gb]',',,\n{x: 6, y: 1, type: "SQ"}'); 
+        let sgfsq58= sgfsq57.replaceAll('SQ[gc]',',,\n{x: 6, y: 2, type: "SQ"}'); 
+        let sgfsq59= sgfsq58.replaceAll('SQ[gd]',',,\n{x: 6, y: 3, type: "SQ"}'); 
+        let sgfsq60= sgfsq59.replaceAll('SQ[ge]',',,\n{x: 6, y: 4, type: "SQ"}'); 
+        let sgfsq61= sgfsq60.replaceAll('SQ[gf]',',,\n{x: 6, y: 5, type: "SQ"}'); 
+        let sgfsq62= sgfsq61.replaceAll('SQ[gg]',',,\n{x: 6, y: 6, type: "SQ"}'); 
+        let sgfsq63= sgfsq62.replaceAll('SQ[gh]',',,\n{x: 6, y: 7, type: "SQ"}'); 
+        let sgfsq64= sgfsq63.replaceAll('SQ[gi]',',,\n{x: 6, y: 8, type: "SQ"}'); 
+
+ 	let sgfsq65= sgfsq64.replaceAll('SQ[ha]',',,\n{x: 7, y: 0, type: "SQ"}'); 
+        let sgfsq66= sgfsq65.replaceAll('SQ[hb]',',,\n{x: 7, y: 1, type: "SQ"}'); 
+        let sgfsq67= sgfsq66.replaceAll('SQ[hc]',',,\n{x: 7, y: 2, type: "SQ"}'); 
+        let sgfsq68= sgfsq67.replaceAll('SQ[hd]',',,\n{x: 7, y: 3, type: "SQ"}'); 
+        let sgfsq69= sgfsq68.replaceAll('SQ[he]',',,\n{x: 7, y: 4, type: "SQ"}'); 
+        let sgfsq70= sgfsq69.replaceAll('SQ[hf]',',,\n{x: 7, y: 5, type: "SQ"}'); 
+        let sgfsq71= sgfsq70.replaceAll('SQ[hg]',',,\n{x: 7, y: 6, type: "SQ"}'); 
+        let sgfsq72= sgfsq71.replaceAll('SQ[hh]',',,\n{x: 7, y: 7, type: "SQ"}'); 
+        let sgfsq73= sgfsq72.replaceAll('SQ[hi]',',,\n{x: 7, y: 8, type: "SQ"}'); 
+
+ 	let sgfsq74= sgfsq73.replaceAll('SQ[ia]',',,\n{x: 8, y: 0, type: "SQ"}'); 
+        let sgfsq75= sgfsq74.replaceAll('SQ[ib]',',,\n{x: 8, y: 1, type: "SQ"}'); 
+        let sgfsq76= sgfsq75.replaceAll('SQ[ic]',',,\n{x: 8, y: 2, type: "SQ"}'); 
+        let sgfsq77= sgfsq76.replaceAll('SQ[id]',',,\n{x: 8, y: 3, type: "SQ"}'); 
+        let sgfsq78= sgfsq77.replaceAll('SQ[ie]',',,\n{x: 8, y: 4, type: "SQ"}'); 
+        let sgfsq79= sgfsq78.replaceAll('SQ[if]',',,\n{x: 8, y: 5, type: "SQ"}'); 
+        let sgfsq80= sgfsq79.replaceAll('SQ[ig]',',,\n{x: 8, y: 6, type: "SQ"}'); 
+        let sgfsq81= sgfsq80.replaceAll('SQ[ih]',',,\n{x: 8, y: 7, type: "SQ"}'); 
+        let sgfsq82= sgfsq81.replaceAll('SQ[ii]',',,\n{x: 8, y: 8, type: "SQ"}'); 
+
+	let WGo = sgfsq82.split(',,');
+	document.getElementById('wgo').value = WGo;
 }
- 
+
+function boarding() {
+	var board = new WGo.Board(document.getElementById("board"), {
+		width: 220,
+		section: {
+			top: 0,
+			left: 0,
+			right: 0,
+			bottom: 0,
+		}
+	});
+
+	var coordinates = {
+		// draw on grid layer
+		grid: {
+			draw: function(args, board) {
+				var ch, t, xright, xleft, ytop, ybottom;
+				
+				this.fillStyle = "rgba(0,0,0,0.7)";
+				this.textBaseline="middle";
+				this.textAlign="center";
+				this.font = board.stoneRadius+"px "+(board.font || "");
+				
+				xright = board.getX(-0.75);
+				xleft = board.getX(board.size-0.25);
+				ytop = board.getY(-0.75);
+				ybottom = board.getY(board.size-0.25);
+				
+				for(var i = 0; i < board.size; i++) {
+					ch = i+"A".charCodeAt(0);
+					if(ch >= "I".charCodeAt(0)) ch++;
+					
+					t = board.getY(i);
+					this.fillText(board.size-i, xright, t);
+					this.fillText(board.size-i, xleft, t);
+					
+					t = board.getX(i);
+					this.fillText(String.fromCharCode(ch), t, ytop);
+					this.fillText(String.fromCharCode(ch), t, ybottom);
+				}
+				
+				this.fillStyle = "black";
+			}
+		}
+	}
+	
+	
+	// board.addCustomObject(coordinates);
+
+	board.setSize(9);
+	board.addObject([]);
+}
+
 </script>
+
+
+
 </html>
