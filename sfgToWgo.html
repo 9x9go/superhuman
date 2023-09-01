@@ -22,14 +22,17 @@
                 <h2 class="chapter-title">Convert SGF to WGo Object</h2>
             
 <p>
-This chapter offers a tool for converting an SGF code to the WGo object input of  <em>"board.addObject([...])"</em> in the wgo.js command line. The purpose of this effort is to make it easier for coding a WGo board to show in the &lt;div id='board'&gt; tag. <mark class='pink'>WARNING: Check every output again.</mark>
+This chapter offers a tool for converting an SGF code to the WGo object input of  <em>"board.addObject([...])"</em> in the wgo.js command line. The purpose of this effort is to make it easier for coding a WGo board to show in the &lt;div id='board'&gt; tag. 
+</p>
+<p>
+<mark class='pink'>WARNING: the output will be incorrect when the same marks appear at two or more points on the board</mark>. Therefore, <mark class='green'>SGF data cleansing should be done before objectizing, to ensure the output accuracy.</mark> For exmaple, the SGF code of MA[ee][dd] should be manually adjusted to be the SGF input of MA[ee]MA[dd] before.  
 </p>
 
 <br><br><br>
-
+<label for='sgf'>SGF Input:</label><br>
 <textarea id='sgf' rol='10' col='100' style="width:100%" placeholder='[Paste SGF code]'>
 </textarea>
-<br><button onclick='convert()'>Objectized</button>
+<br><button onclick='convert()'>Objectize</button>
 
 
 
@@ -42,6 +45,7 @@ This chapter offers a tool for converting an SGF code to the WGo object input of
 </p>
 <br>
 <div id='board'></div>
+<div id='testWGo'></div>
 
    </article>
             <footer>
@@ -61,6 +65,61 @@ This chapter offers a tool for converting an SGF code to the WGo object input of
 <script src="https://unpkg.com/json5@^2.0.0/dist/index.min.js"></script>
 
 <script type='text/javascript'>
+
+
+function boarding() {
+	var board = new WGo.Board(document.getElementById("board"), {
+		width: 220,
+		section: {
+			top: 0,
+			left: 0,
+			right: 0,
+			bottom: 0,
+		}
+	});
+
+	var coordinates = {
+		// draw on grid layer
+		grid: {
+			draw: function(args, board) {
+				var ch, t, xright, xleft, ytop, ybottom;
+				
+				this.fillStyle = "rgba(0,0,0,0.7)";
+				this.textBaseline="middle";
+				this.textAlign="center";
+				this.font = board.stoneRadius+"px "+(board.font || "");
+				
+				xright = board.getX(-0.75);
+				xleft = board.getX(board.size-0.25);
+				ytop = board.getY(-0.75);
+				ybottom = board.getY(board.size-0.25);
+				
+				for(var i = 0; i < board.size; i++) {
+					ch = i+"A".charCodeAt(0);
+					if(ch >= "I".charCodeAt(0)) ch++;
+					
+					t = board.getY(i);
+					this.fillText(board.size-i, xright, t);
+					this.fillText(board.size-i, xleft, t);
+					
+					t = board.getX(i);
+					this.fillText(String.fromCharCode(ch), t, ytop);
+					this.fillText(String.fromCharCode(ch), t, ybottom);
+				}
+				
+				this.fillStyle = "black";
+			}
+		}
+	}
+	
+	
+	// board.addCustomObject(coordinates);
+	board.setSize(9);
+	board.addObject([,
+
+]);
+}
+
 
 function copy() {
 	var wgoText = document.getElementById('wgo');
@@ -1161,60 +1220,7 @@ function convert() {
         let sgfsq81= sgfsq80.replaceAll('SQ[ih]',',,\n{x: 8, y: 7, type: "SQ"}'); 
         let sgfsq82= sgfsq81.replaceAll('SQ[ii]',',,\n{x: 8, y: 8, type: "SQ"}'); 
 
-	let WGo = sgfsq82.split(',,');
-	document.getElementById('wgo').value = WGo;
-}
-
-function boarding() {
-	var board = new WGo.Board(document.getElementById("board"), {
-		width: 220,
-		section: {
-			top: 0,
-			left: 0,
-			right: 0,
-			bottom: 0,
-		}
-	});
-
-	var coordinates = {
-		// draw on grid layer
-		grid: {
-			draw: function(args, board) {
-				var ch, t, xright, xleft, ytop, ybottom;
-				
-				this.fillStyle = "rgba(0,0,0,0.7)";
-				this.textBaseline="middle";
-				this.textAlign="center";
-				this.font = board.stoneRadius+"px "+(board.font || "");
-				
-				xright = board.getX(-0.75);
-				xleft = board.getX(board.size-0.25);
-				ytop = board.getY(-0.75);
-				ybottom = board.getY(board.size-0.25);
-				
-				for(var i = 0; i < board.size; i++) {
-					ch = i+"A".charCodeAt(0);
-					if(ch >= "I".charCodeAt(0)) ch++;
-					
-					t = board.getY(i);
-					this.fillText(board.size-i, xright, t);
-					this.fillText(board.size-i, xleft, t);
-					
-					t = board.getX(i);
-					this.fillText(String.fromCharCode(ch), t, ytop);
-					this.fillText(String.fromCharCode(ch), t, ybottom);
-				}
-				
-				this.fillStyle = "black";
-			}
-		}
-	}
-	
-	
-	// board.addCustomObject(coordinates);
-
-	board.setSize(9);
-	board.addObject([]);
+	document.getElementById('wgo').value = sgfsq82.split(',,');
 }
 
 </script>
