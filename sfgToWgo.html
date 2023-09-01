@@ -22,10 +22,10 @@
                 <h2 class="chapter-title">Convert SGF to WGo Object</h2>
             
 <p>
-This chapter offers a tool for converting an SGF code to the WGo object input of  <em>"board.addObject([...])"</em> in the wgo.js command line. The purpose of this effort is to make it easier for coding a WGo board to show in the &lt;div id='board'&gt; tag. 
+This chapter provides a tool for converting an SGF code to the input code for use in the <em>"board.addObject([...])"</em> command in the wgo.js file. It faciliates the coding of WGo board to display in the &lt;div id='board'&gt; tag. 
 </p>
 <p>
-<mark class='pink'>WARNING: the output will be incorrect when the same marks appear at two or more points on the board</mark>. Therefore, <mark class='green'>SGF data cleansing should be done before objectizing, to ensure the output accuracy.</mark> For exmaple, the SGF code of MA[ee][dd] should be manually adjusted to be the SGF input of MA[ee]MA[dd] before.  
+<mark class='pink'><strong>WARNING:</strong> An error will occur if the same marks appear on two or more points on the board</mark>. In that case, <mark class='green'>you need a prior data cleansing.</mark> For example, MA[ee][dd] should be coded as MA[ee]MA[dd] before entering as the SGF input.  
 </p>
 
 <br><br><br>
