@@ -25,18 +25,24 @@
 Go players normally make a move they think is best. However, the move can actually be bad, good, or best. The quality of go move can also be identified as human, superhuman, and divine moves, by assessing the move quality in terms of <em>move strength</em>.  
 </p>
 
-<p><a>The move strength</a> represents the magnitude of immediate impact from one's move on the opponent's score given the next move is best played by a verified superhuman Go player&mdash;an oustanding AlphaZero-like AI that can defeat other Go AIs that are themselves superhuman, and has already achieved No. 1 top ranked player on an international human 9 &#215; 9 Go server. For example, if the impact of move A on the opponent's score is lower than that of the verified AI's best move at &#x274c;, then move A is a human move. If move A's impact is equal to that of the verified AI's move, then move A is a superhuman move. If the impact is gerater, then it is a divine move.  
+<p><a>The move strength</a> represents the magnitude of immediate impact from one's move on the opponent's score given the next move is best played by a verified superhuman Go player&mdash;an oustanding AlphaZero-like AI that can defeat other Go AIs that are themselves superhuman, and has already achieved No. 1 top ranked player on an international human 9 &#215; 9 Go server. 
+</p>
+<p>
+In <em>Dia. 1</em>, for example, the impact of Black's move at <span class='b'>A</span> on the White's score is three points lower than that of the verified AI's best alternative move at &#x2717;, so <span class='b'>A</span> is a human move. If the impact of <span class='b'>A</span> were equal to that of the verified AI's move, then <span class='b'>A</span> were a superhuman move. If its impact were of any points greater, then it were a divine move.  
 </p>
 
+<p>At the time of this coding, <mark class='green'>the reference superhuman moves were recommended by a verified superhuman named A Master of Go</mark>&mdash;<a>a stronger version of its old version that achieved No.1 top ranked player on GoQuest human 9 &#215; 9 Go server on August 11, 2020</a>. The current AI (v6.0.1) employs KataGo engine (v.1.12.4) with the 18-block NBT weight (Kata1 b18nbts550 neural network), which is arguably strong enough to defeat all outstanding human 9 &#215; 9 Go players, including all the human players on the GoQuest server. Note also that <mark class='blue'>a newer version of A Master of Go on a stronger device like iPad Pro (12.9-inch 4th generation) cannot defeat this version on iPad Mini (5th generation)</mark>.
+</p>
 <p>
 <br><br>
 <div id='board'></div>
+<center><em>Dia 1.</em> Human and Superhuman Moves</center>
 </p>
    </article>
             <footer>
                 <ol id="page-numbers">
-                    <li>109</li>
-                    <li>110</li>
+                    <li>39</li>
+                    <li>40</li>
                 </ol>
             </footer>
         </section>
@@ -97,7 +103,16 @@ Go players normally make a move they think is best. However, the move can actual
 	
 	// board.addCustomObject(coordinates);
 	board.setSize(9);
-	board.addObject([,
+	board.addObject([
+{x: 4, y: 4, c: WGo.B},
+{x: 2, y: 4, c: WGo.W},
+{x: 6, y: 3, c: WGo.B},
+{x: 3, y: 6, c: WGo.W},
+{x: 3, y: 5, c: WGo.B},
+{x: 3, y: 3, c: WGo.W},
+{x: 4, y: 3, c: WGo.B},
+{x: 4, y: 3, type: "LB", text: "A"},
+{x: 2, y: 5, type: "MA"},
 
 ]);
 
