@@ -1,0 +1,129 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<link rel="stylesheet" href="css/book.css">
+	<script type="text/javascript" src="js/wgo/wgo.min.js"></script>
+	<script type="text/javascript" src="js/wgo/wgo.player.min.js"></script>
+	<script type="text/javascript" src="js/wgo/wgo.js"></script> 
+	<link rel="stylesheet" type="text/css" href="js/wgo/wgo.player.css" />
+
+</head>
+<div id="wrapper">
+    <div id="container">
+
+        <section class="open-book">
+            <header>
+                <h1>The Art of 9 &#215; 9 Go</h1>
+                <h6>Superhuman Edition</h6>
+            </header>
+            <article>
+                <h2 class="chapter-title">A Good Move at the Opening</h2>
+            
+<p>
+At the opening, a good move is located somewhere between the worst and the best locations on the board. The worst are at the four cornners (at <strong>A</strong>, <strong>B</strong>, <strong>C</strong>, or <strong>D</strong>), as they have only two liberties each, marked <strong>&#10005;</strong> in the diagram. The best is farthest away from the corner, or at <strong>E</strong>. A good move is at any point between the corner points and Tengen, or on the third line&mdash;the line with most Star Points. 
+</p>
+<br><br>
+<br><DIV>
+<div id='board'>
+<center></CENTER></div>
+<br><br><br><br><br><br><br><br><br><br>
+
+<p>
+<dd>
+<dl>
+<strong>Principle:</strong> <br><em>At the opening, take any point you like on the thrid line, and you will make a good move.</em>
+</dl>
+</dd>
+</p>
+<br><br><br><br><br><br>
+
+   </article>
+            <footer>
+                <ol id="page-numbers">
+                    <li>109</li>
+                    <li>110</li>
+                </ol>
+            </footer>
+        </section>
+
+    </div>
+</div>
+
+
+
+</body>
+
+<script type='text/javascript'>
+
+	var board = new WGo.Board(document.getElementById("board"), {
+		width: 220,
+		section: {
+			top: 0,
+			left: 0,
+			right: 0,
+			bottom: 0,
+		}
+	});
+
+	var coordinates = {
+		// draw on grid layer
+		grid: {
+			draw: function(args, board) {
+				var ch, t, xright, xleft, ytop, ybottom;
+				
+				this.fillStyle = "rgba(0,0,0,0.7)";
+				this.textBaseline="middle";
+				this.textAlign="center";
+				this.font = board.stoneRadius+"px "+(board.font || "");
+				
+				xright = board.getX(-0.75);
+				xleft = board.getX(board.size-0.25);
+				ytop = board.getY(-0.75);
+				ybottom = board.getY(board.size-0.25);
+				
+				for(var i = 0; i < board.size; i++) {
+					ch = i+"A".charCodeAt(0);
+					if(ch >= "I".charCodeAt(0)) ch++;
+					
+					t = board.getY(i);
+					this.fillText(board.size-i, xright, t);
+					this.fillText(board.size-i, xleft, t);
+					
+					t = board.getX(i);
+					this.fillText(String.fromCharCode(ch), t, ytop);
+					this.fillText(String.fromCharCode(ch), t, ybottom);
+				}
+				
+				this.fillStyle = "black";
+			}
+		}
+	}
+	
+	
+	// board.addCustomObject(coordinates);
+	board.setSize(9);
+	board.addObject([
+
+{x: 0, y: 0, type: "LB", text: "A"},
+{x: 8, y: 0, type: "LB", text: "B"},
+{x: 0, y: 8, type: "LB", text: "C"},
+{x: 8, y: 8, type: "LB", text: "D"},
+{x: 4, y: 4, type: "LB", text: "E"},
+{x: 1, y: 0, type: "MA"},
+{x: 0, y: 1, type: "MA"},
+{x: 7, y: 0, type: "MA"},
+{x: 8, y: 1, type: "MA"},
+{x: 8, y: 7, type: "MA"},
+{x: 7, y: 8, type: "MA"},
+{x: 1, y: 8, type: "MA"},
+{x: 0, y: 7, type: "MA"},
+
+]);
+
+</script>
+
+
+
+</html>
