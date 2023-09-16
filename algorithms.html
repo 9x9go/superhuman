@@ -1,0 +1,74 @@
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="css/book.css">
+<title>The Art of 9 &#215 9 Go</title>
+	<script src="js/sediagram/underscore-min.js"></script>
+	<script src="js/sediagram/raphael-min.js"></script>
+	<script src="js/sediagram/sequence-diagram-min.js">	</script>
+</head>
+
+<body>
+<div id="wrapper">
+    <div id="container">
+
+        <section class="open-book">
+            <header>
+                <h1>The Art of 9 &#215 9 Go</h1>
+                <h6>Superhuman Edition</h6>
+            </header>
+            <article>
+    <h2 class="chapter-title">Game Algorithms</h2>
+
+<p>Little has been said about the best practice in making a move&mdash;the specific algorithm of making the best move, which describes how the strong player assess the board situation, think of new ideas on the best next move options, test each option by visualizing the subsequent moves and evaluating the long-term impact of each sequence on the net score, and then select the move they think is best. Even less is said about why each best move is that best exactly.
+<p> 
+This issue has not yet been solved by any superhuman players. They are great players but bad teachers. Even their developers do not fully understand why their superhuman programs make a move as such, in the way that human players can understand and apply to their games, not in the way that allows other developers to write other superhuman Go playing programs.
+</p>
+<p>To address this issue, we need to guess the ideas behind the superhumans' moves, and test them against the observed data from well-designed experiments.
+ 
+
+<pre id="txt" hidden>
+title: General Go Game Algorithm
+Black->White: Make a move
+note over White: Observe
+note over White: Assess the situation
+note over White: Have policy choices
+note over White: Visualize many moves ahead 
+note over White: Evaluate the long-term impact
+note over White: Select the best move
+White->Black: Make a move
+note over Black,White: Repeat the process
+Black-->>White: Pass
+White-->>Black: Pass
+note over Black,White: Check the final scores
+</pre>
+
+<br>
+<dd>
+<div id="diagram"></div>
+</dd>
+<script>
+	var diagram = Diagram.parse(document.getElementById('txt').
+innerText)
+
+diagram.drawSVG('diagram',{theme:'simple'})
+</script>
+
+<br>
+<center>****************</center><br>
+
+
+
+            </article>
+            <footer>
+                <ol id="page-numbers">
+                    <li>111</li>
+                    <li>112</li>
+                </ol>
+            </footer>
+        </section>
+
+    </div>
+</div>
+
+
+</body></html>
