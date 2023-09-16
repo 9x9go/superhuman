@@ -1,0 +1,115 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<!Book layout>
+	<link rel="stylesheet" href="css/book.css">
+
+<title>The Art of 9 &#215 9 Go</title>
+
+<!Sequence diagram>
+	<script src="underscore-min.js"></script>
+	<script src="raphael-min.js"></script>
+	<script src="sequence-diagram-min.js"></script>
+
+<!Flow diagram>
+  <script src="js/raphael.min.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/flowchart-latest.js"></script>
+
+
+  </head>
+
+</head>
+
+<body>
+<div id="wrapper">
+    <div id="container">
+
+        <section class="open-book">
+            <header>
+
+<!Left top line>
+                	<h1>The Art of 9 &#215 9 Go</h1>
+
+<!Right top line>
+                	<h6>Superhuman Edition</h6>
+		</header>
+
+            <article>
+
+<!Chapter title>
+    	<h2 class="chapter-title">Board Reading</h2>
+
+<p>One of the most important and most difficult skill to master is board reading. You need both the right thinking steps and the right understanding of Go concepts applied to each step. </p>
+
+<p>First, the board shoud be observed by looking at on all stones on the board, not just the last move. Second, the sitution should be anlayzed by identifying the advantages, problems, risks, and opportunities of both yours and your opponent's. Third, prioritize your problems. Fourth, find some good moves to deal with them. Fifth, visualize the move sequence from each good move option and try to foresee its impacts on the advantages, problems, risks, and opportunities in the far future. Sixth, trade off such impacts and select the most effective move. </p><p>We need to understand the concepts of current situation assessment, move sequence visualization, move-sequence impact evaluation, and best-move selection.
+</p>
+
+<div id="chart">
+st=>start: Start|past:>http://www.google.com[blank]
+e=>end: End:>http://www.google.com
+op1=>subroutine: Observation|past:$myFunction
+op2=>inputoutput: Big move|current
+op3=>operation: Defensive search
+cond=>condition: Any risks?|approved:>http://www.google.com
+c2=>condition: Severe?|rejected
+io=>inputoutput: Urgent move|request
+para=>parallel: Aggressive search
+
+st->op1->cond
+cond(yes, right)->c2
+cond(no)->para
+c2(true)->op3->io->e
+c2(false)->para
+
+para(path1, left)->op1
+para(path2, bottom)->op2->e
+
+st@>op1({"stroke":"Red"})@>cond({"stroke":"Red","arrow-end":"classic-wide-long"})@>c2({"stroke":"Red"})@>io({"stroke":"Red"})@>e({"stroke":"Red"})
+
+para@>op2({"stroke-width":6})
+c2@>op3({"stroke":"Red"})@>io({"stroke":"Red", "stroke-width":6})
+</div>
+
+      <script>
+
+             $('#chart'flowChart();
+                
+            
+        </script>
+   
+
+
+<br>
+<dd>
+
+<br>
+<center>****************</center><br>
+
+
+
+            </article>
+            <footer>
+                <ol id="page-numbers">
+                    <li>1</li>
+                    <li>2</li>
+                </ol>
+            </footer>
+        </section>
+
+    </div>
+</div>
+
+<script>
+      function myFunction(event, node) {
+        console.log("You just clicked this node:", node);
+      }
+    </script>
+    <script src="js/jquery.js"></script>
+    <script src="js/raphael.js"></script>
+		<script>
+		$('#chart').flowChart();
+		</script>
+
+</body></html>
